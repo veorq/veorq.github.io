@@ -1,0 +1,19 @@
+html,body 
+{
+color:#000000;
+background-color:white;
+font-family:sans-serif;
+line-height:140%;
+}
+
+a:link {color:#a00; text-decoration:none;}
+a:visited {color:#a00; text-decoration:none;}
+a:hover {color:#a00; text-decoration:none}
+
+p {width: 600px; }
+
+table { border-spacing: 100px 0; }
+
+OL { counter-reset: item }
+LI { display: block }
+LI:before { content: counters(item, ".") " "; counter-increment: item }

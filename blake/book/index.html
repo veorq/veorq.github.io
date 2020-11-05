@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>BLAKE book</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+
+<table>
+<tr>
+<td valign="top">
+<h1>
+The Hash Function BLAKE
+</h1>
+
+<p>
+A book by Jean-Philippe Aumasson, Willi Meier, Raphael C.-W. Phan, Luca
+Henzen
+<br />
+Foreword by Daniel J. Bernstein
+<br /><br />
+<em>
+January 2015
+</em>
+</p>
+<p>
+Springer
+<br />
+ISBN 978-3-662-44756-7
+</p>
+
+<h3>
+Ordering
+</h3>
+
+<p>
+<a
+href="http://www.amazon.com/Function-BLAKE-Information-Security-Cryptography/dp/3662447568/">
+Amazon
+</a>
+|
+<a
+href="http://www.barnesandnoble.com/w/the-hash-function-blake-jean-philippe-aumasson/1120844119">
+Barnes &amp; Noble
+</a>
+|
+<a
+href="http://www.springer.com/computer/security+and+cryptology/book/978-3-662-44756-7">
+Springer
+</a>
+|
+<a
+href="http://www.waterstones.com/waterstonesweb/products/jean-philippe+aumasson/luca+henzen/willi+meier/raphael+c-+w-+phan/the+hash+function+blake/11209655/">
+Waterstones
+</a>
+<p>
+</p>
+eBook: 
+<a
+href="http://link.springer.com/book/10.1007%2F978-3-662-44757-4">
+Springer Link
+</a>
+</p>
+
+<h3>
+Reviews
+</h3>
+
+<p>
+"Very rarely do cryptographers focus on the bigger picture of their
+work: namely, how their systems and ciphers relate to the real world. In
+this book, J.P. Aumasson describes an innovative, state-of-the art hash
+function, while still making his work relatable to both the engineering
+and mathematical sciences.
+</p>
+
+<p>
+The approach taken to writing The Hash Function BLAKE is the approach
+necessary to reverse the isolation of cryptography as a science, by
+connecting it to programmers, engineers, and designers of both hardware
+and software. By coupling this practical style with a thorough
+mathematical description, this book is at the forefront of helping make
+cryptography a field that is more relevant across the entire discipline
+of computer science and engineering."
+</p>
+&mdash;Nadim Kobeissi
+
+
+<h3>
+Back cover
+</h3>
+
+<p>
+This is a comprehensive description of the cryptographic hash function
+BLAKE, one of the five final contenders in the NIST SHA3 competition,
+and of BLAKE2, an improved version popular among developers. It
+describes how BLAKE was designed and why BLAKE2 was developed, and it
+offers guidelines on implementing and using BLAKE, with a focus on
+software implementation.  </p>
+ 
+
+<p>
+In the first two chapters, the authors offer a short introduction to
+cryptographic hashing, the SHA3 competition, and BLAKE. They review
+applications of cryptographic hashing, they describe some basic notions
+such as security definitions and state-of-the-art collision search
+methods, and they present SHA1, SHA2, and the SHA3 finalists. In the
+chapters that follow, the authors give a complete description of the
+four instances BLAKE-256, BLAKE-512, BLAKE-224, and BLAKE-384; they
+describe applications of BLAKE, including simple hashing with or without
+a salt, and HMAC and PBKDF2 constructions; they review implementation
+techniques, from portable C and Python to AVR assembly and vectorized
+code using SIMD CPU instructions; they describe BLAKE’s properties with
+respect to hardware design for implementation in ASICs or FPGAs; they
+explain BLAKE's design rationale in detail, from NIST’s requirements to
+the choice of internal parameters; they summarize the known security
+properties of BLAKE and describe the best attacks on reduced or modified
+variants; and they present BLAKE2, the successor of BLAKE, starting with
+motivations and also covering its performance and security aspects. The
+book concludes with detailed test vectors, a reference portable C
+implementation of BLAKE, and a list of third-party software
+implementations of BLAKE and BLAKE2.
+</p>
+
+<p>
+The book is oriented towards practice&mdash;engineering and craftsmanship&mdash;
+rather than theory. It is suitable for developers, engineers, and
+security professionals engaged with BLAKE and cryptographic hashing in
+general, and for applied cryptography researchers and students who need
+a consolidated reference and a detailed description of the design
+process, or guidelines on how to design a cryptographic algorithm.  </p>
+</p>
+
+<h2>
+Sample chapter
+</h2>
+<a href="blake-book-chap2.pdf">Chapter 2: Preliminaries</a>
+
+<h2>
+Table of contents
+</h2>
+
+<ol>
+<li>Introduction
+<ol>
+<li>Cryptographic Hashing</li>
+<li>The SHA3 Competition</li>
+<li>BLAKE, in a Nutshell</li>
+<li>Conventions</li>
+</ol>
+</li>
+<li>Preliminaries
+<ol>
+<li>Applications</li>
+<li>Security Notions</li>
+<li>Black-Box Collision Search</li>
+<li>Constructing Hash Functions</li>
+<li>The SHA Family</li>
+</ol>
+</li>
+<li>Specification of BLAKE
+<ol>
+<li>BLAKE-256</li>
+<li>BLAKE-512</li>
+<li>BLAKE-224</li>
+<li>BLAKE-384</li>
+<li>Toy Versions</li>
+</ol>
+</li>
+<li>Using BLAKE
+<ol>
+<li>Simple Hashing</li>
+<li>Hashing with a Salt</li>
+<li>Message Authentication with HMAC</li>
+<li>Password-Based Key Derivation with PBKDF2</li>
+</ol>
+</li>
+<li>BLAKE in Software
+<ol>
+<li>Straightforward Implementation</li>
+<li>Embedded Systems</li>
+<li>Vectorized Implementation Principle</li>
+<li>Vectorized Implementation with SSE Extensions</li>
+<li>Vectorized Implementation with AVX2 Extensions</li>
+<li>Vectorized Implementation with XOP Extensions</li>
+<li>Vectorized Implementation with NEON Extensions</li>
+<li>Performance</li>
+</ol>
+</li>
+<li>BLAKE in Hardware
+<ol>
+<li>RTL Design</li>
+<li>ASIC Implementation</li>
+<li>FPGA Design</li>
+<li>Performance</li>
+</ol>
+</li>
+<li>Design Rationale
+<ol>
+<li>NIST Call for Submissions</li>
+<li>Needs Analysis</li>
+<li>Design Philosophy</li>
+<li>Design Choices</li>
+</ol>
+</li>
+<li>Security of BLAKE
+<ol>
+<li>Differential Cryptanalysis</li>
+<li>Properties of BLAKE's G Function</li>
+<li>Properties of the Round Function</li>
+<li>Properties of the Compression Function</li>
+<li>Security Against Generic Attacks</li>
+<li>Attacks on Reduced BLAKE</li>
+</ol>
+</li>
+<li>BLAKE2
+<ol>
+<li>Motivations</li>
+<li>Differences with BLAKE</li>
+<li>Keyed Hashing (MAC and PRF)</li>
+<li>Tree Hashing</li>
+<li>Parallel Hashing: BLAKE2sp and BLAKE2bp</li>
+<li>Performance</li>
+<li>Security</li>
+</ol>
+</li>
+<li>Conclusion</li>
+</ol>
+
+<h2>
+Contact
+</h2>
+<a
+href="mailto:jeanphilippe.aumasson@gmail.com">jeanphilippe.aumasson@gmail.com</a>
+<br />
+<br />
+
+</td>
+<td valign="top">
+<br />
+<img src="cover-blake.png">
+</td>
+</tr>
+</table>
+
+</body>
+</html>
+

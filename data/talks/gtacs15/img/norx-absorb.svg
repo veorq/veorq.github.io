@@ -1,0 +1,90 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="500" height="100" font-size="10px" font-family="sans-serif">
+
+  <defs>
+    <pattern id="blue-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#069af3" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="red-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#e74c3c" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="green-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#2ecc71" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="yellow-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#fac205" x="0" y="0" width="25" height="25" />
+    </pattern>
+  </defs>
+
+  <g>
+  <rect fill="url(#red-grid)"   x= "0" y= "0" width="100" height="100"/>
+  <rect fill="url(#green-grid)" x="50" y="50" width= "50" height="50"/>
+  <rect fill="url(#green-grid)" x= "0" y="75" width="100" height="25"/>
+  <text>
+      <tspan x =  "8.0" y = "15.0">z<tspan baseline-shift="sub" font-size="6">0</tspan></tspan>
+      <tspan x = "33.0" y = "15.0">z<tspan baseline-shift="sub" font-size="6">1</tspan></tspan>
+      <tspan x = "58.0" y = "15.0">z<tspan baseline-shift="sub" font-size="6">2</tspan></tspan>
+      <tspan x = "83.0" y = "15.0">z<tspan baseline-shift="sub" font-size="6">3</tspan></tspan>
+      <tspan x =  "8.0" y = "40.0">z<tspan baseline-shift="sub" font-size="6">4</tspan></tspan>
+      <tspan x = "33.0" y = "40.0">z<tspan baseline-shift="sub" font-size="6">5</tspan></tspan>
+      <tspan x = "58.0" y = "40.0">z<tspan baseline-shift="sub" font-size="6">6</tspan></tspan>
+      <tspan x = "83.0" y = "40.0">z<tspan baseline-shift="sub" font-size="6">7</tspan></tspan>
+      <tspan x =  "8.0" y = "65.0">z<tspan baseline-shift="sub" font-size="6">8</tspan></tspan>
+      <tspan x = "33.0" y = "65.0">z<tspan baseline-shift="sub" font-size="6">9</tspan></tspan>
+      <tspan x = "58.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">10</tspan></tspan>
+      <tspan x = "83.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">11</tspan></tspan>
+      <tspan x =  "8.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">12</tspan></tspan>
+      <tspan x = "33.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">13</tspan></tspan>
+      <tspan x = "58.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">14</tspan></tspan>
+      <tspan x = "83.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">15</tspan></tspan>
+    </text>
+  </g>
+
+  <text font-size="20px" transform="translate(120 55)">=</text>
+
+  <g transform="translate(150 0)">
+  <rect fill="url(#yellow-grid)" x= "0" y="0" width="100" height="50" />
+  <rect fill="url(#yellow-grid)" x="0" y="25" width="50"  height="50" />
+  <text x="0.0" y="0.0">
+      <tspan x =  "8.0" y = "15.0">y<tspan baseline-shift="sub" font-size="6">0</tspan></tspan>
+      <tspan x = "33.0" y = "15.0">y<tspan baseline-shift="sub" font-size="6">1</tspan></tspan>
+      <tspan x = "58.0" y = "15.0">y<tspan baseline-shift="sub" font-size="6">2</tspan></tspan>
+      <tspan x = "83.0" y = "15.0">y<tspan baseline-shift="sub" font-size="6">3</tspan></tspan>
+      <tspan x =  "8.0" y = "40.0">y<tspan baseline-shift="sub" font-size="6">4</tspan></tspan>
+      <tspan x = "33.0" y = "40.0">y<tspan baseline-shift="sub" font-size="6">5</tspan></tspan>
+      <tspan x = "58.0" y = "40.0">y<tspan baseline-shift="sub" font-size="6">6</tspan></tspan>
+      <tspan x = "83.0" y = "40.0">y<tspan baseline-shift="sub" font-size="6">7</tspan></tspan>
+      <tspan x =  "8.0" y = "65.0">y<tspan baseline-shift="sub" font-size="6">8</tspan></tspan>
+      <tspan x = "33.0" y = "65.0">y<tspan baseline-shift="sub" font-size="6">9</tspan></tspan>
+  </text>
+  </g>
+
+  <g transform ="translate(275 52)">
+      <circle cx="0" cy="0" r="5" fill="white" stroke="black" />
+      <line x1="-5" y1="0" x2="5" y2= "0" stroke="black" stroke-width="1"/>
+      <line x1= "0" y1="5" x2="0" y2="-5" stroke="black" stroke-width="1"/>
+  </g>
+
+  <g transform="translate(300 0)">
+  <rect fill="url(#blue-grid)"  x = "0" y= "0" width="100" height="100" />
+  <rect fill="url(#green-grid)" x ="50" y="50" width= "50" height="50" />
+  <rect fill="url(#green-grid)" x = "0" y="75" width="100" height="25" />
+  <text x="200.0" y="0.0">
+      <tspan x = "8.0"  y = "15.0">x<tspan baseline-shift="sub" font-size="6">0</tspan></tspan>
+      <tspan x = "33.0" y = "15.0">x<tspan baseline-shift="sub" font-size="6">1</tspan></tspan>
+      <tspan x = "58.0" y = "15.0">x<tspan baseline-shift="sub" font-size="6">2</tspan></tspan>
+      <tspan x = "83.0" y = "15.0">x<tspan baseline-shift="sub" font-size="6">3</tspan></tspan>
+      <tspan x =  "8.0" y = "40.0">x<tspan baseline-shift="sub" font-size="6">4</tspan></tspan>
+      <tspan x = "33.0" y = "40.0">x<tspan baseline-shift="sub" font-size="6">5</tspan></tspan>
+      <tspan x = "58.0" y = "40.0">x<tspan baseline-shift="sub" font-size="6">6</tspan></tspan>
+      <tspan x = "83.0" y = "40.0">x<tspan baseline-shift="sub" font-size="6">7</tspan></tspan>
+      <tspan x =  "8.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">8</tspan></tspan>
+      <tspan x = "33.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">9</tspan></tspan>
+      <tspan x = "58.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">10</tspan></tspan>
+      <tspan x = "83.0" y = "65.0">x<tspan baseline-shift="sub" font-size="6">11</tspan></tspan>
+      <tspan x =  "8.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">12</tspan></tspan>
+      <tspan x = "33.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">13</tspan></tspan>
+      <tspan x = "58.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">14</tspan></tspan>
+      <tspan x = "83.0" y = "90.0">x<tspan baseline-shift="sub" font-size="6">15</tspan></tspan>
+  </text>
+  </g>
+</svg>

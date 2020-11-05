@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en"> 
+
+<head> 
+<title>SipHash: a fast short-input PRF</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head> 
+ 
+<body> 
+ 
+<header>
+<h1>SipHash: a fast short-input PRF</h1>
+
+</header>
+
+<nav>
+<a href="#dl">DOWNLOADS</a>
+&nbsp;|&nbsp;
+<a href="#at">ATTACKS</a>
+&nbsp;|&nbsp;
+<a href="#us">USERS</a>
+&nbsp;|&nbsp;
+<a href="#cr">CRYPTANALYSIS</a>
+&nbsp;|&nbsp;
+<a href="#sw">THIRD-PARTY IMPLEMENTATIONS</a>
+</nav>
+<br />
+<br />
+
+<section> 
+ 
+SipHash is a family of pseudorandom functions (a.k.a. keyed hash functions) optimized for speed on
+short messages.  
+
+<br /><br />
+
+Target applications include <b>network traffic authentication</b> and
+<b>defense against hash-flooding</b>
+<a href="http://events.ccc.de/congress/2011/Fahrplan/events/4680.en.html">
+DoS</a> attacks.
+
+<br /><br />
+
+SipHash is <b>secure, fast, and simple</b> (for real):
+<ul>
+<li>
+SipHash is simpler and faster than previous cryptographic algorithms (e.g.
+MACs based on universal hashing)
+</li>
+<li>
+SipHash is competitive in performance with <a href=#at>insecure</a>
+non-cryptographic algorithms (e.g. MurmurHash)
+
+</li>
+</ul>
+
+We propose that hash tables switch to SipHash as a hash function.
+<a href= "#us">Users</a> of SipHash already include FreeBSD, OpenDNS, Perl 5, Ruby, or Rust.
+
+<br /><br />
+
+The original SipHash returns <b>64-bit</b> strings. 
+A version returning <b>128-bit</b> strings was later created, based on demand from users.
+
+<br /><br />
+
+<b>Intellectual property:</b>
+We aren't aware of any patents or patent applications relevant to
+SipHash, and we aren't planning to apply for any.
+The <a href="https://github.com/veorq/SipHash">reference code</a> of
+SipHash is released under CC0 license, a public domain-like license.
+
+<br /><br />
+
+SipHash was designed by
+<ul> 
+<li>Jean-Philippe Aumasson (<a
+href="https://www.kudelskisecurity.com/">Kudelski Security</a>,
+Switzerland)</li>
+<li>
+Daniel J. Bernstein (<a href="http://cr.yp.to/djb.html">University of
+Illinois at Chicago</a>, USA)
+</li>
+</ul> 
+ 
+Contact: jeanphilippe.aumasson@gmail.com &nbsp; djb@cr.yp.to
+</section> 
+ 
+<section id="dl"> 
+<h2>Downloads</h2> 
+ 
+<ul> 
+<li><a href="siphash.pdf">Research paper</a> "SipHash: a fast
+short-input PRF" (accepted for presentation at the <a
+href="http://hyperelliptic.org/DIAC/">DIAC</a> workshop and at
+<a href="http://www.isical.ac.in/~indocrypt/">INDOCRYPT 2012</a>)</li>
+<li><a href="http://cr.yp.to/talks/2012.12.12/slides.pdf">Slides</a> of the presentation of SipHash at 
+<a href="http://www.isical.ac.in/~indocrypt/">INDOCRYPT 2012</a> (Bernstein)</li>
+<li><a href="siphash_slides.pdf">Slides</a> of the presentation of SipHash at 
+<a href="http://hyperelliptic.org/DIAC/">DIAC</a> (Aumasson)</li>
+<li>Reference <a href="https://github.com/veorq/SipHash">C
+implementation</a>.</li>
+</ul> 
+</section> 
+
+
+<section id="at"> 
+<h2>Attacks</h2> 
+
+Jointly with <a href="http://emboss.github.com/">Martin Boßlet</a>, we demonstrated weaknesses in
+MurmurHash (used in Ruby, Java, etc.), CityHash (used in Google), and in
+Python's hash. 
+Some of the technologies affected have <a href=#us>switched</a> to SipHash.
+
+See this oCERT <a
+href="http://www.ocert.org/advisories/ocert-2012-001.html">advisory</a>,
+and the following resources:
+
+<ul> 
+<li><a href="siphashdos_29c3_slides.pdf">Slides</a> of the presentation
+"Hash-flooding DoS reloaded: attacks and defenses" at the 29th Chaos
+Communications Congress (Aumasson, Bernstein, Boßlet)
+</li>
+<li><a href="siphashdos_appsec12_slides.pdf">Slides</a> of the presentation
+"Hash-flooding DoS reloaded: attacks and defenses" at Application
+Security Forum Western Switzerland 2012 (Aumasson, Boßlet)
+</li>
+<li><a href="https://github.com/emboss/schadcode">Proof-of-concept
+code</a> for CRuby, JRuby, Rubinius, and Java
+</li>
+<li><a href="citycollisions-20120730.tar.gz">C++ program</a> to find
+universal (key-independent) multicollisions for <a
+href="https://code.google.com/p/cityhash/">CityHash64</a></li> 
+<li><a href="murmur2collisions-20120821.tar.gz">C++ program</a> to find
+universal (key-independent) multicollisions for <a
+href="http://code.google.com/p/smhasher/wiki/MurmurHash2">MurmurHash2</a></li> 
+<li><a href="murmur3collisions-20120827.tar.gz">C++ program</a> to find
+universal (key-independent) multicollisions for <a
+href="http://code.google.com/p/smhasher/wiki/MurmurHash3">MurmurHash3</a></li> 
+<li><a href="poc.py">Python script</a> to recover the secret seed of the
+hash randomization in Python <a
+href="http://www.python.org/getit/releases/2.7.3/">2.7.3</a> and <a
+href="http://www.python.org/getit/releases/3.2.3/">3.2.3</a></li>
+</ul> 
+
+
+<section id="us"> 
+<h2>Users</h2> 
+
+Users of SipHash include:
+<ul>
+<li><a href="https://www.openssl.org">OpenSSL</a>:
+libcrypto includes SipHash</li>
+<li><a href="https://github.com/jedisct1/libsodium">Sodium</a>:
+SipHash-2-4 is the "shorthash" function in libsodium 
+</li>
+<li>
+<a href="http://www.rust-lang.org/">Rust</a>: SipHash-2-4 is used in the
+hash tables implementation of this "safe, concurrent,
+practical language" developed by Mozilla (<a
+href="https://github.com/dgryski/rust/commit/92ac5baa10d6b97a79d6ce87d80256c10f7c0831">patch</a>,
+<a
+href="https://github.com/rust-lang/rust/blob/master/src/libcore/hash/sip.rs">sip.rs</a>).
+</li>
+<li>
+<a href="http://www.python.org/">Python</a>:
+SipHash-2-4 is used as <code>hash()</code> "on all major platforms" (<a href=
+"http://hg.python.org/cpython/rev/adb471b9cba1">patch</a>, <a
+href="http://www.python.org/dev/peps/pep-0456/">PEP</a>) 
+</li>
+<li>
+<a href="https://www.wireguard.io">Wireguard</a>: 
+SipHash-2-4 is used in hash tables of the Wireguard VPN
+</li>
+<li><a href="https://libexpat.github.io/">Expat</a>:
+libexpat uses SipHash in its XML parser</li>
+
+<li>
+<a href="https://github.com/bloomberg">Bloomberg</a>: SipHash-2-4 is one
+of the hashes in Bloomberg's Basic Development Environment (<a
+href="https://github.com/bloomberg/bde/blob/master/groups/bsl/bslh/doc/bslh.txt">documentation</a>,
+<a
+href="https://github.com/bloomberg/bde/blob/master/groups/bsl/bslh/bslh_siphashalgorithm.cpp">code</a>)
+</li>
+
+<li>
+<a href="http://www.openbsd.org">OpenBSD</a>: SipHash-2-4 and
+SipHash-4-8 have been committed under <a
+href="http://ftp.usa.openbsd.org/pub/OpenBSD/src/sys/crypto/">sys/crypto</a>,
+and SipHash-2-4 is to be used in the <a
+href="http://marc.info/?l=openbsd-cvs&m=141604896822253&w=2">in_pcb
+hashing</a>, and in other places
+</li>
+
+<li>
+<a href="https://lkml.org/lkml/2013/6/18/869">Shardmap</a>: SipHash-2-4
+is the hash function of this directory indexing system, "the designated
+successor of HTree"
+<li>
+<a href="http://www.soundhound.com/">SoundHound</a>, which "makes heavy use" of SipHash
+</li>
+<li>
+<a href="http://www.freebsd.org/">FreeBSD</a>:
+SipHash-2-4 is used to protect SYN cookies from forgeries  (<a
+href="https://svnweb.freebsd.org/base/head/sys/crypto/siphash/">code</a>, <a href=
+"http://svnweb.freebsd.org/base?view=revision&revision=253210">revision</a>) 
+</li>
+<li>
+<a href="http://hackage.haskell.org/package/hashable">Hashable</a>:
+SipHash-2-4 is used to hash objects in this Haskell package part of
+the Haskell Platform (<a href=
+"http://www.serpentine.com/blog/2012/12/13/a-major-new-release-of-the-haskell-hashable-library/">blog</a>) 
+</li>
+<li>
+<a href="http://rubini.us/">Rubinius</a>: SipHash-2-4 is used in the hash tables
+implementation (<a href=
+"https://github.com/rubinius/rubinius/commit/a9a40fc6a1256bcf6382631b710430105c5dd868">commit</a>)
+</li>
+<li>
+<a href="http://jruby.org/">JRuby</a>: SipHash-2-4 is the optional algorithm in the hash
+tables implementation (<a href=
+"https://github.com/nahi/jruby/commit/b8b26d7d67c8f5ee416ed32a85c89a567d4a480e">commit</a>)
+</li>
+<li>
+<a href="http://dev.perl.org/perl5/">Perl 5</a>: SipHash-2-4 is optional
+in Perl builds
+(<a href=
+"http://perl5.git.perl.org/perl.git/commit/3db6cbfca39da94d152d3e860e2aa79b9c6bb161">commit</a>,
+<a
+href="http://perl5.git.perl.org/perl.git/blob_plain/HEAD:/hv_func.h">code</a>)
+</li>
+<li>
+<a href="http://redis.io/">Redis</a>: SipHash-2-4 is used in the hash
+tables implementation of this advanced key-value data store (<a
+href="https://github.com/antirez/redis/pull/718">pull request</a>) 
+</li>
+<li>
+<a href="http://www.ruby-lang.org">Ruby</a>: SipHash-2-4 is used in the hash tables
+implementation (<a
+href="http://www.ruby-lang.org/en/news/2012/11/09/ruby19-hashdos-cve-2012-5371/">vulnerability
+report</a>, <a
+href="http://svn.ruby-lang.org/repos/ruby/tags/v1_9_3_327/ChangeLog">changelog</a>) 
+</li>
+<li>
+<a href="http://www.opendns.com">OpenDNS</a>: SipHash-2-4 is used in the dnscache instances of all OpenDNS
+resolvers (<a 
+href="http://download.pureftpd.org/misc/dnscache-siphash.patch">patch</a>).
+</li>
+</ul>
+
+</section> 
+
+<section id="cr">
+<h2>Cryptanalysis</h2>
+
+<ul>
+<li> 20140916:
+Christoph Dobraunig, Florian Mendel, Martin Schläffer.
+<a href="https://eprint.iacr.org/2014/722"> Differential Cryptanalysis
+of SipHash</a>. 
+IACR ePrint archive, report 2014/722.
+</li>
+</ul>
+
+</section>
+
+<section id="sw">
+<h2>Third-party implementations</h2>
+
+<ul>
+
+<li>2016 Aug 2: Pavel Werl.
+<i><a
+href="https://github.com/paya-cz/siphash">siphash</a></i>.
+<br />Main result: C# implementation 
+<br /><br /></li>
+
+<li>2016 Mar 21: Sedat Kapanoglu.
+<i><a
+href="https://github.com/ssg/HashDepot">HashDepot</a></i>.
+<br />Main result: C# implementation for .NET
+<br /><br /></li>
+
+<li>2016 Mar 3: Frank Denis.
+<i><a
+href="https://github.com/jedisct1/siphash-avx2">siphash-avx2</a></i>.
+<br />Main result: C version of the C++ AVX2 implementation
+<br /><br /></li>
+
+<li>2016 Mar 2: Jan Wassenberg and Jyrki Alakuijala.
+<i><a
+href="https://github.com/google/highwayhash">highwayhash</a></i>.
+<br />Main result: C++ implementation using AVX2, tree-based version
+<br /><br /></li>
+
+<li>2016 Feb 23: Joel Holdsworth.
+<i><a
+href="https://github.com/vcatechnology/siphashsum">siphashsum</a></i>.
+<br />Main result: command line utility
+<br /><br /></li>
+
+<li>2015 Mar 6: InfraRuby Vision.
+<i><a
+href="https://rubygems.org/gems/siphash-ir">siphash-ir</a></i>.
+<br />Main result: InfraRuby implementation
+<br /><br /></li>
+
+<li>2015 Feb 13: Pedro Emílio Machado de Brito.
+<i><a
+href="https://github.com/pemb/siphash">siphash</a></i>.
+<br />Main result: VHDL implementation
+<br /><br /></li>
+
+<li>2014 Sep 6: Damien Gryski.
+<i><a
+href="https://github.com/dgryski/go-siphasm">SipHash</a></i>.
+<br />Main result: Go interface to SipHash assembly
+<br /><br /></li>
+
+<li>2014 Feb 8: Sylvain Laperche.
+<i><a
+href="https://github.com/grim7reaper/SipHash">SipHash</a></i>.
+<br />Main result: Ada implementation 
+<br /><br /></li>
+
+<li>2014 Jan 19: Twoje radio.
+<i><a
+href="https://chiselapp.com/user/Justin_be_my_guide/repository/siple/home">siple</a></i>.
+<br />Main result: C++ implementation 
+<br /><br /></li>
+
+<li>2013 Aug 8: Evan Hanson.
+<i><a
+href="https://bitbucket.org/evhan/siphash/">siphash</a></i>.
+<br />Main result: Scheme implementation 
+<br /><br /></li>
+
+<li>2013 Jul 6: Sebastian Gesemann.
+<i><a
+href="https://code.google.com/p/siphashxx/">siphashxx</a></i>.
+<br />Main result: C++ implementation 
+<br /><br /></li>
+
+<li>2013 Jun 13: Matthew Ford.
+<i><a
+href="http://www.forward.com.au/pfod/SipHashJavaLibrary/">SipHash Java Library</a></i>.
+<br />Main result: streaming Java implementation 
+<br /><br /></li>
+
+<li>2013 Jun 10: Matthew Ford.
+<i><a
+href="http://www.forward.com.au/pfod/SipHashLibrary/">SipHash Library
+for Arduino</a></i>.
+<br />Main result: streaming implementation for Arduino (C++, assembler)
+<br /><br /></li>
+
+<li>2013 Apr 7: Joachim Strömbergson.
+<i><a
+href="https://github.com/secworks/siphash_6502">siphash_6502</a></i>.
+<br />Main result: MOS6502 8-bit assembler implementation
+<br /><br /></li>
+
+<li>2013 Feb 18: Dan Kogai.
+<i><a
+href="https://github.com/dankogai/p5-digest-siphash">p5-digest-siphash</a></i>.
+<br />Main result: Perl implementation (C binding and pure Perl)
+<br /><br /></li>
+
+<li>2013 Feb 6: Marek Majkowski.
+<i><a
+href="
+https://idea.popcount.org/2013-01-30-bitsliced-siphash/">Bitsliced
+SipHash</a></i>.
+<br />Main result: bitsliced C implementation 
+<br /><br /></li>
+
+<li>2013 Feb 6: Marek Majkowski.
+<i><a
+href="https://github.com/majek/csiphash">csiphash</a></i>.
+<br />Main result: C implementation 
+<br /><br /></li>
+
+<li>2013 Feb 6: Marek Majkowski.
+<i><a
+href="https://github.com/majek/pysiphash">pysiphash</a></i>.
+<br />Main result: Python implementation 
+<br /><br /></li>
+
+<li>2013 Feb 3: Philipp Jovanovic. 
+<i><a
+href="https://github.com/daeinar/siphash">siphash</a></i>.
+<br />Main result: Python implementation 
+<br /><br /></li>
+
+<li>2013 Jan 25: Ulrik Sverdrup.
+<i><a
+href="http://ccodearchive.net/info/siphash.html">siphash</a></i>.
+<br />Main result: SipHash C module in the Comprehensive C Archive Network
+<br /><br /></li>
+
+<li>2013 Jan 16: Joachim Strömbergson.
+<i><a
+href="https://github.com/secworks/siphash">siphash_core</a></i>.
+<br />Main result: Verilog 2001 implementation of SipHash
+<br /><br /></li>
+
+<li>2012 Dec 19: Clifford Hammerschmidt.
+<i><a
+href="https://github.com/tanglebones/ch-siphash">ch-siphash</a></i>.
+<br />Main result: C# implementation (<a
+href="https://nuget.org/packages/CH.SipHash/1.0.0">package</a>)
+<br /><br /></li>
+
+<li>2012 Dec 16: Bo Zhu.
+<i><a
+href="https://github.com/bozhu/siphash-python">siphash-python</a></i>.
+<br />Main result: Python implementation 
+<br /><br /></li>
+
+<li>2012 Dec 4: Masahiro Nakagawa.
+<i><a
+href="https://github.com/repeatedly/siphash-d">siphash-d</a></i>.
+<br />Main result: D implementation 
+<br /><br /></li>
+
+<li>2012 Nov 6: Hiroshi Nakamura.
+<i><a
+href="https://github.com/nahi/siphash-java-inline ">siphash-java-inline</a></i>.
+<br />Main result: Java implementation (inline rounds) 
+<br /><br /></li>
+
+<li>2012 Nov 6: William Ahern.
+<i><a
+href="http://25thandclement.com/~william/projects/siphash.h.html">siphash.h: SipHash-2-4</a></i>.
+<br />Main result: C implementation (static inline, macro based)
+<br /><br /></li>
+
+<li>2012 Nov 6: Gregory Petrosyan.
+<i><a
+href="https://github.com/flyingmutant/siphash">siphash</a></i>.
+<br />Main result: C implementation (simple, compact)
+<br /><br /></li>
+
+<li>2012 Oct 4: Brian S. Julin. 
+<i><a
+href="https://github.com/skids/perl6sum/blob/master/lib/Sum/SipHash.pm6">SipHash.pm6</a></i>.
+<br />Main result: Perl 6 implementation
+<br /><br /></li>
+
+<li>2012 Oct 2: Bryan O'Sullivan. 
+<i><a
+href="https://github.com/bos/hashable/blob/sip/Data/Hashable/SipHash.hs">SipHash.hs</a></i>.
+<br />Main result: Haskell implementation
+<br /><br /></li>
+
+<li>2012 Aug 8: Damian Gryski. 
+<i><a
+href="https://github.com/dgryski/siphash-rust">siphash-rust</a></i>.
+<br />Main result: Rust implementation
+<br /><br /></li>
+
+<li>2012 Jul 4: Samuel Neves. 
+<br />Main result: C implementations "little", "mmx", "sse2-1", "sse41"
+(available in <a
+href="http://bench.cr.yp.to/supercop.html">SUPERCOP</a>)
+<br /><br /></li>
+
+<li>2012 Jun 29: David Lazar. 
+<i><a
+href="https://github.com/davidlazar/siphash-cryptol">siphash-cryptol</a></i>.
+<br />Main result: Cryptol implementation
+<br /><br /></li>
+
+<li>2012 Jun 28: Frank Denis.
+<i><a href="https://github.com/jedisct1/siphash-erlang">siphash-erlang</a></i>.
+<br />Main result: Erlang NIF wrapper
+<br /><br /></li>
+
+<li>2012 Jun 26: Brandon Haynes. 
+<i><a
+href="https://github.com/BrandonHaynes/siphash-csharp">siphash-chsarp</a></i>.
+<br />Main result: C# implementation (streaming and
+one-pass modes)
+<br /><br /></li>
+
+<li>2012 Jun 24: Vincent Hanquez.
+<i><a href="https://github.com/vincenthz/hs-siphash">hs-siphash</a></i>.
+<br />Main result: Haskell implementation
+<br /><br /></li>
+
+<li>2012 Jun 24: Martin Boßlet.
+<i> <a href="https://github.com/emboss/siphash-ruby">siphash-ruby</a></i>.
+<br />Main result: Ruby implementation
+<br /><br /></li>
+
+<li>2012 Jun 24: Martin Boßlet.
+<i><a href="https://github.com/emboss/siphash-java">siphash-java</a></i>.
+<br />Main result: Java implementation
+<br /><br /></li>
+
+<li>2012 Jun 23: Robert Brown.
+<i><a href="https://github.com/brown/sip-hash">sip-hash</a></i>.
+<br />Main result: Lisp implementation
+<br /><br /></li>
+
+<li>2012 Jun 23: Martin Boßlet.
+<i><a href="https://github.com/emboss/siphash-c">siphash-c</a></i>.
+<br />Main result: C implementation (streaming and
+one-pass modes)
+<br /><br /></li>
+
+<li>2012 Jun 23: Frank Denis.
+<i><a href="https://github.com/jedisct1/siphash-js">siphash-js</a></i>.
+<br />Main result: Javascript implementation 
+<br /><br /></li>
+
+<li>2012 Jun 23: Frank Denis.
+<i><a href="https://github.com/jedisct1/siphash-php">siphash-php</a></i>.
+<br />Main result: PHP extension (using Floodyberry's C)
+<br /><br /></li>
+
+<li>2012 Jun 21: Floodyberry.
+<i><a href="https://github.com/floodyberry/siphash">siphash</a></i>.
+<br />Main result: C implementation (using SSE2 and SSSE3
+extensions)
+<br /><br /></li>
+
+<li>2012 Jun 20: Dmitry Chestnykh.
+<i><a href="https://github.com/dchest/siphash">siphash</a></i>.
+<br />Main result: Go implementation
+<br /><br /></li>
+
+</ul>
+
+</section>
+
+<footer> 
+ <hr /> 
+ 
+<a href="../index.html">Index</a> 
+</footer>   
+ 
+</body></html> 
+ 
+

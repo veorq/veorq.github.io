@@ -1,0 +1,46 @@
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
+@import url(//fonts.googleapis.com/css?family=Pacifico);
+
+html, body 
+{
+    color:#333;
+    background-color:#fafafa;
+    font-family: 'Open Sans', sans-serif;
+    line-height:140%;
+}
+
+a:link {
+    color:#000000; 
+    text-decoration:none; 
+    font-weight:bold;
+}
+
+a:visited {
+    color:#000000; 
+    text-decoration:none;
+}
+
+a:hover {
+    color:#888888; 
+    text-decoration:none
+}
+
+h2 {
+    color:#333;
+    font-family: 'Pacifico', cursive;
+    font-size:40px;
+}
+
+
+li {
+    margin: 4px 0;
+}
+
+#content {
+    width:800px;
+    margin:20px auto; 
+    padding:15px;
+    border:1px dashed #333;
+    background-color:#fff;
+}
+

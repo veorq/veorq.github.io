@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>NORX (GTACS)
+</title>
+
+<!-- Your Slides -->
+<!-- One section is one slide -->
+
+<section class="title-slide">
+    <h1>NORX: sponge-based parallel authenticated encryption
+    </h1>
+    <p align="center">
+    <br/>
+    Jean-Philippe Aumasson (Kudelski Security, Switzerland)
+    <br/>
+    Philipp Jovanovic (Passau University, Germany)
+    <br/>
+    Samuel Neves (Coimbra University, Portugal)
+    </p>
+</section>
+
+
+<section>
+    <h1>Authenticated Encryption (AE)</h1>
+    <div class="block">
+    <figure>
+        <img src="img/ae.svg" height="175" />
+    </figure>
+    <p>
+    <b>Input</b>: key K, nonce N, message M
+    </p>
+    <p>
+    <b>Output</b>: ciphertext C, authentication tag T
+    </p>
+    <p>
+    Confidentiality, integrity, authenticity of M
+    </p>
+    <p>
+    IPsec, SSH, TLS, etc.
+    </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>Authenticated Encryption <br> with Additional Data (AEAD)</h1>
+    <div class="block">
+    <figure>
+        <img src="img/aead.svg" height="175" />
+    </figure>
+    <p>
+    <b>Input</b>: key K, nonce N, message M, additional data H
+    </p>
+    <p>
+    <b>Ouput</b>: ciphertext C, authentication tag T
+    </p>
+    <p>
+    Integrity & authenticity covers H
+    </p>
+    E.g. for datagrams parts that need remain in clear
+    </div>
+</section>
+
+
+<section>
+    <h1>Combining encryption and MAC<br/>
+    </h1>
+    <div class="block">
+        <ul>
+            <li>Encrypt-and-MAC (as in SSH)</li> 
+            <li>MAC-then-encrypt (as in TLS)</li>
+            <li>Encrypt-then-MAC (as in IPsec, best in theory)</li>
+        </ul>
+    </p>
+    <p>
+    <br/>
+    Examples:
+        <ul>
+            <li>
+            AEAD_AES_128_CBC_HMAC_SHA_256
+            </li>
+            AEAD_CHACHA20_POLY1305
+            </li>
+        </ul>
+    </p>
+    </div>
+</section>
+
+
+
+
+<section>
+    <h1>Dedicated AE(AD) methods<br/>
+    </h1>
+    <div class="block">
+            Block cipher modes
+                <ul>
+                    <li>CCM, GCM (NIST-standardized, minor issues)</li>
+                    <li>OCB (patented but mostly free to use)</li>
+                    <li>EAX</li>
+                </ul>
+                <br/>
+            Authenticated ciphers:
+                <ul>
+                    <li>Grain-128a</li>
+                    <li>Helix / Phelix (kinda broken)</li>
+                </ul>
+                <br/>
+            Sponge functions...
+    </div>
+</section>
+
+
+
+<section>
+    <h1>Benefits of authenticated ciphers</h1>
+    <div class="block">
+    <ul>
+        <li>
+        Security: reduced attack surface
+        </li>
+        <li>
+        Speed: one pass, easier to optimize
+        </li>
+        <li>
+        Cost: less code/logic, lower power, etc.
+        </li>
+        <li>
+        Usability: fewer parameters to choose 
+        </li>
+    </ul>
+</section>
+
+
+<section>
+    <br> <br> <br>
+    <table class="ltext">
+        <tr>
+            <td>
+                <figure>
+                    <img src="img/caesar.png" height="400" />
+                </figure>
+            </td>
+            <td style="font-size: 35px">
+                <p><b class="blue">C</b>ompetition for</p>
+                <p><b class="blue">A</b>uthenticated</p>
+                <p><b class="blue">E</b>ncryption:</p>
+                <p><b class="blue">S</b>ecurity,</p>
+                <p><b class="blue">A</b>pplicability, and</p>
+                <p><b class="blue">R</b>obustness</p>
+            </td>
+        </tr>
+    </table>
+</section>
+
+
+
+<section>
+    <h1>CAESAR</h1>
+    <div class="block">
+        <blockquote>Identify a portfolio of authenticated ciphers that offer <b class="blue">advantages over AES-GCM</b> (the current de-facto standard) and are <b class="blue">suitable for widespread adoption</b>.</blockquote>
+
+    <p>
+    March 15 2014 &ndash; End of 2017
+    </p>
+    <p>
+    Led by DJB, with a committee of 22 cryptographers
+    </p>
+    <p>
+    Sponsored by but not organized/controlled by NIST
+    </p>
+    <p>
+    <a href="http://competitions.cr.yp.to/caesar.html">http://competitions.cr.yp.to/caesar.html</a>
+    </p>
+    </div>
+</section>
+
+<section>
+    <h1>AES-GCM everywhere</h1>
+    <div class="block">
+    <p>
+    <b>The</b> AEAD standard:
+    <ul>
+    <li>
+        NSA Suite B
+    </li>
+    <li>
+        NIST SP 800-38D
+    </li>
+    <li>
+        IETF: IPsec, SSH, TLS 1.2
+    </li>
+    <li>
+        IEEE P1619.1 tape storage
+    </li>
+    <li>
+        IEEE 802.1AE (MACsec), 802.11ad (WiGig)
+    </li>
+    <li>
+        etc. etc.
+    </li>
+    </ul>
+    </p>
+    </div>
+</section>
+
+
+
+<section>
+    <h1>What's wrong with AES-GCM?</h1>
+    <div class="block">
+    <p>
+    Unnecessarily complex
+    </p>
+    <p>
+    Fast only if AES/Galois field arithmetic HW support is available, like AES-NI
+    </p>
+    <p>
+    Without HW support: constant-time implementations even more complicated
+    </p>
+    <p>
+    Authentication key recovery if nonce is reused
+    </p>
+        </div>
+</section>
+
+
+
+<section>
+    <h1>CAESAR's 57 submissions</h1>
+    <div class="block">
+    <table style="font-size: 20px">
+        <tr> <td> ACORN   </td>     <td> ++AE         </td> <td> AEGIS     </td> <td> AES-CMCC  </td> <td> AES-COBRA  </td> <tr>
+        <tr> <td> AES-COPA</td>     <td> AES-CPFB     </td> <td> AES-JAMBU </td> <td> AES-OTR   </td> <td> AEZ        </td> <tr>
+        <tr> <td> Artemia </td>     <td> Ascon        </td> <td> AVALANCHE </td> <td> Calico    </td> <td> CBA        </td> <tr>
+        <tr> <td> CBEAM   </td>     <td> CLOC         </td> <td> Deoxys    </td> <td> ELmD      </td> <td> Enchilada  </td> <tr>
+        <tr> <td> FASER   </td>     <td> HKC          </td> <td> HS1-SIV   </td> <td> ICEPOLE   </td> <td> iFeed[AES] </td> <tr>
+        <tr> <td> Joltik  </td>     <td> Julius       </td> <td> Ketje     </td> <td> Keyak     </td> <td> KIASU      </td> <tr>
+        <tr> <td> LAC     </td>     <td> Marble       </td> <td> McMambo   </td> <td> Minalpher </td> <td> MORUS      </td> <tr>
+        <tr> <td> NORX    </td>     <td> OCB          </td> <td> OMD       </td> <td> PAEQ      </td> <td> PAES       </td> <tr>
+        <tr> <td> PANDA   </td>     <td> &Pi;-Cipher  </td> <td> POET      </td> <td> POLAWIS   </td> <td> PRIMATEs   </td> <tr>
+        <tr> <td> Pr&oslash;st</td> <td> Raviyoyla    </td> <td> Sablier   </td> <td> SCREAM    </td> <td> SHELL      </td> <tr>
+        <tr> <td> SILC    </td>     <td> Silver       </td> <td> STRIBOB   </td> <td> Tiaoxin   </td> <td> TriviA-ck  </td> <tr>
+        <tr> <td> Wheesht </td>     <td> YAES         </td> <td>           </td> <td>           </td> <td>            </td> <tr>
+    </table>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>CAESAR's 57 submissions</h1>
+    <div class="block">
+    <table style="font-size: 20px">
+        <tr> <td>ACORN   </td>                       <td><b class="red">++AE</b></td>              <td>AEGIS</td>                              <td><b class="yellow">AES-CMCC</b></td>    <td> <b class="red"> AES-COBRA </b>  </td> <tr>
+        <tr> <td>AES-COPA</td>                       <td>AES-CPFB</td>                             <td>AES-JAMBU</td>                          <td>AES-OTR</td>                           <td>AEZ</td> <tr>
+        <tr> <td>Artemia </td>                       <td>Ascon</td>                                <td><b class="yellow">AVALANCHE</b></td>    <td><b class="red">Calico</b></td>         <td> <b class="red"> CBA  </b>       </td> <tr>
+        <tr> <td><b class="red">CBEAM </b></td>      <td>CLOC</td>                                 <td>Deoxys</td>                             <td>ELmD</td>                              <td> Enchilada</td> <tr>
+        <tr> <td><b class="red">FASER </b></td>      <td><b class="red">HKC</b></td>               <td>HS1-SIV</td>                            <td>ICEPOLE</td>                           <td>iFeed[AES]</td> <tr>
+        <tr> <td>Joltik</td>                         <td>Julius</td>                               <td>Ketje</td>                              <td>Keyak</td>                             <td>KIASU</td> <tr>
+        <tr> <td>LAC</td>                            <td>Marble</td>                               <td><b class="red">McMambo</b></td>         <td> Minalpher</td>                        <td>MORUS</td> <tr>
+        <tr> <td><b class="blue">NORX</b></td>       <td>OCB</td>                                  <td>OMD</td>                                <td>PAEQ</td>                              <td><b class="red">PAES</b>       </td> <tr>
+        <tr> <td><b class="yellow">PANDA</b></td>    <td><b
+        class="yellow">&Pi;-Cipher</b></td>    <td><b
+        class="yellow">POET</b></td>         <td><b
+        class="yellow"POLAWIS</b></td>                           <td>PRIMATEs</td> <tr>
+        <tr> <td>Pr&oslash;st</td>                   <td><b class="red">Raviyoyla</b></td>         <td><b class="red"> Sablier</b></td>        <td><b class="red">SCREAM</b></td>         <td>SHELL</td> <tr>
+        <tr> <td>SILC</td>                           <td>Silver</td>                               <td>STRIBOB</td>                            <td>Tiaoxin</td>                           <td>TriviA-ck</td> <tr>
+        <tr> <td><b class="red">Wheesht</b></td>     <td>YAES</td>                                 <td></td>                                   <td></td>                                  <td></td> <tr>
+    </table>
+    </div>
+    <div class="center" style="margin-top: 4%">Flaws: none 40, <b class="red">major 13</b>, <b class="yellow">minor 6</b></div>
+</section>
+
+
+
+
+<section class="chapter">
+    <h1>NORX</h1>
+</section>
+
+<section class="chapter">
+    <h1>NO(T A)RX</h1>
+</section>
+
+
+
+
+
+<section>
+    <h1>Design goals</h1>
+    <div class="block">
+    <p>
+    <b>High security</b>
+    </p>
+    <p>
+    <b>High speed</b> (in SW <em>and</em> HW)
+    </p>
+    <p>
+    <b>Simplicity</b> (of specs <em>and</em> code)
+    </p>
+    <p>
+    Online / one-pass
+    </p>
+    <p>
+    Scalability (parallelism, unrolling)
+    </p>
+    <p>
+    Key agility (no "key schedule")
+    </p>
+    <p>
+    Side-channel leaks robustness (esp. timings)
+    </p>
+   </div>
+</section>
+
+
+
+<section>
+    <h1>Parameters and proposed instances</h1>
+    <!--
+    <div class="block">
+            <p>
+            Word bit size <b>W</b> &isin; {32, 64}
+            <br/>
+            #rounds 1 &le; <b>R</b> &le; 63
+            <br/>
+            Parallelism degree 0 &le; <b>D</b> &le; 255
+            <br/>
+            Tag size <b>|A|</b> &le; 10W
+            </p>
+    </div>-->
+    <div class="block">
+        <table>
+            <tr><td> Word size</td> <td> Rounds </td></tr>
+            <tr><td><b>W</b> &isin; {32, 64}</td><td>1 &le; <b>R</b> &le; 63</td></tr>
+            <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td> Parallelism</td>     <td>Tag size</td></tr>
+            <tr><td>0 &le; <b>D</b> &le; 255</td><td><b>|A|</b> &le; 10W</td></tr>
+        </table>
+    </div>
+    <div class="block">
+        <table style="font-size:22px; margin-bottom: 2%;">
+            <tr> <td> <b>NORX[W-R-D]</b> </td> <td> <b>Nonce (2W)</b>
+            </td> <td> <b>Key (4W)</b> </td> <td> <b>Tag (4W)</b> </td> <tr>
+            <tr> <td> NORX32-4-1 </td> <td>  64 </td> <td> 128 </td> <td> 128 </td> <tr>
+            <tr> <td> NORX32-<b class="orange">6</b>-1 </td> <td>  64 </td> <td> 128 </td> <td> 128 </td> <tr>
+            <tr> <td> NORX64-4-1 </td> <td> 128 </td> <td> 256 </td> <td> 256 </td> <tr>
+            <tr> <td> NORX64-<b class="orange">6</b>-1 </td> <td> 128 </td> <td> 256 </td> <td> 256 </td> <tr>
+            <tr> <td> NORX64-4-<b class="red">4</b> </td> <td> 128 </td> <td> 256 </td> <td> 256 </td> <tr>
+        </table>
+        <p>
+        <b class="orange">R=6</b>: higher security margin
+        <br/>
+        <b class="red">D=4</b>: high throughput on parallel architectures
+        </p>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Permutation-based mode</h1>
+    <div class="block">
+    <figure>
+        <img src="img/norx-D1.png" height=150/>
+        <figcaption>NORX in Sequential Mode (D = 1)</figcaption>
+    </figure>
+    </div>
+    <div class="block">
+            <p><b>"Monkey duplex"</b> construction, from Keccak/SHA3</p>
+            <p>Process header, payload, and trailer data in one pass</p>
+            <p>Data expansion via multirate padding: <span class="code">10*1</span></p>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Permutation-based mode, parallel!</h1>
+    <div class="block">
+    <figure>
+        <img src="img/norx-D2.png" style="margin: 100px 0 25px 0;" />
+        <figcaption>NORX in Parallel Mode (D = 2)</figcaption>
+    </figure>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>State</h1>
+    <div class="block">
+        <ul>
+            <p>16 W-bit words <code>S = (s<sub>0</sub>,...,s<sub>15</sub>)</code></p>
+        <p><b class="blue">Rate</b> (data) words and <b class="green">capacity</b> (security) words:
+
+            <figure>
+                <img src="img/norx-state.svg" height="150" />
+            </figure>
+        </p>
+            <p>State properties, in bits:
+        <table>
+            <tr> <td>W</td>  <td>Size</td> <td>Rate</td> <td>Capacity</td> </tr>
+            <tr> <td>32</td> <td>512</td>  <td>320</td>  <td>192</td> </tr>
+            <tr> <td>64</td> <td>1024</td> <td>640</td>  <td>384</td> </tr>
+        </table>
+        </p>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Initialisation</h1>
+    <div class="block">
+    <figure style="position: relative">
+        <img src="img/norx-D1.png" style="margin: 150px 0 0 0; z-index: 1; position: relative;" />
+        <svg style="z-index: 2; position: relative; top: -125px; left: -3px; ">
+          <rect fill="white" x="0" y="0" width="115" height="125" stroke="#e74c3c" stroke-width="3" fill-opacity="0" />
+        </svg>
+    </figure>
+    </div>
+</section>
+
+
+<section>
+    <h1>Initialisation</h1>
+    <div class="block">
+        <p>Load <b class="green">nonce</b>, <b class="yellow">key</b> and <b class="blue">constants</b> into S:
+            <figure>
+                <img src="img/norx-init.svg" height="150" />
+            </figure>
+        </p>
+        <p>Parameter integration (v2):
+            <div class="center" style="font-size:22px;">
+                <code>s<sub>12</sub> = s<sub>12</sub> ^ W</code><br>
+                <code>s<sub>13</sub> = s<sub>13</sub> ^ R</code><br>
+                <code>s<sub>14</sub> = s<sub>14</sub> ^ D</code><br>
+                <code>&nbsp; s<sub>15</sub> = s<sub>15</sub> ^ |A|</code>
+            </div>
+        </p>
+        <p>Apply R-round permutation: <code>S = F<sup>R</sup>(S)</code>
+        </p>
+    </div>
+</section>
+
+
+
+
+
+<section>
+    <h1>Absorb header and trailer</h1>
+    <div class="block">
+    <figure style="position: relative">
+        <img src="img/norx-D1.png" style="margin: 150px 0 0 0; z-index: 1; position: relative;" />
+        <svg style="z-index: 2; position: relative; top: -125px; left: 100px; ">
+          <rect fill="white" x="0" y="0" width="145" height="125" stroke="#e74c3c" stroke-width="3" fill-opacity="0" />
+        </svg>
+        <svg style="z-index: 2; position: relative; top: -125px; left: 128px; ">
+          <rect fill="white" x="0" y="0" width="145" height="125" stroke="#e74c3c" stroke-width="3" fill-opacity="0" />
+        </svg>
+    </figure>
+    </div>
+</section>
+
+<section>
+    <h1>Absorb header and trailer</h1>
+    <div class="block">
+            <p>Integrate domain separation constant: </p>
+            <div class="center">
+                <code>s<sub>15</sub> = s<sub>15</sub> ^ {0x01,0x04}</code>
+            </div>
+            <p>Apply round permutation:
+                    <code>S = F<sup>R</sup>(S)</code>
+            </p>
+            <p>Absorb data:
+                <figure>
+                    <img src="img/norx-absorb.svg" width="100%" style="margin: 25px 0 0 50px" />
+                </figure>
+            </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>Encrypt payload</h1>
+    <div class="block">
+    <figure style="position: relative">
+        <img src="img/norx-D1.png" style="margin: 150px 0 0 0; z-index: 1; position: relative;" />
+        <svg style="z-index: 2; position: relative; top: -125px; left: 245px; ">
+          <rect fill="white" x="0" y="0" width="190" height="125" stroke="#e74c3c" stroke-width="3" fill-opacity="0" />
+        </svg>
+    </figure>
+    </div>
+</section>
+
+
+<section>
+    <h1>Encrypt payload</h1>
+    <div class="block">
+            <p>Integrate domain separation constant: </p>
+                <div class="center">
+                    <code>s<sub>15</sub> = s<sub>15</sub> ^ 0x02</code>
+                </div>
+            <p>Apply round permutation:
+                    <code>S = F<sup>R</sup>(S)</code>
+            </p>
+            <p>Absorb data:
+                <figure>
+                    <img src="img/norx-absorb.svg" width="100%" style="margin: 25px 0 0 50px" />
+                </figure>
+            </p>
+            <p>Set new ciphertext block:
+                    <code>c = (z<sub>0</sub>,...,z<sub>9</sub>)</code>
+            </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>Generate tag</h1>
+    <div class="block">
+    <figure style="position: relative">
+        <img src="img/norx-D1.png" style="margin: 150px 0 0 0; z-index: 1; position: relative;" />
+        <svg style="z-index: 2; position: relative; top: -125px; left: 577px; ">
+          <rect fill="white" x="0" y="0" width="125" height="125" stroke="#e74c3c" stroke-width="3" fill-opacity="0" />
+        </svg>
+    </figure>
+    </div>
+</section>
+
+
+<section>
+    <h1>Generate tag</h1>
+    <div class="block">
+            <p>Integrate domain separation constant: </p>
+                <div class="center">
+                    <code>
+                        s<sub>15</sub> = s<sub>15</sub> ^ 0x08
+                    </code>
+                </div>
+            <p>Apply round permutation twice:
+                <div class="center">
+                    <code>S = F<sup>R</sup>(S)</code><br>
+                    <code>S = F<sup>R</sup>(S)</code>
+                </div>
+            </p>
+            <p>Set tag:
+                    <code>t = (s<sub>0</sub>,s<sub>1</sub>,s<sub>2</sub>,s<sub>3</sub>)</code>
+            </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>The permutation F<sup>R</sup></h1>
+    <div class="block">
+        <p>
+        F<sup>R</sup> = R iterations of the permutation F
+        </p>
+        <p>
+        F runs G on state's columns, then diagonals
+        </p>
+        <figure><img src="img/norx-f.svg" width="650" style="margin: 5% 0 -5% 75px;" />
+            <!-- <figcaption>Column Step<span style="padding-left: 275px;"></span>Diagonal Step</figcaption>
+            -->
+        </figure>
+    </div>
+</section>
+
+
+<section>
+    <h1>The permutation G(a,b,c,d)</h1>
+    <div class="block">
+        <table class="layout-auto ltext" style="margin: 15px 0 15px
+        50px; font-size: 100%" >
+            <tr>
+                <td>1.</td>
+                <td><code>a = <b class="blue">H</b>(a,b)</code></td>
+                <td>5.</td>
+                <td><code>a = <b class="blue">H</b>(a,b)</code></td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td><code>d = <b class="green">ROTR</b>(a^d,<b class="red">R0</b>)</code></td>
+                <td>6.</td>
+                <td><code>d = <b class="green">ROTR</b>(a^d,<b class="red">R2</b>)</code></td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td><code>c = <b class="blue">H</b>(c,d)</code></td>
+                <td>7.</td>
+                <td><code>c = <b class="blue">H</b>(c,d)</code></td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td><code>b = <b class="green">ROTR</b>(b^c,<b class="red">R1</b>)</code></td>
+                <td>8.</td>
+                <td><code>b = <b class="green">ROTR</b>(b^c,<b class="red">R3</b>)</code></td>
+            </tr>
+        </table>
+        <div>with:</div>
+        <ul style="margin: 15px 0 0 75px;">
+            <li><code><b class="blue">H</b>(x,y) = (x^y)^((x&y)&lt;&lt;1)</code></li>
+            <li><code><b class="green">ROTR</b>(x,r) = (x&gt;&gt;&gt;r)</code></li>
+            <li>
+                <code>(<b class="red">R0</b>,<b class="red">R1</b>,<b
+                class="red">R2</b>,<b class="red">R3</b>)</code> =
+                <ul>
+                    <li><code>(8,11,16,31)</code> for W=32-bit words</li>
+                    <li><code>(8,19,40,63)</code> for W=64-bit words</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</section>
+
+
+<section>
+    <h1>Properties of F<sup>R</sup>/F/G</h1>
+    <div class="block">
+        <p>
+        Inspired from BLAKE(2)/ChaCha
+        </p>
+        <p>
+        <code><b class="blue">H</b></code> is <em>almost</em> integer
+        addition: + is replaced by ^ in
+                <div class="center">
+                    <code>x+y = (x^y)<b class="blue">+</b>((x&y)&lt;&lt;1)</code>
+                </div>
+        </p>
+        <p>
+        Only <b>bit-wise</b> ops, no carries; no S-boxes
+        </p>
+        <p>
+        Only <b>constant-time</b> operations
+        </p>
+        <p>
+        <b>Hardware</b> friendly: horizontal and vertical folding
+        </p>
+        <p>
+        <b>Software</b> friendly: direct use of SIMD instructions
+        </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>Permutation's security</h1>
+    <div class="block">
+        <b class="blue">Differential characteristics</b> bounds:
+        <ul>
+            <li><b class="blue">1 round</b>:
+                    2<sup>-64</sup> (32-bit),
+                     2<sup>-53</sup> (64-bit)
+            </li>
+            <li><b class="blue">4-rounds</b>:
+                    2<sup>-584</sup> (32-bit), 
+                    2<sup>-836</sup> (64-bit)
+                </ul>
+            <p>
+            Initialisation has <b class="blue">&ge; 8 rounds</b>
+            </p>
+            Framework using constraint-solving tools: NODE
+            <img src="img/node.png" width=400>
+    </div>
+</section>
+
+
+<section>
+    <h1>Sponge-like mode security</h1>
+    <div class="block">
+        Improvement of the SpongeWrap bound:
+        <br/>
+        <b class="blue">
+        from min{2<sup>c/2</sup>, 2<sup>k</sup>} to
+        min{2<sup>b/2</sup>, 2<sup>c</sup>, 2<sup>k</sup>}
+        </b>
+        <br/>
+        with a proof focused on NORX' mode
+        <br/>
+        <img src="img/bounds.png" width=500>
+        Application to NORX instances:
+        <ul>
+            <li>
+                32-bit: 
+        min{2<sup>512/2</sup>, 2<sup>192</sup>, 2<sup>128</sup>} =
+        2<sup>128</sup>
+            </li>
+            <li>
+                64-bit:
+        min{2<sup>1024/2</sup>, 2<sup>384</sup>, 2<sup>256</sup>} =
+        2<sup>256</sup>
+            </li>
+        </ul>
+         
+
+    </div>
+</section>
+
+
+<section class="chapter">
+    <h1>Performance</h1>
+</section>
+
+
+<section>
+    <h1 style="margin-bottom: 0">Software Speed (x86/amd64)</h1>
+    <div class="block" style="margin-top: 0">
+        <table>
+            <tr> <td><img src="img/i7-3667U.png" height="275" /></td>
+            <td><img src="img/i7-4770K.png" height="275" /></td> </tr>
+        </table>
+    </div>
+    <h2 class="center">NORX64-4-1 (single-core)</h2>
+    <table class="performance-table">
+        <tr> <td>Platform</td> <td>Implementation</td> <td>cpb</td> <td>MiBps</td> </tr>
+        <tr> <td>Ivy Bridge: i7 3667U @ 2.0GHz</td> <td>AVX</td> <td><b class="blue">3.37</b></td> <td><b class="blue">593</b></td> </tr>
+        <tr> <td>Haswell: i7 4770K @ 3.4GHz</td> <td>AVX2</td> <td><b class="blue">2.51</b></td> <td><b class="blue">1390</b></td> </tr>
+    </table>
+    <div class="center" style="font-size: 60%">Note: The NORX software
+    package includes benchmark utilities.</div>
+</section>
+
+
+<section>
+    <h1 style="margin-bottom: 0">Software Speed (ARMv7, ARMv8-A)</h1>
+    <div class="block" style="margin-top: 0">
+        <table>
+            <tr> <td><img src="img/cortex-A8.png" height="275" /></td>
+            <td><img src="img/apple-A7.png" height="275" /></td> </tr>
+        </table>
+    </div>
+    <h2 class="center">NORX64-4-1 (single-core)</h2>
+    <table class="performance-table">
+        <tr> <td>Platform</td> <td>Implementation</td> <td>cpb</td> <td>MiBps</td> </tr>
+        <tr> <td>BBB: Cortex-A8 @ 1.0GHz</td> <td>NEON</td> <td><b class="blue">8.96</b></td> <td><b class="blue">111</b></td> </tr>
+        <tr> <td>iPad Air: Apple-A7 @ 1.4GHz</td> <td>Ref</td> <td><b class="blue">4.07</b></td> <td><b class="blue">343</b></td> </tr>
+    </table>
+    <div class="center" style="font-size: 60%">Note: The NORX software
+    package includes benchmark utilities.</div>
+</section>
+
+
+<section>
+    <h1>Software Speed (SUPERCOP)</h1>
+    <div class="block">
+        <figure>
+            <img src="img/caesar-speed.png" height="275" />
+        </figure>
+        <div class="credits center">
+            Source: <a href="http://www1.spms.ntu.edu.sg/~syllab/speed">http://www1.spms.ntu.edu.sg/~syllab/speed</a>
+        </div>
+            <p>NORX among the fastest CAESAR candidates</p>
+            <p>Fastest sponge-based scheme</p>
+            <p>Reference code has competitive speed, too</p>
+    </div>
+</section>
+
+
+<section>
+    <h1>NORX vs. AES-GCM (x86/amd64)</h1>
+    <div class="block">
+        <figure>
+            <img src="img/norx-vs-aesgcm-ivy.png" height="400" />
+        </figure>
+    </div>
+    <div class="center" style="font-size: 75%">AES-GCM "standard": OpenSSL 1.0.1j compiled with <code>no-asm</code> flag. <br>
+        <code>&gt; openssl speed -evp aes-{128,256}-gcm</code>
+    </div>
+</section>
+
+
+<section>
+    <h1>NORX vs. AES-GCM (ARMv7)</h1>
+    <div class="block">
+        <figure>
+            <img src="img/norx-vs-aesgcm-a8.png" height="400" />
+        </figure>
+    </div>
+    <div class="center" style="font-size: 75%">AES-GCM "standard":
+    OpenSSL 1.0.1j compiled with <code>no-asm</code> flag. <br>
+        <code>&gt; openssl speed -evp aes-{128,256}-gcm</code>
+    </div>
+</section>
+
+
+<section>
+    <h1>Software-friendly?</h1>
+    <div class="block">
+        At least developer-friendly (from <a
+        href="https://norx.io">norx.io</a>)
+        <img src="img/implems.png">
+    </div>
+</section>
+
+
+<section>
+    <h1>Hardware Efficiency (ASIC)</h1>
+    <div class="block">
+        <figure>
+            <img src="img/cronorx-small.jpg" height="175" />
+        </figure>
+        <div class="block credits center">
+            NORX chip, source: <a href="http://asic.ee.ethz.ch/2013/CronorX.html">http://asic.ee.ethz.ch/2013/CronorX.html</a>
+        </div>
+        <br/>
+            <p>Designed by students from ETH Zürich <br> (supervised by F. Gürkaynak)</p>
+            <p>180nm UMC @125MHz, area &approx; 59kGE</p>
+            <p>NORX64-4-1 throughput: <b class="blue">&#8776; 10Gbps</b></p>
+    </div>
+</section>
+
+
+<section class="chapter">
+    <h1>More NORXes</h1>
+</section>
+
+
+<section class="chapter">
+    <h1>"Lightweight cryptography"!</h1>
+</section>
+
+
+<section class="chapter">
+    <h1>"Internet of things"!</h1>
+</section>
+
+
+<section>
+    <h1>From 32 & 64 to 8 & 16 bits</h1>
+    <div class="block">
+    TRUDEVICE 2015
+    <p>
+    <img src="img/norx8.png">
+    </p>
+    <p>
+    Similar to original versions, adapted rotate counts
+    </p>
+    <p>
+    80- & 96-bit security, respectively, due to
+    <ul>
+        <li>
+            State of 128=40+88 and 256=128+128    
+        </li>
+        <li>
+            "Usage exponent" of 24 and 32
+        </li>
+    </ul>
+    </p>
+    <p>
+    ASIC area lower bounds: 1400 and 2800 GE
+    </p>
+
+    </div>
+</section>
+
+
+<section class="chapter">
+    <h1>Conclusion</h1>
+</section>
+
+
+<section>
+    <h1>CAESAR</h1>
+    <div class="block">
+        <p>
+        <b>Crypto competition</b> 2014&ndash;2017
+        </p>
+        <p>
+        About <b>authenticated encryption</b>
+        </p>
+        <p>
+        57 submissions received
+        </p>
+        <p>
+        2nd-round candidates <b>announced tomorrow</b> <br/>(may be postponed)
+        </p>
+        <p>
+        <b> <a href="http://competitions.cr.yp.to/">http://competitions.cr.yp.to/</a> </b>
+        <br/>
+            <a href="https://aezoo.compute.dtu.dk">https://aezoo.compute.dtu.dk</a>
+        <br/>
+            <a href="http://www1.spms.ntu.edu.sg/~syllab/speed">http://www1.spms.ntu.edu.sg/~syllab/speed</a>
+        </p>
+        <p>
+        <small>
+        PS:  Another competition <a
+        href="https://password-hashing.net">https://password-hashing.net</a>
+        </small>
+        </p>
+    </div>
+</section>
+
+
+<section>
+    <h1>NORX</h1>
+    <div class="block">
+        <p> <b>CAESAR</b> candidate (one of the unbroken ones) </p>
+        <p> Innovative  <b>not-ARX</b> core and <b>parallelisable</b> mode </p>
+        <p> Minimizes <b>side-channel</b> leaks (timing, padding)
+        </p>
+        <p> <b>No dependency on AES</b> instructions/accelerators </p>
+        <p> <b>Straightforward</b> to implement, <b>very fast</b> in SW / HW </p>
+    <br/>
+    <p>
+        <b> <a href="https://norx.io/">https://norx.io/</a> </b>
+    </p>
+    <p>
+        Code available in C, C++, Go, Python, Rust
+    </p>
+    <p>
+        <em>No patents, free for everyone, ref code under CC0</em>
+    </p>
+    </div>
+</section>
+
+
+<section class="chapter">
+    <h1>Thank you!</h1>
+</section>
+
+
+
+
+
+<!-- Predefined Styles -->
+<style>
+  html, .view body { background-color: black; counter-reset: slideidx; }
+  body, .view section { background-color: white; border-radius: 0px }
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section, .view head > title {
+      /* The font from Google */
+      /*font-family: 'Oswald', arial, serif;*/
+      /*font-size: 30px;*/
+  }
+
+  .view section:after {
+    counter-increment: slideidx;
+    content: counter(slideidx, decimal-leading-zero);
+    position: absolute; bottom: -80px; right: 100px;
+    color: white;
+  }
+
+  .view head > title {
+    color: white;
+    text-align: center;
+    margin: 1em 0 1em 0;
+  }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+    -moz-transition: left 400ms linear 0s;
+    -webkit-transition: left 400ms linear 0s;
+    -ms-transition: left 400ms linear 0s;
+    transition: left 400ms linear 0s;
+  }
+  .view section {
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+
+  .view section[aria-selected] {
+    border: 5px red solid;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150%; }
+
+  /* Incremental elements */
+
+  /* By default, visible */
+  .incremental > * { opacity: 1; }
+
+  /* The current item */
+  .incremental > *[aria-selected] { opacity: 1; }
+
+  /* The items to-be-selected */
+  .incremental > *[aria-selected] ~ * { opacity: 0; }
+
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar {
+    height: 2px;
+    background: #AAA;
+  }
+</style>
+
+
+<!-- Custom Styles -->
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fira+Mono:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="slides.css" type="text/css" media="screen">
+
+
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+
+<div id="progress-bar"></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  [role="note"] { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getNotes = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("[role='note']");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getNotes(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->

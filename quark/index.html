@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en"> 
+
+<head> 
+<title>Quark: a lightweight hash</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head> 
+ 
+<body> 
+ 
+<header>
+<h1><span style="font-variant: small-caps;">Quark:</span> a lightweight hash</h1> 
+
+<hr /> 
+</header>
+
+<section> 
+<span style="font-variant: small-caps;">Quark</span> is a family of
+cryptographic "sponge" functions designed for resource-constrained
+hardware environments, as RFID tags.
+<span style="font-variant: small-caps;">Quark</span> minimizes area and
+power consumption, yet offers strong security guarantees.
+<br /><br /> 
+ 
+<span style="font-variant: small-caps;">Quark</span> was first presented
+at the <a href="http://www.iacr.org/workshops/ches/ches2010/">CHES 2010</a> workshop.
+
+<br /><br />
+
+We propose three instances of <span style="font-variant:
+small-caps;">Quark</span>: <span style="font-variant:
+small-caps;">u-Quark, d-Quark</span>, and <span style="font-variant:
+small-caps;">s-Quark</span> were designed to provide at least 64-,
+80-, and 112-bit security against all attacks (collisions, second
+preimages, length extension, multicollisions, etc.).
+ 
+<br /><br /> 
+ 
+The table below summarizes the simulated hardware performance
+of <span style="font-variant: small-caps;">Quark</span>, when
+implemented in 0.18 &micro;m ASIC (area is given in
+gate-equivalents, power is the peak power). Security <i>m, n</i> means
+a security of <i>m</i> bits against collision and second preimage
+attacks, and of <i>n</i> bits against preimage attacks.
+  
+<br /><br /><br /> 
+ 
+<table align="center" border="1" cellpadding="4"> 
+<tr> 
+ 	<td>Hash function</td> 
+ 	<td>Security (bits)</td> 
+ 	<td>Area (GE)</td> 
+ 	<td>Speed (kbps)</td> 
+ 	<td>Power (&micro;W)</td> 
+</tr> 
+<tr> 
+ 	<td align="center" colspan="5">Compact architecture @100 kHz</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">u-Quark</span></td> 
+ 	<td>64, 128</td> 
+ 	<td>1379</td> 
+ 	<td>1.47</td> 
+ 	<td>2.96</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">d-Quark</span></td> 
+ 	<td>80, 160</td> 
+ 	<td>1702</td> 
+ 	<td>2.27</td> 
+ 	<td>3.95</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">s-Quark</span></td> 
+ 	<td>112, 224</td> 
+ 	<td>2296</td> 
+ 	<td>3.13</td> 
+ 	<td>5.53</td> 
+</tr> 
+<tr> 
+ 	<td align="center" colspan="5">High-speed architecture @714 KHz</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">u-Quark</span></td> 
+ 	<td>64, 128</td> 
+ 	<td>3032</td> 
+ 	<td>84</td> 
+ 	<td>37.01</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">d-Quark</span></td> 
+ 	<td>80, 160</td> 
+ 	<td>3561</td> 
+ 	<td>130</td> 
+ 	<td>43.35</td> 
+</tr> 
+<tr> 
+ 	<td><span style="font-variant: small-caps;">s-Quark</span></td> 
+ 	<td>112, 224</td> 
+ 	<td>6220</td> 
+ 	<td>357</td> 
+ 	<td>75.27</td> 
+</tr> 
+</table> 
+ 
+ 
+<br /><br /> 
+ 
+<span style="font-variant: small-caps;">Quark</span> was designed by
+<ul> 
+<li>Jean-Philippe Aumasson (<a
+href="https://www.kudelskisecurity.com/">Kudelski Security</a>,
+Switzerland)</li>
+<li>Luca Henzen (then <a href="https://www.ethz.ch/">ETHZ</a>, Switzerland;
+now <a href="https://www.ubs.com/">UBS</a>, Switzerland)</li>
+<li>Willi Meier (<a href="http://www.fhnw.ch/">FHNW</a>, Switzerland)</li>
+<li>María Naya-Plasencia (then <a href="http://www.fhnw.ch/">FHNW</a>, Switzerland; now <a href="http://www.uvsq.fr/">UVSQ</a>, France)</li> 
+</ul> 
+ 
+Contact: jeanphilippe.aumasson@gmail.com
+</section> 
+ 
+<section> 
+<h2>Downloads</h2> 
+ 
+<ul> 
+<li><a href="quark_full.pdf">Research paper</a> "Quark: a lightweight
+hash" (full version, Journal of Cryptology, 2012)</li>
+<li><a href="../data/papers/AKM12.pdf">Research paper</a> "Heavy Quark
+for secure AEAD", presenting <span style="font-variant:
+small-caps;">c-Quark</span> and the authenticated encryption mode <span
+style="font-variant:small-caps;">c-QuarkWrap</span> (presented at the
+<a href="http://hyperelliptic.org/DIAC/">DIAC</a> workshop)
+<li><a href="../data/talks/AHMN10_slides.pdf">Slides</a> of the
+presentation of <span style="font-variant: small-caps;">Quark</span> at
+<a href="http://www.iacr.org/workshops/ches/ches2010/">CHES 2010</a></li>
+<li><a href="../data/talks/quarks_rump.pdf">Slides</a> "Smaller and
+faster Quarks" 
+(presented at the <a
+href="http://www.ecrypt.eu.org/hash2011/">ECRYPT Hash 2011</a>
+workshop)
+</li>
+<li><a href="quark_c.tar.gz">C implementation</a> (also on <a
+href="https://github.com/veorq/Quark">GitHub</a>)</li>
+<li><a href="quark_vhdl.tar.gz">VHDL implementation</a></li> 
+</ul> 
+</section> 
+
+<footer> 
+ <hr /> 
+ 
+<a href="../index.html">Index</a> 
+</footer>   
+ 
+</body></html> 
+ 

@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>SHA-3 proposal BLAKE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+</head>
+
+<body>
+
+<header>
+<h1>SHA-3 proposal BLAKE</h1>
+
+<hr />
+</header>
+
+<nav>
+<a href="#fi">Final BLAKE</a>
+&nbsp;&nbsp;
+<a href="#dl">Downloads</a>
+&nbsp;&nbsp;
+<a href="#cr">Cryptanalysis</a>
+&nbsp;&nbsp;
+<a href="#sw">Software implementations</a>
+&nbsp;&nbsp;
+<a href="#hw">Hardware implementations</a>
+<hr />
+
+<br />
+</nav>
+
+<section>
+
+<b>
+<a href="book/">
+THE BLAKE BOOK IS OUT</a>
+</b>
+<br />
+<br />
+
+BLAKE is one of the five hash functions in the final of
+the <a href="http://www.nist.gov/hash-competition">NIST SHA-3
+Competition</a>. BLAKE is one of the simplest designs to implement,
+and relies on previously analyzed components:
+the <a href="http://eprint.iacr.org/2007/278">HAIFA</a> structure and
+the <a href="http://cr.yp.to/chacha.html">ChaCha</a> core function.
+
+<br /><br />
+
+The two main instances of BLAKE are BLAKE-256 and BLAKE-512. They
+respectively work with 32- and 64-bit words, and produce 256- and
+512-bit digests.
+
+<br /><br />
+
+BLAKE has both a high security margin and a high performance
+versatility:
+<ul>
+<li>
+  On an Intel Core i5-2400M (Sandy Bridge), BLAKE-256 can hash at 7.49
+  cycles/byte and BLAKE-512 at 5.64 cycles/byte
+  (<a href="http://bench.cr.yp.to/results-sha3.html">details</a>).
+</li>
+<li>
+  On an AMD FX-8120 (Bulldozer), BLAKE-256 can hash at 11.83
+  cycles/byte and BLAKE-512 at 6.88 cycles/byte
+  (<a href="http://bench.cr.yp.to/results-sha3.html">details</a>).
+</li>
+<!-- (see <a href="http://bench.cr.yp.to/results-sha3.html">eBASH</a>).-->
+<li>
+  On a Cortex-M3 based microcontroller (32-bit processor), BLAKE-256
+  can be implemented with 280 bytes of RAM and 1320 bytes of ROM, and
+  BLAKE-512 with 516 bytes of RAM and 1776 bytes of ROM
+  (<a href="http://xbx.das-labor.org/trac/wiki/r2011sha3platforms_lm3s811-evb">details</a>).
+</li>
+<li>
+  On an ATmega1284P microcontroller (8-bit processor), BLAKE-256 can
+  be implemented with 267 bytes of RAM and 3434 bytes of ROM, and
+  BLAKE-512 with 525 bytes of RAM and 6350 bytes of ROM
+  (<a href="http://xbx.das-labor.org/trac/wiki/r2011sha3platforms_atmega1284p_16mhz">details</a>).
+</li>
+<li>
+  On a Xilinx Virtex 5 FPGA, BLAKE-256 implemented with 56 slices can
+  reach a throughput of more than 160 Mbps, and BLAKE-512 with 108
+  slices can reach a throughput of more than 270 Mbps
+  (<a href="http://eprint.iacr.org/2010/173.pdf">details</a>).
+</li>
+<li>
+  In 180nm ASIC, BLAKE-256 can be implemented with 13.5 kGE. In 90nm
+  ASIC, BLAKE-256 implemented with 38 kGE can reach a throughput of
+  more than 10 Gbps, and BLAKE-512 with 79 kGE can reach a throughput
+  of more than 15 Gbps
+  (<a href="../data/papers/HAMP10.pdf">details</a>).
+</li>
+</ul>
+An animated overview of BLAKE is 
+ <a href="https://www.youtube.com/watch?v=PgpJNRnx6eY">available</a>.
+
+<br /><br />
+
+BLAKE was designed by
+<ul>
+<li>Jean-Philippe Aumasson (<a
+href="https://www.kudelskisecurity.com/">Kudelski Security</a>,
+Switzerland)</li>
+<li>Luca Henzen (then <a href="https://www.ethz.ch/">ETHZ</a>, Switzerland;
+now <a href="https://www.ubs.com/">UBS</a>, Switzerland)</li>
+<li>Willi Meier (<a href="http://www.fhnw.ch/">FHNW</a>, Switzerland)</li> 
+<li>Raphael C.-W. Phan (<a href="http://www.lboro.ac.uk/">Loughborough
+University</a>, UK)</li>
+</ul>
+
+Contact: jeanphilippe.aumasson@gmail.com
+</section>
+
+<section id="fi">
+<h2>Final BLAKE</h2>
+
+Initially, the BLAKE functions were named BLAKE-28, BLAKE-32,
+BLAKE-48, and BLAKE-64. In December 2010, a final BLAKE version was
+announced, as allowed by NIST, and functions are now renamed as
+BLAKE-224, BLAKE-256, BLAKE-384, and BLAKE-512. The rename is to
+distinguish the final BLAKE from its initial version.
+
+<br /><br />
+
+The final BLAKE consists in an increased number of rounds: 14 instead
+of 10 for BLAKE-224 and BLAKE-256, and 16 instead of 14 for BLAKE-384
+and BLAKE-512. This is motivated by the high speed of BLAKE, and thus
+it is possible to choose a very conservative security margin in the
+final version in such a way that BLAKE remains faster than SHA-2 on a
+number of platforms.  
+</section>
+
+<section id="dl">
+<h2>Downloads</h2>
+
+<ul>
+<li><a href="blake.pdf">Documentation</a>, including
+specification, implementation report, preliminary analysis</li>
+<li> <a href="toyblake.pdf">Toy versions</a>  BLOKE, FLAKE, BLAZE, and BRAKE</li>
+<li> <a href="blake_slides.pdf">Slides</a> of the presentation of BLAKE at the First
+  SHA-3 Conference</li>
+<li> <a href="blake_slides2.pdf">Slides</a> of the presentation of BLAKE at the Second
+  SHA-3 Conference</li>
+<li> <a href="blake_slides3.pdf">Slides</a> of the presentation of BLAKE at the Third
+  SHA-3 Conference</li>
+<li> <a href="blake_quovadis.pdf">Slides</a> of the presentation "Quo vadis BLAKE?" at the 2011 "Quo Vadis Cryptology?" workshop</li>
+<li>Reference C implementations:</li>
+<ul>
+<li><a href="blake_c.tar.gz">blake_c.tar.gz</a>:
+C implementations with command-line interface to hash files, simpler and
+shorter code than the NIST reference (also on <a
+href="https://github.com/veorq/BLAKE">GitHub</a>)
+</li>
+<li> <a href="blake_ref.c">blake_ref.c</a>, <a href="blake_ref.h">blake_ref.h</a>:
+reference implementation for NIST's API (2015.09.07: fixed a bug that
+gave incorrect hashes in specific use cases)
+</li>
+</li>
+</ul>
+<li>Reference VHDL implementations:
+<ul>
+<li><a href="blake_vhdl_v2.tar.gz">blake_vhdl_v2.tar.gz</a>: reference
+ implementations, with four
+different architectures</li>
+<li><a href="http://www.iis.ee.ethz.ch/~sha3/blake/">http://www.iis.ee.ethz.ch/~sha3/blake/</a>:
+speed-optimized implementations (as described
+in <a href="../data/papers/HAMP10.pdf">HAMP10.pdf</a>)</li>
+<li><a href="compact_blake256_vhdl.tar.gz">compact_blake256_vhdl.tar.gz</a>:
+low-area implementation of BLAKE-256 (as described
+in <a href="../data/papers/HAMP10.pdf">HAMP10.pdf</a>)</li>
+<li><a href="blakechip.jpg">blakechip.jpg</a>: picture of the chip
+  containing our 13.5 kGE implementation of the full BLAKE-256</li>
+</ul>
+<li>The <a href="blake_building.jpg">BLAKE building</a> (Washington, DC)
+</li>
+</ul>
+</section>
+
+<section id="cr">
+<h2>Cryptanalysis</h2>
+
+Some of The results below were presented for the initial version of
+BLAKE, but apply as well to final BLAKE. 
+
+
+<ul>
+
+
+<li>2011 Nov 18: Donghoon Chang, Mridul Nandi, Moti Yung.
+<a href="http://eprint.iacr.org/2011/623"><i>Indifferentiability of
+the hash algorithm BLAKE</i></a>. IACR ePrint archive, report 2011/620
+<br /> Main result: proof of indifferentiability<br /><br />
+</li>
+
+<li>2011 Nov 17: Elena Andreeva, Atul Luykx, Bart Mennink.
+<a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round3/March2012/documents/papers/MENNINK_paper.pdf"><i>Provable
+security of BLAKE with non-ideal compression function</i></a>. Third
+SHA-3 Conference, IACR ePrint archive, report 2011/620 <br /> Main
+result: proof of indifferentiability<br /><br />
+</li>
+
+<li>2011 May 19: Orr Dunkelman, Dmitry Khovratovich. 
+<a href="http://www.ecrypt.eu.org/hash2011/proceedings/hash2011_02.pdf"><i>Iterative
+differentials, symmetries, and message modification in
+BLAKE-256</i></a>. ECRYPT2 Hash Workshop 2011
+<br /> Main result: distinguisher for the permutation of BLAKE-256 reduced to 6 middle rounds, with complexity 2<sup>456</sup>
+<br /><br />
+</li>
+
+<li>2011 May 12: JPA, Gaëtan Leurent, Willi Meier, Florian Mendel,
+Nicky Mouha, Raphael C.-W. Phan, Yu Sasaki, Petr Susil.
+<a href="../data/papers/ALMMMPSS11.pdf"><i>Tuple cryptanalysis of ARX
+with application to BLAKE and Skein</i></a>. ECRYPT2 Hash Workshop 2011
+<br /> Main result: distinguisher for the permutation of
+BLAKE-256 reduced to 4 middle rounds, with complexity 2<sup>64</sup>
+<br /><br />
+</li>
+
+<li>2011 Mars 23: Dmitry Khovratovich, Gaëtan Leurent, María Naya-Plasencia.
+<a href="http://research.microsoft.com/pubs/147172/blake-slides.pdf"><i>Observations on Blake</i></a> (slides). Technical report
+<br /> Main result: conjectured distinguisher for 10 rounds of
+the permutation
+<br /><br />
+</li>
+
+<li>2011 Feb 15: Alex Biryukov, Ivica Nikolic, Arnab Roy. <a href="http://fse2011.mat.dtu.dk/slides/Boomerang%20Attacks%20on%20BLAKE-32.pdf"><i>Boomerang
+attacks on BLAKE-32</i></a> (slides). FSE 2011
+  <br /> Main result: distinguishers for the compression
+  function (resp. permutation) of BLAKE-256 reduced to 7 (resp. 8)
+  rounds, with complexity 2<sup>232</sup> (resp. 2<sup>242</sup>)
+<br /><br />
+</li>
+
+
+<li>2010 Dec 17: Mao Ming, He Qiang, Shaokun Zeng. <a href="http://ieeexplore.ieee.org/xpl/freeabs_all.jsp?reload=true&arnumber=5709204"><i>Security
+analysis of BLAKE-32 based on differential properties
+</i></a> (abstract). ICCIS 2010
+  <br /> Main result: analysis of differential properties, and
+  evidence that the attack considered is inapplicable to 6 rounds of
+  BLAKE-256
+<br /><br />
+</li>
+
+<li>2010 Aug 23: Meltem Sönmez Turan, Erdener Uyan. <a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round2/Aug2010/documents/papers/TURAN_Paper_Erdener.pdf"><i>Practical
+near-collisions for reduced round Blake, Fugue, Hamsi and JH
+</i></a>. Second SHA-3 Conference
+  <br /> Main result: near-collision attacks on resp. 209 and
+  184 bits for the compression function of BLAKE-256 reduced to
+  resp. 1.5 and 2 rounds, with complexity 2<sup>26</sup>
+<br /><br />
+</li>
+
+
+<li>2010 Jul 1: Janoš Vidali, Peter Nose, Enes
+    Pašalic. <a href="http://lkrv.fri.uni-lj.si/~janos/blake/collisions.pdf"><i>Collisions
+    for variants of the BLAKE hash function
+</i></a>. Information Processing Letters, volume 110, issues 14-15
+  <br /> Main result: efficient collision attacks for the toy
+  version BLOKE, and for the compression function of the toy version
+  BRAKE
+<br /><br />
+</li>
+
+
+<li>2010 Jun 18: Bozhan Su, Wenling Wu, Shuang Wu, Le
+Dong. <a href="http://eprint.iacr.org/2010/355"><i>Near collisions on
+the reduced-round compression functions of Skein and
+BLAKE</i></a>. IACR ePrint archive, report 2010/355
+  <br /> Main result: near-collision attacks on resp. 152,
+  396, and 306 bits for the compression function of BLAKE-256, -512,
+  -512 reduced to 4, 4, 5 middle rounds with complexity 2<sup>21</sup>, 2<sup>16</sup>, and
+  2<sup>216</sup>
+<br /><br />
+</li>
+
+
+<li> 2010 Jan 29: Jean-Philippe Aumasson, Jian Guo, Simon Knellwolf, Krystian Matusiewicz, Willi Meier. 
+<a href="../data/papers/AGKMM10.pdf"><i>Differential and invertibility
+properties of BLAKE</i></a>. FSE 2010. IACR ePrint archive, report 2010/043
+<br /> Main result: proof that one round is a permutation of
+the message, for a fixed state; improved preimage attack on 1.5
+rounds; impossible differentials for the permutation with 5 (resp. 6)
+rounds for BLAKE-256 (resp. BLAKE-512)
+<br /><br />
+</li>
+
+
+<li> 2009 Dec 7: Lei Wang, Kazuo Ohta, Kazuo
+  Sakiyama. <a href="http://asiacrypt2009.cipher.risk.tsukuba.ac.jp/rump/slides/11.pdf"><i>Free-start
+  preimages of step-reduced Blake compression function</i></a>. Rump
+  session of ASIACRYPT 2009
+<br /> Main result: preimage attacks for the permutation of
+BLAKE-256 reduced to 4.5 rounds and followed by the finalization, with
+complexity 2<sup>252</sup> and memory 2<sup>8</sup>
+<br /><br />
+</li>
+
+
+<li> 2009 Jun 23: Jian Guo, Krystian Matusiewicz. <a href="http://www.jguo.org/docs/blake-col.pdf"><i>Round-reduced
+near-collisions of BLAKE-32</i></a>. WEWoRC 2009
+<br /> Main result: near-collision attack on 232 bits for
+the compression of BLAKE-256 reduced to 4 middle rounds (rounds 3
+to 6), with complexity 2<sup>56</sup>; uses differences in the
+chaining value, the salt, the counter, and the message
+<br /><br />
+</li>
+
+<li>2009 May 26: Li Ji, Xu
+Liangyu. <a href="http://eprint.iacr.org/2009/238"><i>Attacks on
+round-reduced BLAKE</i></a>. IACR ePrint archive, report 2009/238
+<br /> Main result: collision and preimage attacks for BLAKE
+ with compression function reduced to 2.5 rounds. Respectively for
+ BLAKE-224, -256, -384, and -512, collision attacks have complexities
+ 2<sup>96</sup>, 2<sup>112</sup>, 2<sup>160</sup>, and
+ 2<sup>224</sup>; preimage attacks have complexities 2<sup>209</sup>,
+ 2<sup>241</sup>, 2<sup>355</sup>, and 2<sup>481</sup>
+
+</ul>
+</section>
+
+<section id="sw">
+<h2>Software implementations</h2>
+
+Some of the performance results below were conducted on the initial
+version of BLAKE, thus the speed figures do not apply to final BLAKE,
+but the memory estimates (ROM and RAM) are the same.
+
+<br /><br />
+
+Speed measurements on various software platforms can be found
+on <a href="http://bench.cr.yp.to/results-sha3.html">eBASH</a> and
+on <a href="https://xbx.das-labor.org">XBX</a>.
+
+<br /><br />
+
+The latest versions of the fastest C and assembly implementations can
+be found in the latest release
+of <a href="http://bench.cr.yp.to/supercop.html">SUPERCOP</a>.
+
+<ul>
+
+<li>2012 Jul 24: Dmitry Chestnykh. 
+<i><a href="https://github.com/dchest/dart-blake">dart-blake</a></i>.
+<br />Main result: Dart implementation of BLAKE-256 <br /><br /></li>
+
+<li>2012 May 16: Samuel Neves, Jean-Philippe
+Aumasson. <a href="http://131002.net/data/papers/NA12a.pdf">
+<i>Implementing BLAKE with AVX, AVX2, and XOP</i></a>.  <br /> 
+Main result: extended version of the SHA-3 Conference paper with refined
+analysis of AVX2 and XOP implementations 
+<br /><br /></li>
+
+<li>2012 Apr 3: Samuel Neves, Jean-Philippe
+Aumasson. <a href="http://131002.net/data/papers/NA12.pdf"><i>BLAKE
+and 256-bit advanced vector extensions</i></a>. Third SHA-3 Conference
+<br /> Main result:
+implementations using AVX, XOP (available
+in <a href="http://bench.cr.yp.to/supercop.html">SUPERCOP</a>), and
+AVX2 extensions
+(available <a href="http://eden.dei.uc.pt/~sneves/blake-avx2-20110403.tar.gz">here</a>)<br /><br /></li>
+
+
+<li>2012 Feb 29: Mark
+Rhodes. <a href="http://www.scottlogic.co.uk/2012/02/blake-512-in-javascript/"><i>Blake-512
+in Javascript</i></a>.  <br /> Main result: Javascript implementation
+of BLAKE-512<br /><br /></li>
+
+<li>2012 Jan 8: Christian
+Wenzel-Benner. <i><a href="http://bench.cr.yp.to/supercop.html">arm_thumb2</a></i>. (link
+to SUPERCOP) <br />Main result: port of the arm11 implementation to
+Thumb-2 instruction set (as required by ARM cores such as the
+Cortex-M3). <br /><br /></li>
+
+<li>2012 Jan 3: David
+Lazar. <i><a href="https://github.com/davidlazar/BLAKE">HMAC mode for
+BLAKE</a></i>.  <br />Main result: C implementation of HMAC for all
+instances of BLAKE <br /><br /></li>
+
+<li>2011 Nov 21: Peter Schwabe, Bo-Yin Yang, Shang-Yi Yang. <i><a href="http://bench.cr.yp.to/supercop.html">arm11</a></i>. (link to SUPERCOP)
+<br />Main result: assembly implementation of BLAKE-256 for ARM11 architecture
+<br /><br /></li>
+
+<li>2011 Nov 21: Ingo von
+Maurich. <a href="https://bitbucket.org/vmingo/blake256-avr-asm/"><i>Blake256-AVR-asm</i></a>.
+<br /> Main result: assembly implementation of BLAKE-256 for 8-bit AVR
+ATmega microcontrollers, using 251 bytes of RAM and running at 456
+cycles/byte <br /><br /></li>
+
+<li>2011 Nov 21: Dominik
+Reichl. <i><a href="http://www.dominik-reichl.de/projects/blakesharp/">BlakeSharp</a></i>.
+<br />Main result: C# implementations of BLAKE-256 and BLAKE-512 (.NET and Mono compatible)<br /><br /></li>
+
+<li>2011 Nov 15: Dmitry
+Chestnykh. <i><a href="https://github.com/dchest/blake256">blake256</a></i>.
+<br />Main result: Go implementation of BLAKE-256 <br /><br /></li>
+
+<li>2011 Nov 14: Marc Greim. <i><a href="http://code.google.com/p/blake-512-java-implementation/">blake-512-java-implementation</a></i>. 
+<br />Main result: Java implementation of BLAKE-512
+<br /><br /></li>
+
+<li>2011 Nov 14: Kevin
+Cantu. <i><a href="https://github.com/killerswan/Haskell-BLAKE">Haskell-BLAKE</a></i>.
+<br />Main result: Haskell implementation of BLAKE
+<br /><br /></li>
+
+<li>2011 Aug 12: Gaëtan Leurent. <i><a href="http://bench.cr.yp.to/supercop.html">Vectorized BLAKE implementations</a></i>. (link to SUPERCOP)
+<br />Main result: C implementations of BLAKE-256 and BLAKE-512 exploiting the SSSE3 extensions and ARM's NEON extensions
+<br /><br /></li>
+
+<li>2011 May 31: Thomas Burgess, Joseph Jelley, David Smith, Claire
+Weston. <i><a href="BLAKE256_matlab.zip">BLAKE256_matlab.zip</a></i>.
+<br />Main result: MATLAB implementation of BLAKE-256, non-object-oriented
+<br /><br /></li>
+
+<li>2011 May 26: Zeke Steer. <i><a href="Blake_256.m">Blake_256.m</a></i>.
+<br />Main result: MATLAB implementation of BLAKE-256, object-oriented
+(<a href="test.m">test</a> program)
+<br /><br /></li>
+
+<li>2011 May 12: Larry
+Bugbee. <i><a href="http://www.seanet.com/~bugbee/crypto/blake/">blake.py</a></i>.
+<br />Main result: Python (2 and 3) implementations of BLAKE
+<br /><br /></li>
+
+<li>2011 Jan 27: Daniel
+Correa. <i><a href="http://www.sinfocol.org/2011/01/blake-hash-extension-for-php/">blakehash</a><a href="https://code.google.com/p/blakehash-php/">-php</a></i>.
+<br />Main result: PHP extension implementing BLAKE
+<br /><br /></li>
+
+<li>2010 Dec 14:
+Gray. <a href="http://search.cpan.org/~gray/Digest-BLAKE-0.04/lib/Digest/BLAKE.pm"><i>Digest::BLAKE</i></a>.
+<br />Main result: Perl interface to BLAKE
+<br /><br /></li>
+
+<li>2010 Aug 19: Joppe W. Bos and Deian
+Stefan. <a href="http://www.scs.stanford.edu/~deian/pubs//bos:2010:performance.pdf"><i>Performance
+analysis of the SHA-3 candidates on exotic multi-core
+architectures</i></a>. CHES 2010 <br /> Main result: parallel
+implementation of BLAKE-32 on a Cell Broadband Engine (processor for
+Sony PS3) running at 5 cycles/byte and on NVIDIA GTX 295 GPU at 0.27
+  cycles/byte
+<br /><br /></li>
+
+<li>2010 May 11: Thomas
+Pornin. <a href="http://www.saphir2.com/sphlib/"><i>sphlib</i></a>.  <br /> Main result: C and Java implementation of BLAKE-256 and
+BLAKE-512 in the sphlib library and speed measurements on various
+platforms<br /><br /></li>
+
+<li>2010 May 10: Christopher
+Drost. <a href="http://github.com/drostie/sha3-js"><i>sha3-js</i></a>.
+<br /> Main result: Javascript implementation of BLAKE-32 (see also
+the <a href="http://code.drostie.org/sha3/">online
+demo</a>)<br /><br /></li>
+
+<li>2009 Oct 7: Samuel
+Neves. <a href="http://eden.dei.uc.pt/~sneves/chacha/chacha.html"><i>ChaCha
+implementation</i></a>.  <br /> Main result: C implementations
+of BLAKE-32 and BLAKE-64 optimized for Intel Core 2 and i7 processors
+using SSSE3 extensions; on a Core 2 E8400, measured speed-up from
+10.34 to 9.05 cycles/byte for BLAKE-32, and from 13.65 to 11.80 for
+BLAKE-64 
+<!--
+(eBASH
+submission: <a href="http://eden.dei.uc.pt/~sneves/chacha/blake-ssse3-0.2.tar.bz2">blake-ssse3.tar.gz</a>)
+-->
+<br /><br /></li>
+
+<li>2009 May 29: Kota Ideguchi, Toru Owada, Hirotaka
+Yoshida. <a href="http://eprint.iacr.org/2009/260"><i>A
+study on RAM requirements of various SHA-3 candidates on low-cost
+8-bit CPUs</i></a>.  IACR ePrint archive, report 2009/260
+<br /> Main result: estimates RAM requirements of BLAKE-32 on
+"low-bit 8-bit CPUs" to 96 bytes
+<br /><br /></li> 
+
+<li>2009 May 25: Daniel
+Otte. <a href="http://www.das-labor.org/wiki/AVR-Crypto-Lib/en"><i>AVR-Crypto-Lib/en</i></a>.
+<br /> Main result: C implementations of BLAKE on AVR microcontroller,
+running at 1115 cycles/byte for BLAKE-28 and -32, and 3989 cycles/byte
+for BLAKE-48 and -64 </li>
+
+</ul>
+</section>
+
+<section id="hw">
+<h2>Hardware implementations</h2>
+
+Some of the performance results below were conducted on the initial
+version of BLAKE, thus the throughput figures do not apply to final
+BLAKE, but the area estimates (gate-equivalent, slices) are the same.
+
+<ul>
+
+<li>2012 Mar 13: Jens-Peter Kaps, Panasayya Yalla, Kishore Kumar
+Surapathi, Bilal Habib, Susheel Vadlamudi, Smriti Gurung, John Pham.
+<a href="http://2011.indocrypt.org/slides/gurung.pdf"><i>Lightweight
+implementations of SHA-3 candidates on FPGAs</i></a>. INDOCRYPT 2011
+<br /> Main result: lightweight implementation of BLAKE-256 on Spartan
+3, Virtex 5, Virtex 6, and Cyclone II FPGA devices<br /><br />
+</li>
+
+<li>2012 Jan 23: Xu Guo, Meeta Srivastav, Sinan Huang, Michael
+B. Henry, Leyla Nazhandali, Patrick Schaumont.
+<a href="http://filebox.vt.edu/users/xuguo/homepage/publications/DATE2012SHA3.pdf"><i>ASIC
+implementations of five SHA-3 finalists</i></a>. DATE 2012 <br /> Main
+result: implementation of BLAKE-256 on 130 nm ASIC <br /><br />
+</li>
+
+<li>2011 Sep 26: Olakunle Esuruoso.
+<a href="../data/extern/esuruoso_thesis.pdf"><i>High
+Speed FPGA Implementation of Cryptographic Hash
+Function</i></a>. Master thesis, U Windsor, Canada <br />Main result:
+implementation of BLAKE-256 on Cyclone II FPGA device using Altera's
+Nios II build tools to save computation by memorizing frequently
+hashed prefixes <br /><br />
+</li>
+
+<li>2011 May 19: Ekawat Homsirikamol, Marcin Rogawski, Kris Gaj. 
+<a href="http://www.ecrypt.eu.org/hash2011/proceedings/hash2011_07.pdf"><i>Comparing
+hardware performance of round 3 SHA-3 candidates using multiple
+hardware architecture in Xilinx and Altera FPGAs</i></a>. ECRYPT2 Hash
+Workshop 2011
+<br /> Main result: implementations of BLAKE-256 and BLAKE-512
+on Virtex 5, Virtex 6, Stratix III, and Stratix IV FPGA devices
+<br /><br />
+</li>
+
+<li>2011 May 19: Malik Umar Sharif, Rabia Shahid, Marcin Rogawski, Kris Gaj. 
+<a href="http://www.ecrypt.eu.org/hash2011/proceedings/hash2011_08.pdf"><i>Use
+of embedded FPGA resources in implementations of five round three
+SHA-3 candidates</i></a>. ECRYPT2 Hash Workshop 2011
+<br /> Main result: implementations of BLAKE-256 on Virtex 5,
+Spartan 3, Stratix III, and Cyclone II FPGA devices
+<br /><br />
+</li>
+
+<li>2011 May 19: Stéphanie Kerckhof, François Durvaux, Nicolas Veyrat-Charvillon, Francesco Regazzoni.
+<a href="http://www.ecrypt.eu.org/hash2011/proceedings/hash2011_10.pdf"><i>Compact
+FPGA implementations of the five SHA-3 finalists</i></a>. ECRYPT2
+Hash Workshop 2011
+<br /> Main result: implementation of BLAKE-512 on Virtex 6
+and Spartan 6 FPGA devices
+<br /><br />
+</li>
+
+<li>2011 May 19: Xu Guo, Meeta Srivastav, Sinan Huang, Leyla Nazhandali, Patrick Schaumont. 
+<a href="http://www.ecrypt.eu.org/hash2011/proceedings/hash2011_11.pdf"><i>Silicon
+implementation of SHA-3 finalists: BLAKE, Grostl, JH, Keccak and
+Skein</i></a>. ECRYPT2 Hash Workshop 2011
+<br /> Main result: implementation of BLAKE-256 on 130 nm ASIC
+<br /><br />
+</li>
+
+<li>2011 May 12: Miroslav Knežević, Kazuyuki Kobayashi, Jun Ikegami,
+Shin’ichiro Matsuo, Akashi Satoh, Ünal Kocabas¸Junfeng Fan, Toshihiro
+Katashita, Takeshi Sugawara, Kazuo Sakiyama, Ingrid Verbauwhede, Kazuo
+Ohta, Naofumi Homma, Takafumi Aoki.
+<a href="https://www.cosic.esat.kuleuven.be/publications/article-1500.pdf"><i>Fair
+and consistent hardware evaluation of fourteen round two SHA-3
+candidates</i></a>. IEEE T VLSI
+<br /> Main result: implementations of BLAKE-32 on Virtex 5
+and on 90 nm ASIC
+<br /><br />
+</li>
+
+<li>2010 Dec 1: Simon Hoerder, Marcin Wojcik, Stefan Tillich, Dan
+Page. <a href="http://eprint.iacr.org/2010/614"><i>An evaluation of
+hash functions on a power analysis resistant processor
+architecture</i></a>. IACR ePrint archive, report 2010/614<br /> Main
+result: implementation of BLAKE-32 on the Power-Trust
+platform<br /><br /></li>
+
+<li>2010 Aug 23: Luca Henzen, Jean-Philippe Aumasson, Willi Meier,
+Raphael C.-W. Phan. <a href="../data/papers/HAMP10.pdf"><i>VLSI
+characterization of the cryptographic hash function
+BLAKE</i></a>. IEEE T VLSI <br /> Main result: various
+implementations of BLAKE-32 and BLAKE-64 on 90, 130, and 180 nm
+technology
+<br /><br /></li>
+
+<li>2010 Aug 23: Stefan Tillich, Martin Feldhofer, Mario Kirschbaum,
+Thomas Plos, Jörn-Marc Schmidt, Alexander
+Szekely. <a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round2/Aug2010/documents/papers/TILLICH_sha3hw.pdf"><i>Uniform
+evaluation of hardware implementations of the round-two SHA-3
+candidates</i></a>. Second SHA-3 Conference <br /> Main result:
+implementation of BLAKE-32 on 0.18 &micro;m technology in 38.9 kGE and
+achieving a throughput of 3.355 Gbps
+<br /><br /></li>
+
+
+<li>2010 Aug 23: Xu Guo, Sinan Huang, Leyla Nazhandali, Patrick
+Schaumont. <a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round2/Aug2010/documents/papers/SCHAUMONT_SHA3.pdf"><i>Fair
+and comprehensive performance evaluation of 14 second round SHA-3 ASIC
+implementations</i></a>. Second SHA-3 Conference <br /> Main
+result: implementation of BLAKE-32 on 0.13 &micro;m technology
+in 30.4 kGE (resp. 43.5 kGE) and achieving a throughput of 196 Mbps
+(resp. 845 Mbps)
+<br /><br /></li>
+
+
+<li>2010 Aug 23: Brian Baldwin, Neil Hanley, Mark Hamilton, Liang Lu,
+Andrew Byrne, Maire O’Neill, William
+P. Marnane. <a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round2/Aug2010/documents/papers/BALDWIN_FPGA_SHA3.pdf"><i>
+FPGA implementations of the round two SHA-3 candidates
+</i></a>. Second SHA-3 Conference <br /> Main result:
+implementations of BLAKE-32 (resp. BLAKE-64) on a Virtex 5 FPGA device
+with 1118 (resp. 1718) slices and achieving a throughput of 1169 Mbps
+(resp. 1299 Mbps)
+<br /><br /></li>
+
+
+<li>2010 Aug 23: Shin'ichiro Matsuo, Miroslav Knežević, Patrick
+Schaumont, Ingrid Verbauwhede, Akashi Satoh, Kazuo Sakiyama, Kazuo
+Ota. <a href="http://csrc.nist.gov/groups/ST/hash/sha-3/Round2/Aug2010/documents/papers/MATSUO_SHA-3_Criteria_Hardware_revised.pdf"><i>
+How can we conduct "fair and consistent" hardware evaluation for SHA-3
+candidate?
+</i></a>. Second SHA-3 Conference <br /> Main result:
+implementations of BLAKE-32 on a Virtex 5 FPGA device with
+3053 slices and achieving a throughput of 2676 Mbps
+<br /><br /></li>
+
+
+<li>2010 Aug 23: Kris Gaj, Ekawat Homsirikamol, Marcin
+Rogawski. <a href=""><i>Comprehensive comparison of hardware
+performance of fourteen round 2 SHA-3 candidates with 512-bit outputs
+using field programmable gate arrays</i></a>. Second SHA-3 Conference
+<br /> Main result: implementations of BLAKE-32 on Spartan 3,
+Virtex 4, Virtex 5, Cyclone II, Cyclone III, Stratix II, and Stratix
+III FPGA devices; for example on Virtex 5, BLAKE-32 is implemented
+with 1871 slices, and achieves a throughput of 2853.9 Mbps
+<br /><br /></li>
+
+
+<li>2010 Aug 19: Luca Henzen, Pietro Gendotti, Patrice Guillet, Enrico
+Pargaetzi, Martin Zoller, Frank
+K. Gürkaynak. <a href="http://www.iis.ee.ethz.ch/~sha3/"><i>Developing
+a hardware evaluation method for SHA-3 candidates</i></a>. CHES
+2010 <br /> Main result: implementation of BLAKE-32 on 0.09
+&micro;m technology in 16 kGE (resp. 47.5 kGE), and achieving a
+throughput of 0.452 Gbps (resp. 9.752 Gbps)
+<br /><br /></li>
+
+
+<li>2010 Aug 19: Kris Gaj, Ekawat Homsirikamol, Marcin
+Rogawski. <a href="http://mason.gmu.edu/~mrogawsk/arch/ches2010.pdf"><i>Fair
+and comprehensive methodology for comparing hardware performance of
+fourteen round two SHA-3 candidates using FPGAs</i></a>. CHES
+2010 <br /> Main result: implementations of BLAKE-32 on
+Spartan 3, Virtex 4, Virtex 5, Cyclone II, Cyclone III, Stratix II,
+and Stratix III FPGA devices; for example on Virtex 5, BLAKE-32 is
+implemented with 1851 slices, and achieves a throughput of 2610.6 Mbps
+<br /><br /></li>
+
+<li>2010 Jul 5: Nicolas Sklavos, Paris
+Kitsos. <a href="http://www.nsklavos.gr/Papers/[C049].pdf"><i>BLAKE
+hash function family on FPGA: from the fastest to the
+smallest</i></a>. IEEE ISVLSI 2010 <br /> Main result:
+implementation of all BLAKE instances on a Virtex 4 FPGA device; for
+example BLAKE-32 is implemented with 3101 slices and achieves a
+throughput of 128 Mbps
+<br /><br /></li>
+
+<li>2010 Apr 1: Jean-Luc Beuchat, Eiji Okamoto, Teppei Yamazaki. <a href="http://eprint.iacr.org/2010/173">
+<i>Compact implementations of BLAKE-32 and BLAKE-64 on FPGA</i></a>. IACR ePrint archive, report 2010/173
+ <br /> Main result: compact implementations of BLAKE-32 and
+ BLAKE-64 on Spartan 3, Virtex 4, Virtex 5, and Cyclone III FPGA
+ devices; for example on Virtex 5, BLAKE-32 (resp. BLAKE-64) is
+ implemented with 56 (resp 108) slices, and achieves a throughput of
+ 225 (resp. 314) Mbps <br /><br /></li>
+
+<li>2010 Jan 10: Kazuyuki Kobayashi, Jun Ikegami, Shin’ichiro Matsuo, Kazuo Sakiyama, Kazuo Ohta. <a href="http://eprint.iacr.org/2010/010"><i>Evaluation of hardware performance for the SHA-3 candidates using SASEBO-GII</i></a>. IACR ePrint archive, report 2010/010
+ <br /> Main result: implementation of BLAKE-32 on the SASEBO-GII FPGA platform with 1660 slices, 1393 slice registers, and 5154 slice LUTs, and achieving a throughput of 487 Mbps <br /><br /></li>
+
+<li>2009 Oct 21: Stefan Tillich, Martin Feldhofer, Mario
+Kirschbaum, Thomas Plos, Jörn-Marc Schmidt, Alexander
+Szekely. <a href="http://eprint.iacr.org/2009/510"><i>High-speed
+hardware implementations of BLAKE, Blue Midnight Wish, CubeHash, ECHO,
+Fugue, Grøstl, Hamsi, JH, Keccak, Luffa, Shabal, SHAvite-3, SIMD,
+and Skein</i></a>. IACR ePrint archive, report 2009/510
+ <br /> Main result: implementation of BLAKE-32 on 0.18
+ &micro;m technology in 45.6 kGE, and achieving a throughput of 4 Gbps<br /><br /></li>
+
+<li>2009 Jul 14: Stefan Tillich, Martin Feldhofer, Wolfgang Issovits,
+Thomas Kern, Hermann Kureck, Michael Mühlberghuber, Georg Neubauer,
+Andreas Reiter, Armin Köfler, Mathias Mayrhofer. <a
+href="http://eprint.iacr.org/2009/349"><i>Compact hardware
+implementations of the SHA-3 candidates ARIRANG, BLAKE, Grøstl, and
+Skein</i></a>. IACR ePrint archive, report 2009/349
+<br /> Main result: implementation of BLAKE-32 on 0.35
+&micro;m technology in 25 kGE, and achieving a throughput of 15.4 Mbps <br /><br /></li>
+
+</ul>
+</section>
+
+<footer>
+<hr />
+
+<a href="../index.html">Index</a>
+</footer>
+
+
+</body></html>
+

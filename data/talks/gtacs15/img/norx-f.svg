@@ -1,0 +1,221 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="450" height="250" font-family="sans-serif" font-size="10px" >
+
+  <defs>
+    <pattern id="blue-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#3498db" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="red-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#e74c3c" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="green-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#2ecc71" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <pattern id="yellow-grid" width="25" height="25" patternUnits="userSpaceOnUse">
+      <rect fill="#fac205" x="0" y="0" width="25" height="25" />
+    </pattern>
+    <marker id="arrow"
+        markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12"
+        refX="-2" refY="0"
+        markerUnits="strokeWidth"
+        orient="auto">
+        <polygon points="-2,0 -5,5 5,0 -5,-5" fill="black" stroke="black" stroke-width="1px"/>
+    </marker>
+  </defs>
+
+
+  <!-- column step -->
+  <g transform="translate(0 0)" >
+      <rect fill="url(#yellow-grid)"    x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+  </g>
+
+  <g transform="translate(27 180)">
+      <rect fill="url(#red-grid)"    x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+  </g>
+
+  <g transform="translate(54 0)">
+      <rect fill="url(#green-grid)"    x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+  </g>
+
+  <g transform="translate(81 180)">
+      <rect fill="url(#blue-grid)" x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+  </g>
+
+  <!-- yellow and green arrows -->
+  <g>
+      <path d="M  7 50 L  7 28" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 18 25 L 18 47" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 61 50 L 61 28" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 72 25 L 72 47" stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <!-- red and blue arrows -->
+  <g transform="translate(27 130)">
+      <path d="M  7 50 L  7 28" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 18 25 L 18 47" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 61 50 L 61 28" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 72 25 L 72 47" stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <g transform="translate(0 50)">
+      <rect fill="url(#yellow-grid)" x="0"  y="0" width="25" height="100"/>
+      <text>
+          <tspan x =  "8.0" y = "15.0">s<tspan baseline-shift="sub" font-size="6">0</tspan></tspan>
+          <tspan x =  "8.0" y = "40.0">s<tspan baseline-shift="sub" font-size="6">4</tspan></tspan>
+          <tspan x =  "8.0" y = "65.0">s<tspan baseline-shift="sub" font-size="6">8</tspan></tspan>
+          <tspan x =  "8.0" y = "90.0">s<tspan baseline-shift="sub" font-size="6">12</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(27 55)">
+      <rect fill="url(#red-grid)" x="0" y="0" width="25" height="100"/>
+      <text>
+          <tspan x =  "8.0" y = "15.0">s<tspan baseline-shift="sub" font-size="6">1</tspan></tspan>
+          <tspan x =  "8.0" y = "40.0">s<tspan baseline-shift="sub" font-size="6">5</tspan></tspan>
+          <tspan x =  "8.0" y = "65.0">s<tspan baseline-shift="sub" font-size="6">9</tspan></tspan>
+          <tspan x =  "8.0" y = "90.0">s<tspan baseline-shift="sub" font-size="6">13</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(54 50)">
+      <rect fill="url(#green-grid)" x="0" y="0" width="25" height="100"/>
+      <text>
+          <tspan x =  "8.0" y = "15.0">s<tspan baseline-shift="sub" font-size="6">2</tspan></tspan>
+          <tspan x =  "8.0" y = "40.0">s<tspan baseline-shift="sub" font-size="6">6</tspan></tspan>
+          <tspan x =  "8.0" y = "65.0">s<tspan baseline-shift="sub" font-size="6">10</tspan></tspan>
+          <tspan x =  "8.0" y = "90.0">s<tspan baseline-shift="sub" font-size="6">14</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(81 55)">
+      <rect fill="url(#blue-grid)" x= "0" y= "0" width="25" height="100"/>
+      <text>
+          <tspan x =  "8.0" y = "15.0">s<tspan baseline-shift="sub" font-size="6">3</tspan></tspan>
+          <tspan x =  "8.0" y = "40.0">s<tspan baseline-shift="sub" font-size="6">7</tspan></tspan>
+          <tspan x =  "8.0" y = "65.0">s<tspan baseline-shift="sub" font-size="6">11</tspan></tspan>
+          <tspan x =  "8.0" y = "90.0">s<tspan baseline-shift="sub" font-size="6">15</tspan></tspan>
+      </text>
+  </g>
+
+  <!-- diagonal step -->
+  <g transform="translate(175 50)">
+      <rect fill="url(#yellow-grid)" x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+      <path d="M 25 7 L 71 7" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 75 18 L 28 18" stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <g transform="translate(210 0)">
+      <rect fill="url(#red-grid)" x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+      <!-- down -->
+      <path d="M 18 25 L 18 139 " stroke="black" />
+      <path d="M 18 139 L 30 139 " stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 34 150 L 7 150" stroke="black" />
+      <path d="M 7 150 L 7 28" stroke="black" marker-end='url(#arrow)'/>
+      <!-- right -->
+      <path d="M 25  7 L 86  7 " stroke="black" />
+      <path d="M 86  7 L 86 44 " stroke="black" marker-end='url(#arrow)' />
+      <path d="M 75 48 L 75 18 " stroke="black" />
+      <path d="M 75 18 L 28 18 " stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <g transform="translate(271 180)">
+      <rect fill="url(#green-grid)"    x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+      <path d="M  7 0 L  7 -23" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 18 -27 L 18 -4" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M  25 7 L 120 7" stroke="black"/>
+      <path d="M  120 7 L 120 -92" stroke="black"/>
+      <path d="M  120 -92 L 87 -92" stroke="black" marker-end='url(#arrow)'/>
+      <path d="M  83 -103 L 131 -103" stroke="black"/>
+      <path d="M  131 -103 L 131 18" stroke="black"/>
+      <path d="M  131 18 L 29 18" stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <g transform="translate(360 157)">
+      <rect fill="url(#blue-grid)"    x= "0" y= "0" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.5" y = "17.0">G</tspan>
+      </text>
+      <!-- left -->
+      <path d="M 0 7 L -44 7 " stroke="black" />
+      <path d="M -44 7 L -44 -2 " stroke="black" marker-end='url(#arrow)'/>
+      <path d="M -55 -5 L -55 18 " stroke="black" />
+      <path d="M -55 18 L -4 18 " stroke="black" marker-end='url(#arrow)'/>
+      <!-- up -->
+      <path d="M -4 -95 L 7 -95 " stroke="black" />
+      <path d="M 7 -95 L 7 -4 " stroke="black" marker-end='url(#arrow)'/>
+      <path d="M 18 0 L 18 -106 " stroke="black" />
+      <path d="M 18 -106 L -1 -106 " stroke="black" marker-end='url(#arrow)'/>
+  </g>
+
+  <g transform="translate(250 50)">
+      <rect fill="url(#yellow-grid)" x="0"  y="0" width="25" height="25"/>
+      <rect fill="url(#yellow-grid)" x="25"  y="25" width="25" height="25"/>
+      <rect fill="url(#yellow-grid)" x="50"  y="50" width="25" height="25"/>
+      <rect fill="url(#yellow-grid)" x="75"  y="75" width="25" height="25"/>
+      <text>
+          <tspan x =  "8.0" y = "15.0">s<tspan baseline-shift="sub" font-size="6">0</tspan></tspan>
+          <tspan x = "33.0" y = "40.0">s<tspan baseline-shift="sub" font-size="6">5</tspan></tspan>
+          <tspan x = "58.0" y = "65.0">s<tspan baseline-shift="sub" font-size="6">10</tspan></tspan>
+          <tspan x = "83.0" y = "90.0">s<tspan baseline-shift="sub" font-size="6">15</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(250 50)">
+      <rect fill="url(#red-grid)" x="27"  y="-2" width="25" height="25"/>
+      <rect fill="url(#red-grid)" x="52"  y="23" width="25" height="25"/>
+      <rect fill="url(#red-grid)" x="77"  y="48" width="25" height="25"/>
+      <rect fill="url(#red-grid)" x="-6"  y="81" width="25" height="25"/>
+      <text>
+          <tspan x = "35.0" y = "13.0">s<tspan baseline-shift="sub" font-size="6">1</tspan></tspan>
+          <tspan x = "60.0" y = "38.0">s<tspan baseline-shift="sub" font-size="6">6</tspan></tspan>
+          <tspan x = "85.0" y = "63.0">s<tspan baseline-shift="sub" font-size="6">11</tspan></tspan>
+          <tspan x =  "2.0" y = "96.0">s<tspan baseline-shift="sub" font-size="6">12</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(250 50)">
+      <rect fill="url(#blue-grid)" x="81"  y="-6" width="25" height="25"/>
+      <rect fill="url(#blue-grid)" x="-2"  y="27" width="25" height="25"/>
+      <rect fill="url(#blue-grid)" x="23"  y="52" width="25" height="25"/>
+      <rect fill="url(#blue-grid)" x="48"  y="77" width="25" height="25"/>
+      <text>
+          <tspan x = "89.0" y =  "9.0">s<tspan baseline-shift="sub" font-size="6">3</tspan></tspan>
+          <tspan x =  "6.0" y = "42.0">s<tspan baseline-shift="sub" font-size="6">4</tspan></tspan>
+          <tspan x = "31.0" y = "67.0">s<tspan baseline-shift="sub" font-size="6">9</tspan></tspan>
+          <tspan x = "56.0" y = "92.0">s<tspan baseline-shift="sub" font-size="6">14</tspan></tspan>
+      </text>
+  </g>
+
+  <g transform="translate(250 50)">
+      <rect fill="url(#green-grid)" x="54" y="-4" width="25" height="25"/>
+      <rect fill="url(#green-grid)" x="79" y="21" width="25" height="25"/>
+      <rect fill="url(#green-grid)" x="-4" y="54" width="25" height="25"/>
+      <rect fill="url(#green-grid)" x="21" y="79" width="25" height="25"/>
+      <text>
+          <tspan x = "62.0" y = "11.0">s<tspan baseline-shift="sub" font-size="6">2</tspan></tspan>
+          <tspan x = "87.0" y = "36.0">s<tspan baseline-shift="sub" font-size="6">7</tspan></tspan>
+          <tspan x =  "4.0" y = "69.0">s<tspan baseline-shift="sub" font-size="6">8</tspan></tspan>
+          <tspan x = "30.0" y = "94.0">s<tspan baseline-shift="sub" font-size="6">13</tspan></tspan>
+      </text>
+  </g>
+</svg>

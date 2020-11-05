@@ -1,0 +1,23 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="225" height="150" font-family="sans-serif" font-size="20px" >
+  <defs>
+    <marker id="arrow"
+        markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12"
+        refX="-2" refY="0"
+        markerUnits="strokeWidth"
+        orient="auto">
+        <polygon points="-2,0 -5,5 5,0 -5,-5" fill="black" stroke="black" stroke-width="1px"/>
+    </marker>
+  </defs>
+  <g>
+      <rect x= "85" y= "75" width="50" height="50" fill="transparent" stroke="#000000" stroke-width="2px" rx="10" ry="10"/>
+      <text>
+          <tspan x =  "95" y = "105">AE</tspan>
+          <tspan x =  "90" y = "30.0">K, N</tspan>
+          <tspan x =  "15" y = "105">M</tspan>
+          <tspan x =  "185" y = "105">C, T</tspan>
+      </text>
+      <path d="M  35 100 L 75 100" stroke="black" stroke-width="2px" marker-end='url(#arrow)'/>
+      <path d="M  140 100 L 175 100" stroke="black" stroke-width="2px" marker-end='url(#arrow)'/>
+      <path d="M  110 35 L 110 65" stroke="black" stroke-width="2px" marker-end='url(#arrow)'/>
+  </g>
+</svg>

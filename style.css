@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans:300');
+
+html, body 
+{
+    color:#333;
+    background-color:#fff;
+    font-family: 'Open Sans', sans-serif;
+    line-height:140%;
+}
+
+a:link {
+    color:#000; 
+    text-decoration:none; 
+    font-weight:bold;
+}
+
+a:visited {
+    color:#000; 
+    text-decoration:none;
+}
+
+a:hover {
+    color:#555; 
+    text-decoration:none
+}
+
+h2 {
+    color:#000;
+    font-family: 'Homemade Apple', cursive;
+    font-size:40px;
+}
+
+
+li {
+    margin: 4px 0;
+}
+
+#content {
+    max-width:800px;
+    margin:20px auto; 
+    padding:20px;
+    /* border:1px dashed #333; */
+    /* background-color:#fdfdfd; */
+}
+
