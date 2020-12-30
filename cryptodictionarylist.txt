@@ -458,7 +458,7 @@ Threefish
 Threshold encryption
 Threshold secret-sharing
 Threshold signature
-Time AI\textsuperscript{TM
+Time AI™
 Time-lock encryption
 Time-lock puzzle
 Timing attack
