@@ -15,7 +15,7 @@ AES-NI
 AES-SIV
 AIM (Advanced INFOSEC Machine)
 AKA
-AKS (Agrawal--Kayal--Saxena)
+AKS (Agrawal-Kayal-Saxena)
 Algebraic cryptanalysis
 Alice
 All-or-nothing transform (AONT)
@@ -113,19 +113,19 @@ Curve25519
 Curve448
 Cypher
 Daemon
-Davies--Meyer
+Davies-Meyer
 Decentralized private computation
 Deniable encryption
 DES (Data Encryption Standard)
 Dictionary attack
 Dictionary
 Differential cryptanalysis
-Diffie--Hellman
+Diffie-Hellman
 Disclosure
 Discrete logarithm problem
 Distinguisher
 Distributed randomness
-Dolev--Yao model
+Dolev-Yao model
 Double ratchet
 Dragonfly
 DRBG (deterministic random bit generator)
@@ -163,7 +163,7 @@ Factoring problem
 Feedback shift register
 Feistel network
 Fialka ({\timesnewroman Фиалка)
-Fiat--Shamir
+Fiat-Shamir
 FIPS 140-2
 FIPS 140-3
 Forgery
@@ -182,7 +182,7 @@ GOST
 Grain
 Group signature
 Grover's algorithm
-Gr\"obner basis
+Gröbner basis
 Hardcore predicate
 Hash function
 Hash-based cryptography
@@ -232,7 +232,7 @@ Kleptography
 Known-key attack
 Kupyna ({\timesnewroman Купина)
 Laconic zero-knowledge proof
-Lai--Massey
+Lai-Massey
 Lamport signature
 Lattice-based cryptography
 Le Chiffre
@@ -245,7 +245,7 @@ Lightweight cryptography
 Linear cryptanalysis
 Linkability
 LM hash
-Luby--Rackoff
+Luby-Rackoff
 Lucifer
 MAC (message authentication code)
 MAGENTA
@@ -261,15 +261,15 @@ MDC-2
 Meet-in-the-middle
 Merkle puzzle
 Merkle tree
-Merkle--Damgård construction
+Merkle-Damgård construction
 Mersenne twister
 Message franking
-Miller--Rabin
+Miller-Rabin
 MINERVA
 Mining
 Misuse resistance
 Mixnet
-MQV (Menezes--Qu--Vanstone)
+MQV (Menezes-Qu-Vanstone)
 Multi-party computation (MPC)
 Multicollision
 Multivariate cryptography
@@ -383,7 +383,7 @@ Revocation
 Rijndael
 Ring signature
 RIPEMD-160
-Rivest--Shamir--Adleman
+Rivest-Shamir-Adleman
 ROBOT (Return Of Bleichenbacher's Oracle Threat)
 ROS
 RSA
