@@ -332,7 +332,6 @@ Prediction resistance
 Preimage
 PRESENT
 PRIMES
-primes are in NP (and hence in delta-P, the intersection of NP
 Privacy-preserving
 Private information retrieval (PIR)
 Proof of burn
