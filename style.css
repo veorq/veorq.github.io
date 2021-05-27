@@ -1,33 +1,33 @@
-@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Open+Sans:300');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya&family=Special+Elite&display=swap');
 
 html, body 
 {
-    color:#333;
-    background-color:#fff;
-    font-family: 'Open Sans', sans-serif;
+    color:#fff;
+    background-color:#000;
+    font-family: 'Alegreya', serif;
     line-height:140%;
 }
 
 a:link {
-    color:#000; 
+    color:#00ffff; 
     text-decoration:none; 
     font-weight:bold;
 }
 
 a:visited {
-    color:#000; 
+    color:#00ffff; 
     text-decoration:none;
 }
 
 a:hover {
-    color:#555; 
-    text-decoration:none
+    color:#000; 
+    background-color:#00ffff;
 }
 
 h2 {
-    color:#000;
-    font-family: 'Homemade Apple', cursive;
-    font-size:40px;
+    color:#fff;
+    font-family: 'Special Elite', cursive;
+    font-size:50px;
 }
 
 
@@ -39,7 +39,5 @@ li {
     max-width:800px;
     margin:20px auto; 
     padding:20px;
-    /* border:1px dashed #333; */
-    /* background-color:#fdfdfd; */
 }
 
