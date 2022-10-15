@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Silkscreen&display=swap');
 
 html, body 
 {
@@ -9,25 +9,30 @@ html, body
 }
 
 a:link {
-    color:#880055; 
+    color:#E85523; 
     text-decoration:none; 
     font-weight:bold;
 }
 
 a:visited {
-    color:#880055; 
+    color:#E85523; 
     text-decoration:none;
 }
 
 a:hover {
     color:#fff; 
-    background-color:#880055;
+    background-color:#E85523; 
 }
 
 h2 {
     color:#000;
-    font-family: 'Special Elite', cursive;
+    font-family: 'Silkscreen', cursive;
     font-size:50px;
+}
+
+nav {
+    color:#000;
+    font-family: 'Silkscreen', cursive;
 }
 
 

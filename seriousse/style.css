@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Silkscreen&display=swap');
 
 html, body 
 {
     color:#000;
     background-color:#fff;
-    font-family: 'EB Garamond', serif;
-    line-height:120%;
+    font-family: 'Alegreya', serif;
+    line-height:140%;
 }
 
 a:link {
