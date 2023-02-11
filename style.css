@@ -9,19 +9,19 @@ html, body
 }
 
 a:link {
-    color:#E85523; 
+    color:#0f5a5e;
     text-decoration:none; 
     font-weight:bold;
 }
 
 a:visited {
-    color:#E85523; 
+    color:#0f5a5e;
     text-decoration:none;
 }
 
 a:hover {
     color:#fff; 
-    background-color:#E85523; 
+    background-color:#0f5a5e; 
 }
 
 h2 {
