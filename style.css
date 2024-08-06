@@ -1,12 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Alegreya:wght@500&family=Silkscreen&display=swap');
 
-html, body 
-{
-    color:#000;
-    background-color:#fff;
-    font-family: 'Alegreya', serif;
-    line-height:140%;
-}
 
 a:link {
     color:#0f5a5e;

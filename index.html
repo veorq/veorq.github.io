@@ -1,130 +1,96 @@
 <!doctype html>
 <html lang="en">
 <head>
-<title>Jean-Philippe Aumasson</title>
-<link href="style.css" rel="stylesheet" type="text/css" media="screen">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Philippe Aumasson</title>
+    <link href="style2.css" rel="stylesheet">
 </head>
 <body>
-<div id="content">
-<header>
-<a href="index.html">
-<h2>JP Aumasson</h2>
-</a>
-</header>
-<nav>
-<strong>
-<a href="papers.html">Research</a>
-·
-<a href="talks.html">Talks</a>
-·
-<a href="conferences.html">Events</a>
-·
-<a href="favorites.html">Favorites</a>
-</strong>
-<br />
-<br />
-</nav>
-<section>
-Cryptographer,  co-founder
-&amp; chief security officer @ <a href="https://taurushq.com">Taurus</a>.
-<h3>Books</h3>
-<p>
-<a href="https://nostarch.com/serious-cryptography-2nd-edition">
-<img src="data/covs/sc2.jpg" height="200"></a>
-<a href="https://nostarch.com/seriouscrypto">
-<img src="data/covs/sc.jpg" height="200"></a>
+    <div id="content">
+        <!-- Header -->
+        <header>
+                <h2>JP Aumasson</h2>
+        </header>
 
-<a href="https://www.crypto-dictionary.com">
-<img src="data/covs/cd.jpg" height="200"></a>
+        <!-- Navigation bar -->
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="papers.html">Research</a>
+            <a href="talks.html">Talks</a>
+            <a href="conferences.html">Events</a>
+            <a href="favorites.html">Favorites</a>
+        </nav>
 
-<a href="https://www.amazon.com/gp/product/3662447568/">
-<img src="data/covs/bl.jpg" height="200"></a>
+        <!-- Main content section -->
+        <section>
+            <p>Cryptographer, co-founder & chief security officer at <a
+            href="https://taurushq.com">Taurus SA</a>.</p>
 
-<a href="http://petitpingou.in">
-<img src="data/covs/pp.png" height="140"></a>
-</p>
-<ul>
-<li>
-<a href="serious-cryptography-2nd-edition">Serious Cryptography, 2nd
-edition</a> (No Starch Press, 2024)
-<ul>
-<li>
-French translation: La Cryptographie Déchiffrée (Dunod, 2024)
-</li>
-</ul>
-</li>
-<li>
-<a href="https://nostarch.com/seriouscrypto">Serious Cryptography</a> (No Starch Press, 2017)
-<ul>
-<li><a href="serious.html">Translations</a>: Chinese, Japanese, Polish,
-Russian</li>
-</ul>
-</li>
+            <!-- Books section -->
+            <h3>Books</h3>
+            <p>
+                <a href="https://nostarch.com/serious-cryptography-2nd-edition">
+                    <img src="data/covs/sc2.jpg" alt="Serious Cryptography 2nd Edition" height="200">
+                </a>
+                <a href="https://nostarch.com/seriouscrypto">
+                    <img src="data/covs/sc.jpg" alt="Serious Cryptography" height="200">
+                </a>
+                <a href="https://www.crypto-dictionary.com">
+                    <img src="data/covs/cd.jpg" alt="Crypto Dictionary" height="200">
+                </a>
+                <a
+                href="blake/book/index.html">
+                    <img src="data/covs/bl.jpg" alt="The Hash Function BLAKE" height="200">
+                </a>
+                <a href="http://petitpingou.in">
+                    <img src="data/covs/pp.png" alt="Petit Pingouin" height="140">
+                </a>
+            </p>
+            <ul>
+                <li>
+                    <a href="https://nostarch.com/serious-cryptography-2nd-edition">Serious Cryptography, 2nd edition</a> (No Starch Press, 2024)
+                    <ul>
+                        <li><a
+                        href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne">La
+                        Cryptographie Déchiffrée</a> (Dunod, 2024)</li>
+                    </ul>
+                </li>
+                <li><a href="http://petitpingou.in">Petit Pingouin</a> (self-published, 2021)</li>
+                <li><a href="https://www.crypto-dictionary.com">Crypto Dictionary</a>  (No Starch Press, 2020)</li>
+                <li>
+                    <a href="https://nostarch.com/seriouscrypto">Serious Cryptography</a> (No Starch Press, 2017)
+                    + <a href="serious.html">translations</a>
+                </li>
+                <li><a href="blake/book/index.html">The Hash Function BLAKE</a> (Springer, 2014)</li>
+            </ul>
 
-<li>
-<a href="http://petitpingou.in">Petit Pingouin</a> (self-published, 2021)
-</li>
-<li>
-<a href="https://www.crypto-dictionary.com">Crypto Dictionary</a>  (No Starch Press, 2020)
-</li>
+            <!-- Crypto projects section -->
+            <h3>Crypto Projects</h3>
+            <ul>
+                <li>Hash functions <a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)">BLAKE</a>, <a href="https://blake2.net">BLAKE2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc7693/">7693</a>), and <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a></li>
+                <li>Pseudorandom function <a href="https://en.wikipedia.org/wiki/SipHash">SipHash</a></li>
+                <li>Post-quantum signatures <a href="https://github.com/gravity-postquantum/prune-horst">PRUNE-HORST</a>, <a href="https://github.com/gravity-postquantum/gravity-sphincs">Gravity-SPHINCS</a>, <a href="https://sphincs.org/">SPHINCS+</a> (FIPS 205, <a href="https://csrc.nist.gov/pubs/fips/205/ipd">SLH-DSA</a>)</li>
+                <li><a href="https://www.password-hashing.net/">Password Hashing Competition</a> & winner <a href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc9106/">9106</a>)</li>
+                <li><a href="https://cryptotraining.ch/">Cryptography trainings</a></li>
+            </ul>
 
-<li>
-<a href="https://www.amazon.com/gp/product/3662447568/">The Hash
-Function BLAKE</a> (Springer,
-2014)
-</li>
-</ul>
-<h3>Crypto projects</h3>
-<ul>
-<li>Hash functions <a
-href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)">BLAKE</a>, 
-<a href="https://blake2.net">BLAKE2</a> (RFC <a
-href="https://datatracker.ietf.org/doc/rfc7693/">7693</a>), and
-<a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> 
-</li>
-<li>Pseudorandom function <a href="https://en.wikipedia.org/wiki/SipHash">SipHash</a>
-</li>
-<li>
-Post-quantum signatures
-<a href="https://github.com/gravity-postquantum/prune-horst">PRUNE-HORST</a>,
-<a href="https://github.com/gravity-postquantum/gravity-sphincs">Gravity-SPHINCS</a>,
-<a href="https://sphincs.org/">SPHINCS+</a> (FIPS 205, <a
-href="https://csrc.nist.gov/pubs/fips/205/ipd">SLH-DSA</a>)
-</li>
-<li>
-<a href="https://www.password-hashing.net/">
-Password Hashing Competition</a>  &amp; winner
-<a href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a> 
-(RFC <a
-href="https://datatracker.ietf.org/doc/rfc9106/">9106</a>)
-</li>
-<li><a href="https://cryptotraining.ch/">Cryptography trainings</a></li>
-</ul>
-<h3>Misc</h3>
-<ul>
-<li>
-<a href="https://slf.fish/">SLF</a> member
-</li>
-<li><a
-href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a>
-maintainer
-</li>
-<li>
-<a href="murphy.html">Murphy's laws of cryptography</a>
-</li>
-</ul>
-<h3>Contact</h3>
-<ul>
-<li>
-<a
-href="mailto:jeanphilippe.aumasson@gmail.com">jeanphilippe.aumasson@gmail.com</a></li>
-<li>
-<a href="sgnl://signal.me/#p/+41764568310">Signal</a></li>
-</ul>
-</section>
-</div>
+            <!-- Misc section -->
+            <h3>Misc</h3>
+            <ul>
+                <li><a href="https://slf.fish/">SLF</a> member</li>
+                <li><a href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a> maintainer</li>
+                <li><a href="murphy.html">Murphy's laws of cryptography</a></li>
+            </ul>
+
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            &copy; 2024 Jean-Philippe Aumasson. All rights reserved.  <a
+            href="mailto:jeanphilippe.aumasson@gmail.com">Contact</a>.
+        </footer>
+    </div>
 </body>
 </html>
 
