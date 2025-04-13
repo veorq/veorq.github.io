@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cripto - A Modern Tragicomedy</title>
+
+        <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Cripto - A Modern Tragicomedy">
+    <meta property="og:description" content="A noir tale of cryptocurrency scams, cartels, and survival in the tropical hellscapes of Mexico.">
+    <meta property="og:image" content="https://aumasson.jp/cripto/cover.png">
+    <meta property="og:url" content="https://aumasson.jp/cripto/">
+    <meta property="og:type" content="book">
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Cripto - A Modern Tragicomedy">
+    <meta name="twitter:description" content="A noir tale of cryptocurrency scams, cartels, and survival in the tropical hellscapes of Mexico.">
+    <meta name="twitter:image" content="https://aumasson.jp/cripto/cover.png">
+
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Texturina:ital,opsz,wght@0,12..72,100..900;1,12..72,100..900&display=swap');
+        
+        :root {
+            --primary-color: #FF5500; /* Orange from cover */
+            --secondary-color: #004422; /* Dark green from butterfly */
+            --accent-color: #FFCC00; /* Gold/yellow from title */
+            --text-color: #222222;
+            --light-bg: #FFF8F0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        h1 {
+            font-family: 'Texturina', serif;
+            font-style: normal;
+            font-size: 5.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent-color);
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+            padding: 10px 0;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .book-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 3rem 0;
+            background-color: white;
+        }
+        
+        .book-display {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .book-display {
+                flex-direction: row;
+                justify-content: center;
+                align-items: flex-start;
+                gap: 3rem;
+            }
+        }
+        
+        .book-cover {
+            max-width: 100%;
+            height: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin: 0 auto 2rem auto;
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .book-cover {
+                max-width: 350px;
+                margin-bottom: 0;
+            }
+        }
+        
+        .book-info {
+            max-width: 600px;
+        }
+        
+        .intro {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+        
+        .back-cover {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 2rem;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+            font-style: italic;
+            line-height: 1.8;
+        }
+        
+        .download-section {
+            text-align: center;
+            padding: 3rem 0;
+            background-color: var(--light-bg);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            margin: 0 1rem 1rem 0;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .footer-text {
+            font-size: 0.9rem;
+        }
+        
+        .author-note {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>CRIPTO</h1>
+            <h2>A Modern Tragicomedy</h2>
+        </div>
+    </header>
+    
+    <section class="book-section">
+        <div class="container">
+            <div class="book-display">
+                <img src="cover.png" alt="Cripto Book Cover" class="book-cover">
+                <div class="book-info">
+                    <div class="intro">
+                        <p>A gripping novella that unfolds across Mexico, from 
+                        Cancún beaches to the streets of Guadalajara.
+                        <em>Cripto</em> draws inspiration from the
+                        explosion of cryptocurrency scams, revealing the
+                        mechanics behind and their human cost.
+                        The story examines how the facade
+                        of innovation often masks old-fashioned greed
+                        and how the promise of easy money custs across
+                        cultural and socioeconomic boundaries.</p>
+
+                    </div>
+                    
+                    <div class="back-cover">
+                    <h3 style="margin-bottom: 1rem; letter-spacing: 1px; font-family: 'Georgia', serif; font-style: normal; color: var(--accent-color);">SYNOPSIS</h3>
+                        <p>Tyler Hollis thought he'd outsmarted the
+                        system. After making millions from a
+                        cryptocurrency scam, the American tech bro is
+                        living it up in Cancún with Alma, his enigmatic
+                        Spanish partner. But when the real cartel comes
+                        knocking—furious at their lost investment—Tyler
+                        and Alma are plunged into a world of corruption
+                        and survival. Dragged from luxury suites to
+                        carte safehouses and backroom offices, their
+                        only way out may be to build a new crypto scam
+                        under brutal supervision. Cripto is a noir tale
+                        of greed and tech where every transaction has a
+                        price.</p> </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="download-section">
+        <div class="container">
+            <h2 style="color: var(--secondary-color);">Get Your Copy (Soon)</h2>
+            <p style="margin-bottom: 2rem;">Available in multiple formats for your reading pleasure</p>
+            <a href="#" class="btn">Download EPUB</a>
+            <a href="#" class="btn">Download PDF</a>
+        </div>
+    </section>
+    
+    <section class="author-section">
+        <div class="container">
+            <div class="author-note">
+                <h2 style="color: var(--secondary-color); text-align:
+                center; margin-bottom: 1.5rem;">About the Author</h2>
+                <p><a href="http://aumasson.jp">JP Aumasson</a> is
+                cryptographer who wrote the reference book <a
+                href="https://nostarch.com/serious-cryptography-2nd-edition">Serious
+                Cryptography</a> and designed cryptography algorithms
+                used in billions of systems. He co-founded <a
+                href="https://taurushq.com">Taurus SA</a>, a regulated fintech
+                firm offering secure custody solutions to banks. He's
+                also a prolific reader; his favorite authors include
+                Joseph Conrad, Philip K. Dick, and Cormac McCarthy. </p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p class="footer-text">© 2025 JP Aumasson. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
