@@ -15,6 +15,7 @@
 <header>
         <h2>Talks</h2>
 </header>
+<button class="theme-toggle">🌓</button>
 
 <nav>
     <strong>
@@ -721,4 +722,22 @@
 
 </body>
 </html>
+<script>
+  const themes = ['', 'dark-mode', 'mode-2', 'mode-3'];
+
+  function applyTheme(index) {
+    document.body.className = themes[index];
+    localStorage.setItem('themeIndex', index);
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    let current = parseInt(localStorage.getItem('themeIndex')) || 0;
+    applyTheme(current);
+
+    document.querySelector('.theme-toggle').addEventListener('click', () => {
+      current = (current + 1) % themes.length;
+      applyTheme(current);
+    });
+  });
+</script>
 
