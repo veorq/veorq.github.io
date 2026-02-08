@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ninth Berth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --night: #06080b;
+    --amber: #c49a3c;
+    --text: rgba(210, 206, 198, 0.88);
+    --text-dim: rgba(210, 206, 198, 0.3);
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: #030405;
+    font-family: 'EB Garamond', serif;
+    color: var(--text);
+  }
+
+  /* ── COMPARTMENT WALL ── */
+  .compartment {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, #0a0908 0%, #0d0c0a 50%, #080706 100%);
+  }
+
+  /* ── WINDOW FRAME ── */
+  .window-frame {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .window-glass {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: linear-gradient(160deg, #06080c 0%, #080c14 30%, #0a1018 60%, #070a12 100%);
+  }
+
+  /* Glass sheen */
+  .window-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(130deg, transparent 0%, transparent 30%, rgba(130,150,180,0.018) 36%, rgba(130,150,180,0.03) 42%, rgba(130,150,180,0.018) 48%, transparent 54%, transparent 100%);
+    z-index: 8;
+    pointer-events: none;
+  }
+
+  /* Frosted edges — vignette suggests window without a hard frame */
+  .window-glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-shadow:
+      inset 0 0 100px 50px rgba(4,5,8,0.5),
+      inset 0 0 200px 80px rgba(4,5,8,0.25),
+      inset 0 0 40px 15px rgba(140,155,175,0.025);
+    z-index: 7;
+    pointer-events: none;
+  }
+
+  /* ── RAILS ── */
+  .rails-outside {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 55%;
+    z-index: 8;
+    opacity: 0.45;
+  }
+
+  .rails-outside svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ── PASSING LIGHTS ── */
+  .light-streak {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(20px);
+    animation: streak linear infinite;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  @keyframes streak {
+    0%   { transform: translateX(120%); opacity: 0; }
+    5%   { opacity: var(--streak-op); }
+    90%  { opacity: var(--streak-op); }
+    100% { transform: translateX(-120%); opacity: 0; }
+  }
+
+  /* ── SNOW ── */
+  .snow-container {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .snowflake {
+    position: absolute;
+    top: -4px;
+    background: rgba(200, 210, 220, 0.35);
+    border-radius: 50%;
+    animation: snow-fall linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes snow-fall {
+    0%   { transform: translateY(0); opacity: 0; }
+    5%   { opacity: 0.6; }
+    85%  { opacity: 0.4; }
+    100% { transform: translateY(calc(100vh + 10px)); opacity: 0; }
+  }
+
+  /* ── CONDENSATION ── */
+  .condensation {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    pointer-events: none;
+  }
+
+  .breath-fog {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(160,175,195,0.06) 0%, transparent 70%);
+    animation: fog-pulse ease-in-out infinite alternate;
+  }
+
+  @keyframes fog-pulse {
+    0%   { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 0.8; transform: scale(1.04); }
+  }
+
+  .droplet {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(180,195,215,0.15) 0%, rgba(140,160,185,0.07) 50%, transparent 100%);
+    box-shadow: inset 0 0 1px rgba(200,215,230,0.1);
+  }
+
+  .droplet-run {
+    position: absolute;
+    width: 2.5px;
+    border-radius: 2px;
+    background: linear-gradient(180deg, rgba(180,195,215,0.12) 0%, rgba(160,175,195,0.07) 50%, transparent 100%);
+    animation: drip linear infinite;
+  }
+
+  @keyframes drip {
+    0%   { transform: translateY(0); opacity: 0; }
+    5%   { opacity: 1; }
+    85%  { opacity: 0.5; }
+    100% { transform: translateY(35vh); opacity: 0; }
+  }
+
+  /* ── CANDLE REFLECTION — centered ── */
+  .candle-reflection {
+    position: absolute;
+    bottom: 16%;
+    left: 50%;
+    transform: translateX(-50%) scaleX(-1);
+    z-index: 5;
+    opacity: 0.75;
+    animation: cdrift 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes cdrift {
+    0%   { transform: translateX(-50%) scaleX(-1) translate(0, 0); }
+    50%  { transform: translateX(-50%) scaleX(-1) translate(1px, -1px); }
+    100% { transform: translateX(-50%) scaleX(-1) translate(-1px, 0.5px); }
+  }
+
+  .c-body {
+    width: 7px; height: 42px;
+    background: linear-gradient(180deg, rgba(212,196,160,0.3) 0%, rgba(184,166,122,0.18) 50%, rgba(154,138,96,0.1) 100%);
+    border-radius: 1px 1px 2px 2px;
+    margin: 0 auto;
+  }
+
+  .c-wick {
+    width: 1px; height: 7px;
+    background: rgba(58,48,32,0.25);
+    margin: 0 auto;
+    position: relative; top: -7px;
+  }
+
+  .c-flame {
+    position: absolute;
+    left: 50%; bottom: 42px;
+    transform: translateX(-50%);
+    width: 10px; height: 28px;
+    background: radial-gradient(ellipse at 50% 72%,
+      rgba(255,245,220,0.7) 0%,
+      rgba(245,195,65,0.55) 20%,
+      rgba(225,145,40,0.4) 40%,
+      rgba(200,100,25,0.2) 65%,
+      rgba(170,60,15,0.06) 80%,
+      transparent 100%
+    );
+    border-radius: 3px 3px 8px 8px / 12px 12px 8px 8px;
+    clip-path: polygon(50% 0%, 95% 55%, 85% 80%, 50% 100%, 15% 80%, 5% 55%);
+    animation: fl 2.5s ease-in-out infinite alternate, fsway 3.8s ease-in-out infinite;
+    filter: blur(0.4px);
+  }
+
+  .c-flame::after {
+    content: '';
+    position: absolute;
+    left: 50%; top: 22%;
+    transform: translateX(-50%);
+    width: 3px; height: 10px;
+    background: linear-gradient(180deg, rgba(255,252,240,0.7) 0%, rgba(255,230,170,0.4) 70%, transparent 100%);
+    border-radius: 1px 1px 3px 3px / 4px 4px 3px 3px;
+    animation: fcore 1.8s ease-in-out infinite alternate;
+  }
+
+  .c-glow {
+    position: absolute;
+    left: 50%; bottom: 20px;
+    transform: translateX(-50%);
+    width: 250px; height: 250px;
+    background: radial-gradient(circle,
+      rgba(255,230,180,0.045) 0%,
+      rgba(240,170,60,0.035) 15%,
+      rgba(210,130,40,0.02) 30%,
+      rgba(190,110,30,0.008) 50%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: cgl 3s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  /* Inner halo */
+  .c-halo-inner {
+    position: absolute;
+    left: 50%; bottom: 28px;
+    transform: translateX(-50%);
+    width: 55px; height: 55px;
+    background: radial-gradient(circle,
+      rgba(255,235,180,0.14) 0%,
+      rgba(240,180,70,0.07) 40%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: halo-in 2.5s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  /* Outer halo — wide, diffuse amber bloom on the glass */
+  .c-halo-outer {
+    position: absolute;
+    left: 50%; bottom: -120px;
+    transform: translateX(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle,
+      rgba(196,154,60,0.02) 0%,
+      rgba(196,154,60,0.008) 35%,
+      transparent 65%
+    );
+    border-radius: 50%;
+    animation: halo-out 4s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes halo-in {
+    0%   { opacity: 0.8; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+  }
+
+  @keyframes halo-out {
+    0%   { opacity: 0.6; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1.04); }
+  }
+
+  @keyframes fl { 0%{height:28px;opacity:1}25%{height:25px;opacity:.92}50%{height:30px;opacity:1}75%{height:24px;opacity:.88}100%{height:27px;opacity:.95} }
+  @keyframes fsway { 0%{transform:translateX(-50%) rotate(-1.5deg)}33%{transform:translateX(-50%) rotate(2deg)}66%{transform:translateX(-50%) rotate(-.8deg)}100%{transform:translateX(-50%) rotate(1.5deg)} }
+  @keyframes fcore { 0%{opacity:.7;height:10px}50%{opacity:.45;height:7px}100%{opacity:.75;height:11px} }
+  @keyframes cgl { 0%{opacity:.7;transform:translateX(-50%) scale(1)}100%{opacity:1;transform:translateX(-50%) scale(1.08)} }
+
+  /* ── CONTENT ── */
+  .content {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    padding-bottom: 4vh;
+  }
+
+  .title {
+    font-family: 'EB Garamond', serif;
+    font-size: clamp(1.6rem, 5.5vw, 4.2rem);
+    white-space: nowrap;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(210, 206, 198, 0.88);
+    text-shadow: 0 0 30px rgba(180,195,215,0.06), 0 0 60px rgba(180,195,215,0.03), 0 1px 2px rgba(0,0,0,0.4);
+    line-height: 1.2;
+    margin-bottom: 2.4rem;
+    animation: reveal 5s ease-out;
+  }
+
+  .downloads {
+    display: flex;
+    gap: 2.5rem;
+    animation: reveal 4s ease-out 1.5s both;
+  }
+
+  .downloads a {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.2em;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgba(210,206,198,0.06);
+    transition: color 0.8s ease, border-color 0.8s ease;
+  }
+
+  .downloads a:hover {
+    color: rgba(210,206,198,0.6);
+    border-color: rgba(210,206,198,0.15);
+  }
+
+  @keyframes reveal { 0%{opacity:0}100%{opacity:1} }
+
+  
+</style>
+</head>
+<body>
+
+<div class="compartment"></div>
+
+<div class="window-frame">
+  <div class="window-glass">
+    <div class="rails-outside">
+      <svg viewBox="0 0 1000 500" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="rf" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a3e48" stop-opacity="0"/>
+            <stop offset="40%" stop-color="#3a3e48" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#4a4e58" stop-opacity="0.5"/>
+          </linearGradient>
+          <linearGradient id="tf" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2a2420" stop-opacity="0"/>
+            <stop offset="40%" stop-color="#2a2420" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#2a2420" stop-opacity="0.4"/>
+          </linearGradient>
+        </defs>
+        <g stroke="url(#tf)" stroke-width="2.5" fill="none">
+          <line x1="300" y1="490" x2="700" y2="490"/>
+          <line x1="318" y1="465" x2="682" y2="465"/>
+          <line x1="333" y1="443" x2="667" y2="443"/>
+          <line x1="346" y1="423" x2="654" y2="423"/>
+          <line x1="357" y1="405" x2="643" y2="405"/>
+          <line x1="366" y1="389" x2="634" y2="389"/>
+          <line x1="374" y1="375" x2="626" y2="375"/>
+          <line x1="381" y1="362" x2="619" y2="362"/>
+          <line x1="387" y1="350" x2="613" y2="350"/>
+          <line x1="392" y1="340" x2="608" y2="340"/>
+          <line x1="396" y1="331" x2="604" y2="331"/>
+          <line x1="400" y1="323" x2="600" y2="323"/>
+          <line x1="403" y1="316" x2="597" y2="316"/>
+          <line x1="406" y1="309" x2="594" y2="309"/>
+          <line x1="408" y1="303" x2="592" y2="303"/>
+          <line x1="410" y1="298" x2="590" y2="298"/>
+          <line x1="412" y1="293" x2="588" y2="293"/>
+          <line x1="413" y1="289" x2="587" y2="289"/>
+        </g>
+        <line x1="330" y1="500" x2="478" y2="250" stroke="url(#rf)" stroke-width="2"/>
+        <line x1="670" y1="500" x2="522" y2="250" stroke="url(#rf)" stroke-width="2"/>
+        <line x1="331" y1="500" x2="478.5" y2="250" stroke="rgba(140,145,155,0.06)" stroke-width="0.8"/>
+        <line x1="669" y1="500" x2="521.5" y2="250" stroke="rgba(140,145,155,0.06)" stroke-width="0.8"/>
+      </svg>
+    </div>
+
+    <div id="lights"></div>
+    <div class="snow-container" id="snow"></div>
+
+    <div class="candle-reflection">
+      <div class="c-halo-outer"></div>
+      <div class="c-glow"></div>
+      <div class="c-halo-inner"></div>
+      <div class="c-flame"></div>
+      <div class="c-wick"></div>
+      <div class="c-body"></div>
+    </div>
+
+    <div class="condensation" id="condensation"></div>
+  </div>
+</div>
+
+<div class="content">
+  <h1 class="title">The Ninth Berth</h1>
+  <div class="downloads">
+    <a href="the-ninth-berth.pdf">pdf</a>
+    <a href="the-ninth-berth.epub">epub</a>
+  </div>
+</div>
+
+
+
+<script>
+  const cond = document.getElementById('condensation');
+
+  [
+    {x:10,y:65,w:320,h:220,d:8},{x:55,y:58,w:280,h:200,d:10},
+    {x:30,y:78,w:380,h:160,d:12},{x:75,y:70,w:240,h:220,d:9},
+    {x:5,y:42,w:220,h:180,d:11},{x:85,y:50,w:200,h:200,d:13},
+    {x:45,y:85,w:350,h:180,d:7},
+  ].forEach(f => {
+    const el = document.createElement('div');
+    el.className = 'breath-fog';
+    el.style.cssText = `left:${f.x}%;top:${f.y}%;width:${f.w}px;height:${f.h}px;animation-duration:${f.d}s;animation-delay:${-Math.random()*5}s;`;
+    cond.appendChild(el);
+  });
+
+  for (let i = 0; i < 50; i++) {
+    const d = document.createElement('div');
+    d.className = 'droplet';
+    const sz = Math.random()*4+1.5;
+    d.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;`;
+    cond.appendChild(d);
+  }
+
+  for (let i = 0; i < 8; i++) {
+    const d = document.createElement('div');
+    d.className = 'droplet-run';
+    const h = Math.random()*50+25;
+    d.style.cssText = `left:${Math.random()*100}%;top:${10+Math.random()*50}%;height:${h}px;animation-duration:${Math.random()*12+18}s;animation-delay:${Math.random()*-20}s;`;
+    cond.appendChild(d);
+  }
+
+  const lightsEl = document.getElementById('lights');
+  const types = [
+    {color:'rgba(255,220,150,0.06)',size:80,y:42},
+    {color:'rgba(255,200,120,0.04)',size:50,y:48},
+    {color:'rgba(180,200,255,0.03)',size:30,y:45},
+    {color:'rgba(196,154,60,0.05)',size:60,y:44},
+  ];
+
+  for (let i = 0; i < 5; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'light-streak';
+      const t = types[Math.floor(Math.random()*types.length)];
+      const dur = Math.random()*4+3;
+      el.style.cssText = `top:${t.y+(Math.random()-.5)*12}%;width:${t.size}px;height:${t.size*.6}px;background:${t.color};--streak-op:${.3+Math.random()*.5};animation-duration:${dur}s;animation-delay:${Math.random()*-dur}s;`;
+      lightsEl.appendChild(el);
+    }, i*2000);
+  }
+
+  const snowC = document.getElementById('snow');
+  function mkF(o) {
+    const f = document.createElement('div');
+    f.className = 'snowflake';
+    f.style.cssText = `left:${o.l}%;width:${o.s}px;height:${o.s}px;animation-duration:${o.d}s;animation-delay:${o.dl}s;opacity:${o.o};`;
+    snowC.appendChild(f);
+  }
+  for (let i=0;i<26;i++) mkF({l:Math.random()*100,s:Math.random()*2.5+1.5,d:Math.random()*5+8,dl:Math.random()*-10,o:.45});
+  for (let i=0;i<70;i++) mkF({l:Math.random()*100,s:Math.random()*2+.8,d:Math.random()*6+6,dl:Math.random()*-14,o:Math.random()*.3+.15});
+</script>
+
+</body>
+</html>
