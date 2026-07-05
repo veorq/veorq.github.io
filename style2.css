@@ -1,4 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+body {
+    font-family: "IBM Plex Sans", sans-serif;
+}
+
+h1, h2, h3,
+nav a{
+    font-family: "Cormorant Garamond", serif;
+}
+
+header h2 {
+    font-family: "Lavishly Yours", cursive;
+}
+
 
 :root {
     --bg: #f4f4f4;
@@ -75,7 +89,6 @@ body.midnight {
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: var(--fg);
     background-color: var(--bg);
@@ -97,6 +110,7 @@ body {
     background: var(--bg-content);
     border-radius: 8px;
     box-shadow: 0 0 10px var(--shadow);
+    position: relative;
 }
 
 header {
@@ -106,15 +120,14 @@ header {
 
 header h2 {
     margin: 0;
-    font-family: 'Silkscreen', cursive;
-    font-size: 2.5em;
+    font-size: 3.8em;
     color: var(--highlight);
+    margin-bottom: -20px;
 }
 
 nav {
-    font-family: 'Silkscreen', cursive;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 nav a {
@@ -124,6 +137,7 @@ nav a {
     font-weight: bold;
     border-radius: 5px;
     transition: color .2s ease;
+    font-size: 1.55em;
 }
 
 nav a:hover {
@@ -256,17 +270,23 @@ blockquote footer {
 }
 
 .theme-toggle {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: none;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    background: var(--bg-content);
     border: 2px solid var(--highlight);
     color: var(--highlight);
-    padding: 5px 10px;
+    padding: 8px 12px;
     cursor: pointer;
-    border-radius: 5px;
-    font-family: 'Silkscreen', cursive;
-    font-size: 0.9em;
+    border-radius: 999px;
+    font-size: 1.15em;
     z-index: 999;
+    box-shadow: 0 3px 12px var(--shadow);
+    transition: transform .2s ease, background-color .2s ease, color .2s ease;
 }
 
+.theme-toggle:hover {
+    background: var(--highlight);
+    color: var(--bg-content);
+    transform: translateY(-1px) scale(1.05);
+}
