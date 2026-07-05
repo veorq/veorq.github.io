@@ -8,28 +8,68 @@
     --shadow: rgba(0, 0, 0, 0.1);
 }
 
-body.dark-mode {
-    --bg: #1a1a1a;
-    --fg: #e0e0e0;
-    --highlight: #ffa347;
-    --bg-content: #2a2a2a;
-    --shadow: rgba(255, 255, 255, 0.05);
+body.night {
+    --bg: #16181c;
+    --fg: #ddd8d2;
+    --highlight: #78b7ff;
+    --bg-content: #23262b;
+    --shadow: rgba(0,0,0,.35);
 }
 
-body.mode-2 {
-    --bg: #fef8e7;
-    --fg: #4e342e;
-    --highlight: #d84315;
-    --bg-content: #fff3e0;
-    --shadow: rgba(0, 0, 0, 0.1);
+body.parchment {
+    --bg: #f6f1e6;
+    --fg: #40352b;
+    --highlight: #8b4513;
+    --bg-content: #fffaf0;
+    --shadow: rgba(60,40,20,.10);
 }
 
-body.mode-3 {
-    --bg: #202124;
-    --fg: #e8eaed;
-    --highlight: #8ab4f8;
-    --bg-content: #303134;
-    --shadow: rgba(255, 255, 255, 0.05);
+body.terminal {
+    --bg: #111315;
+    --fg: #d4f5d4;
+    --highlight: #4cff87;
+    --bg-content: #1a1d1f;
+    --shadow: rgba(0,255,100,.08);
+}
+
+body.baltic {
+    --bg: #d8ddd9;
+    --fg: #2e3534;
+    --highlight: #1f6f5d;
+    --bg-content: #edf1ee;
+    --shadow: rgba(30,40,40,.12);
+}
+
+body.noir {
+    --bg: #efefef;
+    --fg: #242424;
+    --highlight: #666666;
+    --bg-content: #fafafa;
+    --shadow: rgba(0,0,0,.08);
+}
+
+body.fox {
+    --bg: #1b1817;
+    --fg: #efe7df;
+    --highlight: #c45d33;
+    --bg-content: #2b2422;
+    --shadow: rgba(255,255,255,.05);
+}
+
+body.aurora {
+    --bg: #f7f3fb;
+    --fg: #40344d;
+    --highlight: #8b5cf6;
+    --bg-content: #ffffff;
+    --shadow: rgba(90,60,120,.10);
+}
+
+body.midnight {
+    --bg: #191624;
+    --fg: #ece6ff;
+    --highlight: #b287ff;
+    --bg-content: #262238;
+    --shadow: rgba(255,255,255,.05);
 }
 
 body {
@@ -39,6 +79,15 @@ body {
     line-height: 1.6;
     color: var(--fg);
     background-color: var(--bg);
+    transition:
+        background-color .35s ease,
+        color .35s ease;
+}
+
+.content {
+    transition:
+        background-color .35s ease,
+        box-shadow .35s ease;
 }
 
 #content {
@@ -74,7 +123,7 @@ nav a {
     padding: 10px 15px;
     font-weight: bold;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: color .2s ease;
 }
 
 nav a:hover {
