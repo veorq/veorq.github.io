@@ -14,7 +14,7 @@ header h2 {
 }
 
 
-:root {
+body.blu {
     --bg: #f4f4f4;
     --fg: #333;
     --highlight: #007acc;
@@ -128,6 +128,8 @@ header h2 {
 nav {
     text-align: center;
     margin-bottom: 40px;
+    border-bottom: 1px solid var(--bg);
+    padding-bottom: 18px;
 }
 
 nav a {
@@ -154,6 +156,8 @@ section h3 {
     color: var(--highlight);
     border-bottom: 2px solid var(--bg);
     padding-bottom: 10px;
+    margin-top: 2.2em;
+
 }
 
 section ul {
@@ -189,6 +193,10 @@ a:visited {
 a:hover {
     color: var(--highlight);
     text-decoration: underline;
+}
+
+a:link, a:visited {
+    font-weight: 500;
 }
 
 section ul li i {
@@ -273,9 +281,9 @@ blockquote footer {
     position: absolute;
     top: 18px;
     right: 18px;
-    background: var(--bg-content);
+    background: var(--highlight);
     border: 2px solid var(--highlight);
-    color: var(--highlight);
+    color: var(--bg-content);
     padding: 8px 12px;
     cursor: pointer;
     border-radius: 999px;
@@ -285,8 +293,62 @@ blockquote footer {
     transition: transform .2s ease, background-color .2s ease, color .2s ease;
 }
 
+
 .theme-toggle:hover {
     background: var(--highlight);
     color: var(--bg-content);
     transform: translateY(-1px) scale(1.05);
+}
+
+
+.books {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+}
+
+.book {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    padding: 6px;
+    border-radius: 8px;
+    transition: transform .2s ease, background-color .2s ease;
+}
+
+.book:hover {
+    background: var(--bg);
+    transform: translateY(-3px);
+    filter: brightness(1.04);
+}
+
+.book img {
+    display: block;
+    height: 185px;
+    max-width: 100%;
+    margin: 0 auto 8px;
+    object-fit: contain;
+}
+
+.book div {
+    font-size: .92em;
+    line-height: 1.35;
+}
+
+@media (max-width: 760px) {
+    .books {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .book {
+        flex: 0 1 140px;
+    }
+
+    .book img {
+        height: 170px;
+    }
 }

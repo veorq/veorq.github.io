@@ -1,121 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jean-Philippe Aumasson</title>
-    <link href="style2.css" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Jean-Philippe Aumasson</title>
+<link href="style2.css" rel="stylesheet"/>
 </head>
 <body>
-    <div id="content">
-        <!-- Header -->
-        <header>
-                <h2>JP Aumasson</h2>
-        </header>
-        <button class="theme-toggle">✦</button>
-
-        <!-- Navigation bar -->
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="papers.html">Research</a>
-            <a href="talks.html">Talks</a>
-            <a href="conferences.html">Events</a>
-            <a href="favorites.html">Favorites</a>
-        </nav>
-
-        <!-- Main content section -->
-        <section>
-            <p>Cryptographer, co-founder & chief security officer at <a
-            href="https://taurushq.com">Taurus SA</a>.</p>
-            <p>I also write <a
-            href="#fct">fiction</a> and maintain the <a
-            href="https://bfswa.substack.com">blog bfSwA</a>.</p>
-
-            <!-- Books section -->
-
+<div id="content">
+<!-- Header -->
+<header>
+<h2>JP Aumasson</h2>
+</header>
+<button class="theme-toggle">✦</button>
+<!-- Navigation bar -->
+<nav>
+<a href="index.html">Home</a>
+<a href="papers.html">Research</a>
+<a href="talks.html">Talks</a>
+<a href="conferences.html">Events</a>
+<a href="favorites.html">Favorites</a>
+</nav>
+<!-- Main content section -->
+<section>
+<p>Cryptographer, co-founder &amp; chief security officer at <a href="https://taurushq.com">Taurus SA</a>.</p>
+<p>I also write <a href="#fct">fiction</a> and maintain the <a href="https://bfswa.substack.com">blog bfSwA</a>.</p>
+<!-- Books section -->
 <h3>Technical Books</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
-  <div style="text-align: center;">
-    <a href="https://nostarch.com/serious-cryptography-2nd-edition"><img src="data/covs/sc2.jpg" alt="SC2" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>No Starch, 2024
+<div class="books">
+<div class="book">
+<a href="https://nostarch.com/serious-cryptography-2nd-edition"><img alt="SC2" src="data/covs/sc2.jpg"/></a>
+<div>No Starch, 2024
     <br/>
     + <a href="serious2.html">translations</a>
-    </div>
-  </div>
-  <div style="text-align: center;">
-    <a href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne"><img src="data/covs/cr.jpg" alt="Déchiffrée" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Dunod, 2024</div>
-  </div>
-  <div style="text-align: center;">
-    <a href="https://www.crypto-dictionary.com"><img src="data/covs/cd.jpg" alt="Dictionary" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>No Starch, 2020</div>
-  </div>
-  <div style="text-align: center;">
-    <a href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268"><img src="data/covs/sc.jpg" alt="SC1" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>No Starch, 2017
+</div>
+</div>
+<div class="book">
+<a href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne"><img alt="Déchiffrée" src="data/covs/cr.jpg"/></a>
+<div>Dunod, 2024</div>
+</div>
+<div class="book">
+<a href="https://www.crypto-dictionary.com"><img alt="Dictionary" src="data/covs/cd.jpg"/></a>
+<div>No Starch, 2020</div>
+</div>
+<div class="book">
+<a href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268"><img alt="SC1" src="data/covs/sc.jpg"/></a>
+<div>No Starch, 2017
     <br/>
     + <a href="serious.html">translations</a>
-    </div>
-  </div>
-  <div style="text-align: center;">
-    <a href="blake/book/index.html"><img src="data/covs/bl.jpg" alt="BLAKE" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Springer, 2014</div>
-  </div>
 </div>
-
-            <h3>Cryptography Designs</h3>
-            <ul>
-                <li>Hash functions <a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)">BLAKE</a>, <a href="https://blake2.net">BLAKE2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc7693/">7693</a>), <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a></li>
-                <li>Pseudorandom function <a
-                href="https://en.wikipedia.org/wiki/SipHash">SipHash</a> (used in Linux, Rust, Wireguard, Bitcoin, etc.)</li>
-                <li>Post-quantum signatures <a href="https://github.com/gravity-postquantum/prune-horst">PRUNE-HORST</a>, <a href="https://github.com/gravity-postquantum/gravity-sphincs">Gravity-SPHINCS</a>, <a href="https://sphincs.org/">SPHINCS+</a> (FIPS 205, <a href="https://csrc.nist.gov/pubs/fips/205/ipd">SLH-DSA</a>)</li>
-                <li><a href="https://www.password-hashing.net/">Password Hashing Competition</a> & winner <a href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc9106/">9106</a>)</li>
-            </ul>
-
-            <h3 id="fct">Fiction</h3>
-<div style="display: flex; flex-wrap: wrap; gap: 20px;">
-
-  <div style="text-align: center;">
-    <a href="t9b/index.html">
-    <img src="t9b/t9b.jpg" alt="The Ninth Berth" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Novella, 2026</div>
-  </div>
-  <div style="text-align: center;">
-    <a href="cripto/index.html"><img src="cripto/cover.png" alt="Cripto" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Novella, 2025</div>
-  </div>
-  <div style="text-align: center;">
-    <a href="glitches/index.html"><img src="data/covs/gl.jpg" alt="Glitches" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Short stories, 2024</div>
-  </div>
-  <div style="text-align: center;">
-    <a href="http://petitpingou.in"><img src="data/covs/pp.png" alt="Petit Pingouin" height="200" style="border: 1px solid black; border-radius: 4px;"></a>
-    <div>Children's book, 2021</div>
-  </div>
 </div>
-            <h3>Misc</h3>
-            <ul>
-                <li><a href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a></li>
-                <li><a href="murphy.html">Murphy's laws of cryptography</a></li>
-                <li><a href="hoax/">Research satires</a></li>
-                <li><a href="https://store.aumasson.jp">Quantum merch store</a></li>
-            </ul>
-
-            <h3>Contact</h3>
-            <ul>
-                <li>Signal (jpa.01), jpa@pm.me, <a
-                href="https://github.com/veorq">GitHub</a>, <a
-                href="https://www.linkedin.com/in/aumasson/">LinkedIn</a>.</li>
-            </ul>
-
-        </section>
-
-        <!-- Footer -->
-    </div>
-</body>
-</html>
+<div class="book">
+<a href="blake/book/index.html"><img alt="BLAKE" src="data/covs/bl.jpg"/></a>
+<div>Springer, 2014</div>
+</div>
+</div>
+<h3>Cryptography Designs</h3>
+<ul>
+<li>Hash functions <a href="https://en.wikipedia.org/wiki/BLAKE_(hash_function)">BLAKE</a>, <a href="https://blake2.net">BLAKE2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc7693/">7693</a>), <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a></li>
+<li>Pseudorandom function <a href="https://en.wikipedia.org/wiki/SipHash">SipHash</a> (used in Linux, Rust, Wireguard, Bitcoin, etc.)</li>
+<li>Post-quantum signatures <a href="https://github.com/gravity-postquantum/prune-horst">PRUNE-HORST</a>, <a href="https://github.com/gravity-postquantum/gravity-sphincs">Gravity-SPHINCS</a>, <a href="https://sphincs.org/">SPHINCS+</a> (FIPS 205, <a href="https://csrc.nist.gov/pubs/fips/205/ipd">SLH-DSA</a>)</li>
+<li><a href="https://www.password-hashing.net/">Password Hashing Competition</a> &amp; winner <a href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a> (RFC <a href="https://datatracker.ietf.org/doc/rfc9106/">9106</a>)</li>
+</ul>
+<h3 id="fct">Fiction</h3>
+<div class="books">
+<div class="book">
+<a href="t9b/index.html">
+<img alt="The Ninth Berth" src="t9b/t9b.jpg"/></a>
+<div>Novella, 2026</div>
+</div>
+<div class="book">
+<a href="cripto/index.html"><img alt="Cripto" src="cripto/cover.png"/></a>
+<div>Novella, 2025</div>
+</div>
+<div class="book">
+<a href="glitches/index.html"><img alt="Glitches" src="data/covs/gl.jpg"/></a>
+<div>Short stories, 2024</div>
+</div>
+<div class="book">
+<a href="http://petitpingou.in"><img alt="Petit Pingouin" src="data/covs/pp.png"/></a>
+<div>Children's book, 2021</div>
+</div>
+</div>
+<h3>Misc</h3>
+<ul>
+<li><a href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a></li>
+<li><a href="murphy.html">Murphy's laws of cryptography</a></li>
+<li><a href="hoax/">Research satires</a></li>
+<li><a href="https://store.aumasson.jp">Quantum merch store</a></li>
+</ul>
+<h3>Contact</h3>
+<ul>
+<li>Signal (jpa.01), jpa@pm.me
+</ul>
+</section>
+<!-- Footer -->
+</div>
 <script>
-  const themes = ['', 'night', 'parchment', 'terminal', 'baltic', 'noir', 'fox', 'aurora', 'midnight'];
+  const themes = ['baltic', 'night', 'parchment', 'terminal', 'blu', 'noir', 'fox', 'aurora', 'midnight'];
 
   function applyTheme(index) {
     document.body.className = themes[index];
@@ -132,4 +115,5 @@
     });
   });
 </script>
-
+</body>
+</html>
