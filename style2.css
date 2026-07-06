@@ -352,3 +352,29 @@ blockquote footer {
         height: 170px;
     }
 }
+
+.section-note {
+  margin-top: -0.5rem;
+  margin-bottom: 1rem;
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.link-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.8rem;
+}
+
+.link-grid a {
+  padding: 0.35rem 0.65rem;
+  border: 1px solid color-mix(in srgb, var(--fg) 18%, transparent);
+  border-radius: 999px;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--bg-content) 85%, var(--highlight) 15%);
+}
+
+.link-grid a:hover {
+  border-color: var(--highlight);
+  background: color-mix(in srgb, var(--highlight) 16%, var(--bg-content));
+}
