@@ -20,6 +20,12 @@ no audio files, trackers, third-party scripts, or network requests. Browsers onl
 permit audio after a user interaction; clicking a control activates it. The SFX
 switch in the header disables all sound.
 
+At Primitive resolution, newly flipped bit positions are sonified as notes. Within
+each byte, bit 7 is the scale root and bit 0 is the octave; the word's four bytes
+occupy four registers. Vertical G calls use major-side modes, while diagonal G
+calls use minor-side modes from a shared C-major / A-minor harmonic field. ADD,
+XOR, and ROTATE retain distinct sawtooth, square, and triangle timbres.
+
 The light/dark theme switch is also entirely local. Dark is the default, and the
 selected theme is remembered in the browser's local storage for later visits.
 
