@@ -1,0 +1,144 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[letterpaper,top=0.48in,bottom=0.50in,left=0.55in,right=0.55in,columnsep=0.23in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,microtype,mathptmx}
+\usepackage[hidelinks]{hyperref}
+\usepackage[compact]{titlesec}
+\usepackage{enumitem}
+\usepackage{balance}
+
+\setlength{\parindent}{0.9em}
+\setlength{\parskip}{0pt}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\setlength{\abovedisplayshortskip}{2pt}
+\setlength{\belowdisplayshortskip}{2pt}
+\setlist{nosep,leftmargin=1.15em}
+\titleformat{\section}{\normalsize\bfseries}{\thesection.}{0.35em}{}
+\titlespacing*{\section}{0pt}{4pt}{1.5pt}
+\titleformat{\subsection}{\small\bfseries}{\thesubsection.}{0.35em}{}
+\titlespacing*{\subsection}{0pt}{3pt}{1pt}
+
+\title{\vspace{-2.1em}\bfseries\Large Blood MERIDIAN: a blockcipher
+that is not a blockcipher}
+\author{JP Aumasson}
+\date{\today}
+
+\begin{document}
+\maketitle
+\thispagestyle{empty}
+
+
+\paragraph{AI disclosure.}
+GPT-5.6 Sol (Daybreak Blue) found the results
+reported here and produced the initial PoC code and manuscript
+draft. I (JP) manually reviewed the results and code for
+correctness, and substantially revised the writeup. Another LLM
+(Gemini Flash) checked the results. This note arose from an
+afternoon experiment within a broader study of LLM-assisted
+cryptanalysis, prompted in part by my claim that LLMs wouldn't break
+established symmetric
+designs.\footnote{\url{https://www.bfswa.blog/p/llms-wont-break-symmetric-crypto}}
+
+
+\medskip
+
+MERIDIAN~\cite{meridian} is a 128-bit blockcipher proposed as a
+lightweight AES alternative.  We show that its  ``Directional
+Substitution (DS)'' layer is not injective by giving an explicit
+collision. Because encryption begins with key whitening, this yields a
+full 12-round collision for every key. 
+Consequently, no keyed instance of MERIDIAN is a permutation, so no
+decryption function can invert encryption on all plaintexts, and its
+block-cipher and PRP security claims fail.
+We additionally identify an exact one-round differential that exceeds
+the claimed bound by a factor 13.37, and explain why the published MILP
+model does not encode the specified DS layer.
+
+\section{The construction}
+
+MERIDIAN represents its state as a $4\times4$ array of bytes. For each position $(i,j)$, DS computes
+\[
+c_{i,j}=S[i,j-1]\oplus S[i-1,j],\quad
+r_{i,j}=(c_{i,j}\bmod 7)+1,
+\]
+\[
+\operatorname{DS}(S)[i,j]
+=\operatorname{ROL}_{r_{i,j}}(\pi(S[i,j])),
+\]
+where $\pi$ is the AES S-box. A round then applies a linear MD layer,
+keyed AM, and a round constant. Encryption starts from $S=P\oplus K$ and
+applies 12 rounds.
+
+\section{An explicit DS collision}
+
+Let every row of $A$ be \texttt{02 29 02 29}, and every row of $B$ be \texttt{02 46 02 46}. Thus
+\[
+\begin{split}
+A&=\texttt{02290229022902290229022902290229},\\
+B&=\texttt{02460246024602460246024602460246}.
+\end{split}
+\]
+Every $c_{i,j}$ in $A$ is $\texttt{02}\oplus\texttt{29}=\texttt{2b}$,
+giving rotation 2. Every $c_{i,j}$ in $B$ is $\texttt{02}\oplus\texttt{46}=\texttt{44}$, giving rotation 6. The relevant AES S-box values are
+\[
+\pi(\texttt{02})=\texttt{77},\quad
+\pi(\texttt{29})=\texttt{a5},\quad
+\pi(\texttt{46})=\texttt{5a}.
+\]
+Direct calculation gives
+\[
+\begin{array}{c@{\;}c@{\;}c}
+\operatorname{ROL}_2(\texttt{77})=\texttt{dd},&&
+\operatorname{ROL}_6(\texttt{77})=\texttt{dd},\\
+\operatorname{ROL}_2(\texttt{a5})=\texttt{96},&&
+\operatorname{ROL}_6(\texttt{5a})=\texttt{96}.
+\end{array}
+\]
+Therefore
+\[
+\operatorname{DS}(A)=\operatorname{DS}(B)
+=\texttt{dd96dd96dd96dd96dd96dd96dd96dd96}.
+\]
+
+\section{Full-round consequence}
+
+For an arbitrary key $K$, choose the distinct plaintexts
+\[
+P_0=A\oplus K,\qquad P_1=B\oplus K.
+\]
+Whitening maps $P_0$ and $P_1$ back to $A$ and $B$. Their states become equal after the first DS layer and remain equal under every subsequent deterministic operation. Hence
+\[
+E_K(A\oplus K)=E_K(B\oplus K)\quad\text{for every }K.
+\]
+For $K=0$, a direct implementation of the formal specification gives the common twelve-round ciphertext
+\[
+\texttt{cb2529d5384891c5214b2190846a02f3}.
+\]
+
+
+\section{Invalid probability bound}
+
+Proposition~2 claims a one-round upper bound $(2^{-6})^w2^{-3w'}$. Put input difference \texttt{12} only at byte $(0,0)$ and request DS difference \texttt{55} there and zero elsewhere. Then $w=1$ and $w'=2$, so the claimed bound is $2^{-12}$. Exact enumeration gives
+\[
+p=\frac{804}{65536}\left(\frac{33808}{65536}\right)^2
+\approx2^{-8.258794},
+\]
+which is $\approx 13.37$ times larger. The proof incorrectly assigns a $2^{-3}$ penalty to every changed context. For $\Delta c=\texttt{12}$, 128 of 256 contexts leave $(c\bmod7)$ unchanged, so the two rotations coincide with probability at least one half.
+
+For $K=0$, MD maps this difference to \texttt{5500000000000000aa00000055000000}, AM is the identity, and the round constant cancels. Thus this is a complete one-round differential with the same probability.
+
+
+\section{Validation note}
+
+The paper does not provide 128-bit test vectors. Its worked example uses a 32-byte prototype although Section~3 specifies 16 bytes and the prototype is encrypt-only. Our reproducer follows the formal 128-bit equations. The collision is independently checkable from the AES S-box evaluations above; downstream byte ordering can change the displayed ciphertext but cannot restore injectivity.
+
+\section{Conclusion}
+
+MERIDIAN as specified is not a blockcipher. 
+
+\begin{thebibliography}{1}\small
+\setlength{\itemsep}{0pt}
+\bibitem{meridian} B. Palaniswamy, P. Palmieri, and A. K. Das, ``MERIDIAN: A Toroid-Inspired Permutation Block Cipher for Constrained Environments,'' Cryptology ePrint Archive, Report 2026/856, 2026. \url{https://eprint.iacr.org/2026/856}
+\end{thebibliography}
+
+\end{document}
