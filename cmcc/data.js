@@ -4,15 +4,23 @@ window.CONCORDANCE_DATA = {
     subtitle: "Persons, places, dates, and crossings",
     updated: "29 August 2026",
     notice: "Contains plot details and endings.",
-    sourceNote: "References were checked against the supplied EPUB editions. All the Pretty Horses preserves print-page anchors; the other two EPUBs provide Part and section references but no stable pagination."
+    sourceNote: "References were checked against the supplied EPUB editions. All the Pretty Horses and Child of God preserve print-page anchors. Blood Meridian is cited by chapter; The Crossing and Cities of the Plain are cited by Part and EPUB section because those files have no stable page map."
   },
 
   books: [
     { id: "oph", title: "The Orchard Keeper", year: 1965, indexed: false },
     { id: "od", title: "Outer Dark", year: 1968, indexed: false },
-    { id: "cog", title: "Child of God", year: 1973, indexed: false },
+    {
+      id: "cog", title: "Child of God", year: 1973, indexed: true,
+      period: "months before April 1965", sections: "Parts I–III; 52 short sections", referenceSystem: "Part, section, and print page",
+      edition: "Knopf Doubleday EPUB, ISBN 978-0-307-76248-1"
+    },
     { id: "sut", title: "Suttree", year: 1979, indexed: false },
-    { id: "bm", title: "Blood Meridian", year: 1985, indexed: false },
+    {
+      id: "bm", title: "Blood Meridian", year: 1985, indexed: true,
+      period: "1849–1850; final chapter in 1878", sections: "Chapters I–XXIII and epilogue", referenceSystem: "Chapter",
+      edition: "Picador EPUB, ISBN 978-1-4472-8946-3; supplied file has no print-page map"
+    },
     {
       id: "atph", title: "All the Pretty Horses", year: 1992, indexed: true,
       period: "c. 1949–1950", sections: "Parts I–IV", referenceSystem: "Part and print page",
@@ -35,6 +43,423 @@ window.CONCORDANCE_DATA = {
   ],
 
   characters: [
+    {
+      id: "lester-ballard", name: "Lester Ballard", aliases: ["Ballard", "Lester"], kind: "person", prominence: "principal",
+      books: ["cog"], dates: ["months before April 1965", "dies April 1965"],
+      locations: ["Sevier County, Tennessee", "Frog Mountain", "Sevierville", "Lyons View", "Memphis"],
+      description: "A dispossessed Sevier County loner whose expulsion from his land and community accelerates into murder, necrophilia, cave-dwelling, capture, and institutional death.",
+      references: [
+        { book: "cog", locator: "Part I, §1, pp. 3–8", note: "Auction of the Ballard property" },
+        { book: "cog", locator: "Part II, §26, pp. 84–92", note: "The car on Frog Mountain" },
+        { book: "cog", locator: "Part III, §§47–51, pp. 172–194", note: "Wounding, cave escape, surrender, and death" }
+      ]
+    },
+    {
+      id: "fate-turner", name: "Fate Turner", aliases: ["Sheriff Turner", "Fate", "the sheriff"], kind: "person", prominence: "major",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "Sevierville", "Frog Mountain"],
+      description: "The plainspoken county sheriff who repeatedly arrests, questions, releases, and finally hunts Ballard. He is both an agent of the law and a local storyteller.",
+      references: [
+        { book: "cog", locator: "Part I, §15, pp. 44–45", note: "A deputy recalls riding with Fate" },
+        { book: "cog", locator: "Part I, §18, pp. 50–56", note: "Arrest and interrogation of Ballard" },
+        { book: "cog", locator: "Part III, §§42 and 45, pp. 145–168", note: "Investigation and flood journey" }
+      ]
+    },
+    {
+      id: "john-greer", name: "John Greer", aliases: ["Greer"], kind: "person", prominence: "major",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Grainger County", "the former Ballard property", "Sevier County"],
+      description: "The purchaser and new occupant of Ballard’s former homeplace. Ballard spies on him, steals from him, and later attempts to kill him; Greer’s return fire costs Ballard an arm.",
+      references: [
+        { book: "cog", locator: "Part I, §2, p. 9", note: "Identified as the buyer of the property" },
+        { book: "cog", locator: "Part II, §§31 and 39–41, pp. 109–141", note: "Ballard watches and raids the homeplace" },
+        { book: "cog", locator: "Part III, §47, pp. 172–173", note: "Ballard’s failed ambush" }
+      ]
+    },
+    {
+      id: "fred-kirby", name: "Fred Kirby", aliases: ["Kirby", "Fred"], kind: "person", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "Kirby’s yard"],
+      description: "A local acquaintance who trades in illicit whiskey and gives Ballard information, including news about the sheriff and the homeplace.",
+      references: [
+        { book: "cog", locator: "Part I, §3, pp. 10–12", note: "Ballard tries to buy whiskey" },
+        { book: "cog", locator: "Part II, §33, pp. 113–114", note: "Conversation about Greer and the law" }
+      ]
+    },
+    {
+      id: "cb-auctioneer", name: "C B", aliases: ["the auctioneer"], kind: "person", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["the Ballard property", "Sevier County"],
+      description: "The auctioneer conducting the court-ordered sale of Ballard’s land. He refuses to be driven off when Ballard confronts the crowd with a rifle.",
+      references: [{ book: "cog", locator: "Part I, §1, pp. 5–8", note: "The property auction and confrontation" }]
+    },
+    {
+      id: "buster-cog", name: "Buster", aliases: [], kind: "person", prominence: "minor",
+      books: ["cog"], dates: ["before April 1965"], locations: ["the Ballard property"],
+      description: "A man at the auction who strikes Ballard with an axe handle after the confrontation.",
+      references: [{ book: "cog", locator: "Part I, §2, p. 9", note: "A witness recalls the blow" }]
+    },
+    {
+      id: "finney-boy", name: "The Finney boy", aliases: ["Finney"], kind: "person", prominence: "minor",
+      books: ["cog"], dates: ["Ballard’s school years"], locations: ["Sevier County"],
+      description: "A younger schoolboy whom Ballard punches for refusing to retrieve a lost softball, in an early community memory of Ballard’s violence.",
+      references: [{ book: "cog", locator: "Part I, §5, pp. 17–18", note: "A local narrator recalls the assault" }]
+    },
+    {
+      id: "deputy-cotton", name: "Deputy Cotton", aliases: ["Cotton"], kind: "person", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County sheriff’s office", "Sevierville"],
+      description: "One of Fate Turner’s deputies, present during Ballard’s arrest, questioning, and the sheriff’s flooded tour of town.",
+      references: [
+        { book: "cog", locator: "Part I, §§17–18, pp. 48–52", note: "Arrest and complaint against Ballard" },
+        { book: "cog", locator: "Part III, §45, pp. 160–168", note: "Rowing through flooded Sevierville" }
+      ]
+    },
+    {
+      id: "dumpkeeper", name: "The dumpkeeper", aliases: ["the old man at the dump"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["the Sevier County dump", "quarry woods"],
+      description: "Keeper of the county dump, husband and father of nine daughters. He drinks with Ballard and receives him at the crowded family shack.",
+      references: [
+        { book: "cog", locator: "Part I, §9, pp. 25–30", note: "The dump household introduced" },
+        { book: "cog", locator: "Part I, §13, pp. 37–39", note: "Conversation at the dump" },
+        { book: "cog", locator: "Part II, §32, pp. 110–112", note: "Ballard visits after the fire" }
+      ]
+    },
+    {
+      id: "dumpkeepers-daughters", name: "The dumpkeeper’s daughters", aliases: ["Urethra", "Cerebella", "Hernia Sue", "the long-haired daughter"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["the Sevier County dump"],
+      description: "Nine daughters living around the dump, several named from a discarded medical dictionary. Individual daughters recur in Ballard’s visits and one becomes his victim.",
+      references: [
+        { book: "cog", locator: "Part I, §9, pp. 26–30", note: "The daughters and their household" },
+        { book: "cog", locator: "Part I, §24, pp. 75–79", note: "Ballard visits a daughter and her mother" },
+        { book: "cog", locator: "Part II, §34, pp. 115–120", note: "Ballard attacks one of the daughters" }
+      ]
+    },
+    {
+      id: "mr-fox-cog", name: "Mr Fox", aliases: ["Fox", "the storekeeper"], kind: "person", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Fox’s store", "Sevier County"],
+      description: "A country storekeeper who sells Ballard food and hears local news, providing one of Ballard’s few recurring points of contact with ordinary commerce.",
+      references: [
+        { book: "cog", locator: "Part II, §28, pp. 96–100", note: "Ballard buys supplies" },
+        { book: "cog", locator: "Part II, §36, pp. 124–126", note: "A later visit to the store" }
+      ]
+    },
+    {
+      id: "blacksmith-cog", name: "The blacksmith", aliases: ["the smith"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County smithy"],
+      description: "An unnamed craftsman who patiently shows Ballard how to reforge and temper a damaged axehead.",
+      references: [{ book: "cog", locator: "Part I, §23, pp. 70–74", note: "The axehead lesson" }]
+    },
+    {
+      id: "john-cog", name: "John", aliases: ["Nigger John", "the Pine Bluff prisoner"], kind: "person", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Pine Bluff, Arkansas", "Sevier County jail"],
+      description: "A Black fugitive held opposite Ballard in jail. His sardonic conversations with Ballard end when the sheriff takes him away under sentence.",
+      references: [{ book: "cog", locator: "Part I, §18, pp. 53–54", note: "Conversation across the jail corridor" }]
+    },
+    {
+      id: "ballard-accuser", name: "Ballard’s accuser", aliases: ["the woman", "the young woman"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "sheriff’s office"],
+      description: "A woman whom Ballard finds injured beside the road and carries toward town; she later accuses him of rape and fights him in the sheriff’s office.",
+      references: [
+        { book: "cog", locator: "Part I, §16, pp. 46–47", note: "Ballard finds her beside the road" },
+        { book: "cog", locator: "Part I, §18, pp. 51–55", note: "Complaint and confrontation" }
+      ]
+    },
+    {
+      id: "frog-mountain-couple", name: "The couple in the car", aliases: ["the dead girl", "the dead man", "Ballard’s first corpse"], kind: "unnamed", prominence: "major",
+      books: ["cog"], dates: ["December before April 1965"], locations: ["Frog Mountain turnaround", "Ballard’s cabin"],
+      description: "A young couple found dead in an idling car. Ballard removes the woman’s body and makes it the center of his hidden domestic fantasy.",
+      references: [
+        { book: "cog", locator: "Part II, §26, pp. 84–92", note: "Discovery of the car and bodies" },
+        { book: "cog", locator: "Part II, §§27–29, pp. 93–105", note: "The body concealed at the cabin" }
+      ]
+    },
+    {
+      id: "dump-daughter-child", name: "The idiot child", aliases: ["the child", "the cretin"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["the dumpkeeper’s house"],
+      description: "A disabled child in the dumpkeeper’s household who remains in the room when Ballard kills one of the daughters and sets the house afire.",
+      references: [{ book: "cog", locator: "Part II, §34, pp. 115–120", note: "Witness to the attack and fire" }]
+    },
+    {
+      id: "later-young-couple-cog", name: "The later young couple", aliases: ["the boy and girl in the truck"], kind: "unnamed", prominence: "secondary",
+      books: ["cog"], dates: ["before April 1965"], locations: ["a mountain road in Sevier County"],
+      description: "A courting pair surprised by Ballard in a parked truck. He kills the boy and attacks the girl, but the wounded boy escapes with the vehicle.",
+      references: [{ book: "cog", locator: "Part III, §43, pp. 149–153", note: "Attack beside the mountain road" }]
+    },
+    {
+      id: "tom-davis-cog", name: "Tom Davis", aliases: ["Sheriff Davis"], kind: "historical", prominence: "minor",
+      books: ["cog"], dates: ["late nineteenth century", "sheriff by 1899"], locations: ["Sevier County", "Nashville", "Knoxville"],
+      description: "A remembered Sevier County deputy and sheriff credited in Mr Wade’s flood-time story with breaking the White Caps and overseeing the 1899 hanging of two members.",
+      references: [{ book: "cog", locator: "Part III, §45, pp. 165–168", note: "Mr Wade’s county history" }]
+    },
+    {
+      id: "suzie-cog", name: "Suzie", aliases: ["Bill’s bird dog"], kind: "animal", prominence: "minor",
+      books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County hunting country"],
+      description: "A dog in a local hunting anecdote, memorable because her supposed illness becomes the story’s running joke.",
+      references: [{ book: "cog", locator: "Part I, §17, pp. 48–49", note: "The bird-dog story" }]
+    },
+    {
+      id: "the-kid", name: "The kid", aliases: ["the man", "the child"], kind: "unnamed", prominence: "principal",
+      books: ["bm"], dates: ["born 1833", "rides west in 1849", "Fort Griffin in 1878"],
+      locations: ["Tennessee", "Nacogdoches", "San Antonio", "Chihuahua", "Sonora", "the Colorado River", "Fort Griffin"],
+      description: "The nameless Tennessee runaway at the center of Blood Meridian. He joins Captain White’s filibusters and Glanton’s scalp hunters, survives the gang’s destruction, and reappears decades later as the man.",
+      references: [
+        { book: "bm", locator: "Chapter I", note: "Childhood, flight west, and Nacogdoches" },
+        { book: "bm", locator: "Chapters III–VI", note: "Captain White’s expedition and entry into Glanton’s company" },
+        { book: "bm", locator: "Chapters XX–XXIII", note: "Desert confrontation and return as the man" }
+      ]
+    },
+    {
+      id: "judge-holden", name: "Judge Holden", aliases: ["the judge", "Holden"], kind: "person", prominence: "principal",
+      books: ["bm"], dates: ["1849–1850", "seen again in 1878"],
+      locations: ["Nacogdoches", "Chihuahua", "Sonora", "Yuma ferry", "Fort Griffin"],
+      description: "The gigantic, hairless polymath of Glanton’s gang: linguist, natural philosopher, performer, manipulator, and architect of the novel’s most explicit creed of domination and war.",
+      references: [
+        { book: "bm", locator: "Chapter I", note: "Accusation against Reverend Green" },
+        { book: "bm", locator: "Chapters VII–XIV", note: "With Glanton’s gang and the ledger" },
+        { book: "bm", locator: "Chapters XX–XXIII", note: "Pursuit of the kid and final appearance" }
+      ]
+    },
+    {
+      id: "john-joel-glanton", name: "John Joel Glanton", aliases: ["Glanton", "Captain Glanton"], kind: "historical", prominence: "principal",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "San Diego", "Yuma ferry"],
+      description: "The historical Texan scalp hunter fictionalized as captain of the gang. His contracts, raids, and seizure of the Yuma ferry drive the company toward annihilation.",
+      references: [
+        { book: "bm", locator: "Chapter VI", note: "The contract with Governor Trías" },
+        { book: "bm", locator: "Chapters VII–XVIII", note: "Command of the scalp-hunting company" },
+        { book: "bm", locator: "Chapter XIX", note: "Rule and destruction of the ferry settlement" }
+      ]
+    },
+    {
+      id: "louis-toadvine", name: "Louis Toadvine", aliases: ["Toadvine"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Nacogdoches", "Chihuahua", "Sonora", "Los Angeles"],
+      description: "A branded, mutilated fugitive first met by the kid in Nacogdoches. He becomes the kid’s recurring companion, joins Glanton’s gang, and is later hanged in Los Angeles.",
+      references: [
+        { book: "bm", locator: "Chapter I", note: "Fight, alliance, and hotel fire" },
+        { book: "bm", locator: "Chapters V–XX", note: "Return in Chihuahua and service with Glanton" },
+        { book: "bm", locator: "Chapter XXII", note: "Seen in Los Angeles" }
+      ]
+    },
+    {
+      id: "ben-tobin", name: "Ben Tobin", aliases: ["Tobin", "the expriest", "the priest"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "Colorado River desert", "San Diego"],
+      description: "An Irish former novice and veteran of Glanton’s company. He recounts the judge’s arrival, warns the kid against him, and shares the kid’s flight after the Yuma massacre.",
+      references: [
+        { book: "bm", locator: "Chapters VII–X", note: "Introduced and narrates the judge’s gunpowder feat" },
+        { book: "bm", locator: "Chapters XX–XXII", note: "Flight from the judge and arrival in San Diego" }
+      ]
+    },
+    {
+      id: "david-brown-bm", name: "David Brown", aliases: ["Davy Brown", "Brown"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "San Diego", "Los Angeles"],
+      description: "A hard and volatile member of Glanton’s gang. He survives repeated campaigns, is jailed after a confrontation in San Diego, and is later executed in Los Angeles.",
+      references: [
+        { book: "bm", locator: "Chapters VII–XVII", note: "Campaigns with Glanton’s company" },
+        { book: "bm", locator: "Chapter XIX", note: "San Diego arrest" },
+        { book: "bm", locator: "Chapter XXII", note: "Fate in Los Angeles" }
+      ]
+    },
+    {
+      id: "black-jackson", name: "Black Jackson", aliases: ["John Jackson", "the black Jackson", "Blackie"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "Yuma ferry"],
+      description: "One of two gang members named John Jackson. He kills his racist white namesake and remains a conspicuous member of the company until the Yuma attack.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "The two Jacksons introduced" },
+        { book: "bm", locator: "Chapter VIII", note: "Killing of White Jackson" },
+        { book: "bm", locator: "Chapter XIX", note: "At the Yuma ferry" }
+      ]
+    },
+    {
+      id: "white-jackson", name: "White Jackson", aliases: ["John Jackson", "the white Jackson"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["dies 1849"], locations: ["Chihuahua", "northern Mexico"],
+      description: "The white member of the gang who shares John Jackson’s name. His sustained racist provocation ends when Black Jackson kills him.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "Hostility between the two Jacksons" },
+        { book: "bm", locator: "Chapter VIII", note: "Death in camp" }
+      ]
+    },
+    {
+      id: "sproule", name: "Sproule", aliases: [], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["dies 1849"], locations: ["Bolsón de Mapimí", "Chihuahua"],
+      description: "A wounded survivor of the destruction of Captain White’s force. He crosses the desert with the kid, is bitten by a vampire bat, and dies near a carreta road.",
+      references: [{ book: "bm", locator: "Chapter V", note: "Desert journey and death" }]
+    },
+    {
+      id: "captain-white", name: "Captain White", aliases: ["White"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["dies 1849"], locations: ["San Antonio", "Laredito", "Chihuahua"],
+      description: "Leader of an illegal American filibustering expedition into Mexico. He recruits the kid with expansionist rhetoric before Apache warriors destroy the company.",
+      references: [
+        { book: "bm", locator: "Chapter III", note: "Recruitment and political program" },
+        { book: "bm", locator: "Chapters IV–V", note: "March, massacre, and displayed head" }
+      ]
+    },
+    {
+      id: "bathcat", name: "Bathcat", aliases: ["the Vandiemenlander"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["dies 1849"], locations: ["Wales", "Van Diemen’s Land", "Chihuahua", "Sonora"],
+      description: "A Welsh-born former convict from Van Diemen’s Land who befriends Toadvine and rides with Glanton’s company.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "Introduced beside Toadvine" },
+        { book: "bm", locator: "Chapters VIII–XIII", note: "Campaign and death" }
+      ]
+    },
+    {
+      id: "sam-tate-bm", name: "Sam Tate", aliases: ["Tate"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Kentucky", "Chihuahua", "Sonora", "Colorado River country"],
+      description: "A Kentuckian and former McCulloch’s Ranger in Glanton’s company. He is paired with the kid during the wounded men’s lottery and later disappears during a crossing.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "Named among the company" },
+        { book: "bm", locator: "Chapter XV", note: "Lottery and flight from Elías" }
+      ]
+    },
+    {
+      id: "webster-bm", name: "Webster", aliases: ["the Tennessean", "Long Webster"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Tennessee", "Chihuahua", "Sonora", "San Diego"],
+      description: "A Tennessean in Glanton’s company who questions the judge about his sketches and later rides to San Diego for supplies.",
+      references: [
+        { book: "bm", locator: "Chapter XI", note: "Questions the judge’s ledger" },
+        { book: "bm", locator: "Chapter XIX", note: "Supply ride to San Diego" }
+      ]
+    },
+    {
+      id: "dick-shelby", name: "Dick Shelby", aliases: ["Shelby"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Sonora"],
+      description: "A wounded member of Glanton’s company left behind during General Elías’s pursuit. The kid refuses the order to kill him.",
+      references: [{ book: "bm", locator: "Chapter XV", note: "The wounded men’s lottery" }]
+    },
+    {
+      id: "doc-irving", name: "Doc Irving", aliases: ["Irving"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "Yuma ferry"],
+      description: "The gang’s doctor, a sardonic presence during the campaigns who is killed in the Yuma uprising.",
+      references: [
+        { book: "bm", locator: "Chapter IX", note: "Treats—or declines to treat—the wounded" },
+        { book: "bm", locator: "Chapter XIX", note: "Death at the ferry" }
+      ]
+    },
+    {
+      id: "delaware-guides", name: "The Delaware guides", aliases: ["the Delawares"], kind: "unnamed", prominence: "major",
+      books: ["bm"], dates: ["1849–1850"], locations: ["Chihuahua", "Sonora", "Arizona", "Colorado River"],
+      description: "A small group of Delaware scouts and fighters who guide Glanton’s company, track enemies, and suffer heavily across the campaigns.",
+      references: [
+        { book: "bm", locator: "Chapters VII–XII", note: "Scouting for Glanton’s company" },
+        { book: "bm", locator: "Chapters XV–XVII", note: "Retreat and losses" }
+      ]
+    },
+    {
+      id: "john-mcgill", name: "John McGill", aliases: ["Juan Miguel", "McGill"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["dies 1850"], locations: ["Mexico", "Yuma ferry"],
+      description: "A Mexican member of Glanton’s multinational company whose name has been anglicized. He is killed during the Yuma assault on the ferry camp.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "Named among the company" },
+        { book: "bm", locator: "Chapter XIX", note: "Death at the ferry" }
+      ]
+    },
+    {
+      id: "james-robert-bell", name: "James Robert Bell", aliases: ["the idiot", "the fool"], kind: "person", prominence: "major",
+      books: ["bm"], dates: ["1850"], locations: ["Tucson", "Yuma crossing", "Arizona desert"],
+      description: "Cloyce Bell’s disabled younger brother, exhibited for money and later taken into the judge’s entourage.",
+      references: [
+        { book: "bm", locator: "Chapter XVI", note: "The Bell brothers introduced" },
+        { book: "bm", locator: "Chapter XVIII", note: "Named and cared for by Sarah Borginnis" },
+        { book: "bm", locator: "Chapters XXI–XXII", note: "Travels with the judge" }
+      ]
+    },
+    {
+      id: "cloyce-bell", name: "Cloyce Bell", aliases: ["Mr Bell"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1850"], locations: ["Tucson", "Yuma crossing", "Arizona desert"],
+      description: "James Robert’s elder brother and keeper, who exhibits him as a curiosity until Sarah Borginnis intervenes.",
+      references: [
+        { book: "bm", locator: "Chapter XVI", note: "Travels with his brother" },
+        { book: "bm", locator: "Chapter XVIII", note: "Confrontation with Sarah Borginnis" }
+      ]
+    },
+    {
+      id: "sarah-borginnis", name: "Sarah Borginnis", aliases: ["Mrs Borginnis"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1850"], locations: ["Yuma crossing", "Colorado River"],
+      description: "A formidable woman in San Diego who washes, clothes, and feeds James Robert Bell and rebukes Cloyce for exploiting him.",
+      references: [{ book: "bm", locator: "Chapter XVIII", note: "Care of James Robert Bell" }]
+    },
+    {
+      id: "speyer-bm", name: "Speyer", aliases: ["the Prussian arms dealer"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Chihuahua City"],
+      description: "A Prussian Jewish merchant who sells Glanton’s men a case of Colt revolvers and negotiates nervously under the captain’s pressure.",
+      references: [{ book: "bm", locator: "Chapter VII", note: "Sale of the revolvers" }]
+    },
+    {
+      id: "reverend-green", name: "Reverend Green", aliases: ["the Reverend"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Nacogdoches, Texas"],
+      description: "A traveling revival preacher whose tent meeting is destroyed when Judge Holden invents sensational accusations against him.",
+      references: [{ book: "bm", locator: "Chapter I", note: "The judge’s false accusation" }]
+    },
+    {
+      id: "mennonite-bm", name: "The Mennonite", aliases: ["the old Mennonite"], kind: "unnamed", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Laredito"],
+      description: "An old drinker who warns Captain White’s recruits that their expedition will end in disaster across the river.",
+      references: [{ book: "bm", locator: "Chapter III", note: "Warning in the cantina" }]
+    },
+    {
+      id: "hermit-bm", name: "The hermit", aliases: ["the old hermit"], kind: "unnamed", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["East Texas"],
+      description: "A solitary former slaver who shelters the kid for a night and speaks bitterly about human hearts and racial violence.",
+      references: [{ book: "bm", locator: "Chapter II", note: "Night in the hermit’s hut" }]
+    },
+    {
+      id: "angel-trias", name: "Ángel Trías", aliases: ["Governor Trías", "Trias"], kind: "historical", prominence: "secondary",
+      books: ["bm"], dates: ["governor of Chihuahua in 1849"], locations: ["Chihuahua City"],
+      description: "The governor of Chihuahua who contracts Glanton’s company for Apache scalps and publicly rewards the returning hunters.",
+      references: [
+        { book: "bm", locator: "Chapter VI", note: "Glanton’s contract described" },
+        { book: "bm", locator: "Chapter XIII", note: "Reception and banquet in Chihuahua" }
+      ]
+    },
+    {
+      id: "general-elias", name: "General Elías", aliases: ["Elias"], kind: "historical", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Sonora", "Baviácora", "Nacozari"],
+      description: "The Sonoran commander whose cavalry pursues Glanton’s gang after its indiscriminate killings and scalp frauds.",
+      references: [{ book: "bm", locator: "Chapter XV", note: "Pursuit across Sonora" }]
+    },
+    {
+      id: "owens-bm", name: "Owens", aliases: ["Mr Owens"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["dies 1850"], locations: ["San Diego"],
+      description: "A San Diego saloon proprietor who objects to Glanton’s gang occupying his establishment and is shot by Glanton.",
+      references: [{ book: "bm", locator: "Chapter XVI", note: "Confrontation in the saloon" }]
+    },
+    {
+      id: "elrod-bm", name: "Elrod", aliases: ["the bonepicker"], kind: "person", prominence: "secondary",
+      books: ["bm"], dates: ["dies 1878"], locations: ["north Texas plains"],
+      description: "A teenage bonepicker who challenges the man beside a prairie fire and is killed, marking the man’s return to the violence of his youth.",
+      references: [{ book: "bm", locator: "Chapter XXIII", note: "Night with the bonepickers" }]
+    },
+    {
+      id: "juggler-couple-bm", name: "The juggler and fortune-teller", aliases: ["the juggler", "the old woman", "the soothsayer"], kind: "unnamed", prominence: "secondary",
+      books: ["bm"], dates: ["1849"], locations: ["Janos", "Nacori"],
+      description: "Itinerant performers whose tricks and tarot-like readings provide ominous commentaries on members of Glanton’s company.",
+      references: [
+        { book: "bm", locator: "Chapter VII", note: "Performance and readings at Janos" },
+        { book: "bm", locator: "Chapter XIII", note: "A later encounter" }
+      ]
+    },
+    {
+      id: "sergeant-aguilar", name: "Sergeant Aguilar", aliases: ["Aguilar"], kind: "person", prominence: "minor",
+      books: ["bm"], dates: ["1849"], locations: ["Janos"],
+      description: "A Mexican sergeant who confronts the armed Americans at Janos and is theatrically disarmed by the judge’s diplomacy.",
+      references: [{ book: "bm", locator: "Chapter VII", note: "Encounter at Janos" }]
+    },
+    {
+      id: "lieutenant-couts", name: "Lieutenant Cave J. Couts", aliases: ["Lieutenant Couts", "Couts"], kind: "historical", prominence: "minor",
+      books: ["bm"], dates: ["1850"], locations: ["Tucson"],
+      description: "The U.S. Army lieutenant commanding Tucson’s small garrison when Glanton’s gang arrives amid a tense Apache demand for whiskey.",
+      references: [{ book: "bm", locator: "Chapter XVI", note: "Encounter at the Tucson garrison" }]
+    },
+    {
+      id: "mangas-colorado", name: "Mangas Colorado", aliases: ["Mangas"], kind: "historical", prominence: "minor",
+      books: ["bm"], dates: ["1850"], locations: ["Tucson", "Santa Cruz valley"],
+      description: "The Apache leader who parleyes with Glanton after a collision involving one of his riders, then presses the Americans for whiskey near Tucson.",
+      references: [{ book: "bm", locator: "Chapter XVI", note: "Parley outside Tucson" }]
+    },
+    {
+      id: "major-graham-bm", name: "Major Graham", aliases: ["Graham"], kind: "historical", prominence: "minor",
+      books: ["bm"], dates: ["1850"], locations: ["Tucson", "California route", "Colorado River"],
+      description: "A U.S. officer whose command is recalled in connection with Lieutenant Couts’s coastal journey and the freight wagons later used at the Colorado River ferry.",
+      references: [
+        { book: "bm", locator: "Chapter XVI", note: "Mentioned by Lieutenant Couts" },
+        { book: "bm", locator: "Chapter XIX", note: "His command’s wagons at the ferry" }
+      ]
+    },
     {
       id: "john-grady-cole", name: "John Grady Cole", aliases: ["John Grady", "John Cole"], kind: "person", prominence: "principal",
       books: ["atph", "cities"], dates: ["born c. 1933", "1949–1952"],
