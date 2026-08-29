@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A searchable concordance of characters, places, dates, and references in Cormac McCarthy's work.">
+  <title>The Cormac McCarthy Concordance</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="masthead">
+    <div class="masthead__rule" aria-hidden="true"></div>
+    <div class="masthead__inner">
+      <div>
+        <p class="eyebrow">A working index</p>
+        <h1>The Cormac McCarthy<br><em>Concordance</em></h1>
+      </div>
+      <div class="masthead__meta">
+        <p>Persons, places,<br>dates, and crossings.</p>
+        <button id="coverage-jump" class="text-button" type="button">3 of 12 novels indexed ↓</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-panel" aria-labelledby="search-heading">
+      <h2 id="search-heading" class="sr-only">Search the concordance</h2>
+      <label for="search" class="search-label">Search the indexed world</label>
+      <div class="search-wrap">
+        <span class="search-mark" aria-hidden="true">⌕</span>
+        <input id="search" type="search" autocomplete="off" spellcheck="false"
+          placeholder="Character, alias, place, date, role…">
+        <kbd>/</kbd>
+      </div>
+
+      <div class="filters" aria-label="Search filters">
+        <label>
+          <span>Book</span>
+          <select id="book-filter">
+            <option value="all">All indexed books</option>
+          </select>
+        </label>
+        <label>
+          <span>Kind</span>
+          <select id="kind-filter">
+            <option value="all">All characters</option>
+            <option value="person">Named people</option>
+            <option value="unnamed">Unnamed figures</option>
+            <option value="historical">Historical people</option>
+            <option value="animal">Animals</option>
+          </select>
+        </label>
+        <label>
+          <span>Role</span>
+          <select id="role-filter">
+            <option value="all">Any prominence</option>
+            <option value="principal">Principal</option>
+            <option value="major">Major</option>
+            <option value="secondary">Secondary</option>
+            <option value="minor">Minor</option>
+          </select>
+        </label>
+        <button id="clear-filters" class="clear-button" type="button">Clear</button>
+      </div>
+
+      <div class="search-note">
+        <p id="result-count" aria-live="polite"></p>
+        <p>Contains spoilers throughout.</p>
+      </div>
+    </section>
+
+    <section class="index-layout" aria-label="Concordance entries">
+      <div id="results" class="results" role="listbox" aria-label="Characters"></div>
+      <aside id="detail" class="detail" aria-live="polite"></aside>
+    </section>
+
+    <section id="coverage" class="coverage" aria-labelledby="coverage-title">
+      <div class="section-heading">
+        <p class="eyebrow">Corpus</p>
+        <h2 id="coverage-title">Books indexed—and the country still ahead</h2>
+      </div>
+      <div id="book-grid" class="book-grid"></div>
+      <div class="method-note">
+        <h3>References and editions</h3>
+        <p id="source-note"></p>
+        <p>The concordance records factual descriptions rather than reproducing the novels. “§” identifies an EPUB section beneath a numbered Part; it is not presented as a printed chapter or page.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>The Cormac McCarthy Concordance <span aria-hidden="true">◆</span> <span id="updated"></span></p>
+    <p>An independent scholarly index. Not affiliated with the Cormac McCarthy estate or publishers.</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
