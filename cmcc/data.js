@@ -4,18 +4,26 @@ window.CONCORDANCE_DATA = {
     subtitle: "Persons, places, dates, and crossings",
     updated: "29 August 2026",
     notice: "Contains plot details and endings.",
-    sourceNote: "References were checked against the supplied EPUB editions. All the Pretty Horses and Child of God preserve print-page anchors. Blood Meridian is cited by chapter; The Crossing and Cities of the Plain are cited by Part and EPUB section because those files have no stable page map."
+    sourceNote: "References were checked against the supplied EPUB editions. Outer Dark, Child of God, Suttree, and All the Pretty Horses preserve print-page anchors. Blood Meridian is cited by chapter; The Crossing and Cities of the Plain are cited by Part and EPUB section because those files have no stable page map."
   },
 
   books: [
     { id: "oph", title: "The Orchard Keeper", year: 1965, indexed: false },
-    { id: "od", title: "Outer Dark", year: 1968, indexed: false },
+    {
+      id: "od", title: "Outer Dark", year: 1968, indexed: true,
+      period: "undated; from a March birth into autumn", sections: "23 unnumbered narrative sections", referenceSystem: "Section and print page",
+      edition: "Vintage International / Knopf Doubleday EPUB, ISBN 978-0-307-76249-8"
+    },
     {
       id: "cog", title: "Child of God", year: 1973, indexed: true,
       period: "months before April 1965", sections: "Parts I–III; 52 short sections", referenceSystem: "Part, section, and print page",
       edition: "Knopf Doubleday EPUB, ISBN 978-0-307-76248-1"
     },
-    { id: "sut", title: "Suttree", year: 1979, indexed: false },
+    {
+      id: "sut", title: "Suttree", year: 1979, indexed: true,
+      period: "begins in 1951; spans several years", sections: "34 chapters", referenceSystem: "Chapter and print page",
+      edition: "Vintage International / Knopf Doubleday EPUB, ISBN 978-0-307-76247-4"
+    },
     {
       id: "bm", title: "Blood Meridian", year: 1985, indexed: true,
       period: "1849–1850; final chapter in 1878", sections: "Chapters I–XXIII and epilogue", referenceSystem: "Chapter",
@@ -43,6 +51,410 @@ window.CONCORDANCE_DATA = {
   ],
 
   characters: [
+    {
+      id: "culla-holme", name: "Culla Holme", aliases: ["Culla", "Holme"], kind: "person", prominence: "principal",
+      books: ["od"], dates: ["undated", "from March into autumn"], locations: ["Appalachian South", "the Holme cabin", "Johnson County", "river country", "the swamp road"],
+      description: "Rinthy’s brother and the father of her child. He abandons the newborn, conceals what he has done, and wanders through a countryside where suspicion and violence repeatedly gather around him.",
+      references: [
+        { book: "od", locator: "§§2–4, pp. 4–33", note: "Birth, abandonment, and departure" },
+        { book: "od", locator: "§§5 and 15, pp. 34–50, 157–183", note: "Work for the squire and encounter with the three men" },
+        { book: "od", locator: "§§21 and 23, pp. 230–242", note: "The child and the final road" }
+      ]
+    },
+    {
+      id: "rinthy-holme", name: "Rinthy Holme", aliases: ["Rinthy"], kind: "person", prominence: "principal",
+      books: ["od"], dates: ["nineteen years old", "gives birth in March", "searches through the following months"], locations: ["the Holme cabin", "Appalachian roads and farms", "a country doctor’s office", "the tinker’s camp"],
+      description: "Culla’s sister and the child’s mother. After discovering the empty grave, she sets out on foot to find the baby and follows reports of the tinker across the countryside.",
+      references: [
+        { book: "od", locator: "§§2–4, pp. 14–33", note: "Birth, empty grave, and decision to leave" },
+        { book: "od", locator: "§§7–10, pp. 52–116", note: "The search along the road" },
+        { book: "od", locator: "§§14 and 16, pp. 147–156, 184–194", note: "Doctor’s visit and meeting with the tinker" }
+      ]
+    },
+    {
+      id: "holme-child", name: "Rinthy’s child", aliases: ["the child", "the baby", "the chap"], kind: "unnamed", prominence: "major",
+      books: ["od"], dates: ["born in March", "about six months old at death"], locations: ["the Holme cabin", "the woods", "the tinker’s cart", "the three men’s camp"],
+      description: "The infant born to Rinthy and Culla, abandoned in the woods, found and carried by the tinker, and made the final object of the three strangers’ violence.",
+      references: [
+        { book: "od", locator: "§§2–3, pp. 14–23", note: "Birth, abandonment, and rescue" },
+        { book: "od", locator: "§16, pp. 184–194", note: "Rinthy sees the child with the tinker" },
+        { book: "od", locator: "§21, pp. 230–236", note: "Death at the strangers’ camp" }
+      ]
+    },
+    {
+      id: "tinker-od", name: "The tinker", aliases: ["the peddler", "the chapman"], kind: "unnamed", prominence: "major",
+      books: ["od"], dates: ["undated", "spring through autumn"], locations: ["the Holme cabin", "country roads", "river settlements", "the three men’s camp"],
+      description: "An itinerant peddler who finds the abandoned infant and carries it in his cart. Rinthy follows his route; Culla and the three strangers repeatedly cross it.",
+      references: [
+        { book: "od", locator: "§§2–3, pp. 6–23", note: "Visits the Holmes and finds the child" },
+        { book: "od", locator: "§16, pp. 184–194", note: "Encounter with Rinthy" },
+        { book: "od", locator: "§§20–22, pp. 228–238", note: "Pursuit and death" }
+      ]
+    },
+    {
+      id: "bearded-leader-od", name: "The bearded stranger", aliases: ["the bearded man", "the leader of the three"], kind: "unnamed", prominence: "major",
+      books: ["od"], dates: ["undated"], locations: ["the opening glade", "the squire’s road", "a country cabin", "the river", "the final camp"],
+      description: "The eloquent, bearded leader of the three murderous wanderers. He questions Culla as if conducting a trial and presides over the group’s killings.",
+      references: [
+        { book: "od", locator: "§1, pp. 1–3", note: "First appearance with the other strangers" },
+        { book: "od", locator: "§§5 and 12, pp. 34–50, 128–129", note: "Killings along the road" },
+        { book: "od", locator: "§§15 and 21, pp. 157–183, 230–236", note: "Interrogations of Culla" }
+      ]
+    },
+    {
+      id: "harmon-od", name: "Harmon", aliases: [], kind: "person", prominence: "major",
+      books: ["od"], dates: ["undated"], locations: ["the opening glade", "the squire’s road", "the river", "the final camp"],
+      description: "The smiling, rifle-carrying member of the three strangers. Unlike the mute companion he is named, and he participates in the group’s pursuit, questioning, and murders.",
+      references: [
+        { book: "od", locator: "§§1 and 5, pp. 1–3, 34–50", note: "Early appearances and the squire’s death" },
+        { book: "od", locator: "§15, pp. 157–183", note: "At the river camp with Culla" },
+        { book: "od", locator: "§21, pp. 230–236", note: "The child at the final camp" }
+      ]
+    },
+    {
+      id: "nameless-mute-od", name: "The nameless mute", aliases: ["the mute", "the third stranger", "the nameless one"], kind: "unnamed", prominence: "major",
+      books: ["od"], dates: ["undated"], locations: ["the opening glade", "the road", "the river", "the final camp"],
+      description: "The silent third member of the wandering triune, distinguished from Harmon by his muteness. His violence culminates in the novel’s most grotesque final act.",
+      references: [
+        { book: "od", locator: "§1, pp. 1–3", note: "First appearance" },
+        { book: "od", locator: "§15, pp. 157–183", note: "At the river camp" },
+        { book: "od", locator: "§21, pp. 230–236", note: "The child’s death" }
+      ]
+    },
+    {
+      id: "squire-od", name: "The squire", aliases: ["Culla’s employer"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["undated"], locations: ["a large farm", "the road beyond the farm"],
+      description: "A prosperous landowner who hires Culla to clear timber, feeds him, and gives him boots. The three strangers murder him soon after Culla leaves.",
+      references: [{ book: "od", locator: "§5, pp. 34–50", note: "Culla’s employment and the squire’s death" }]
+    },
+    {
+      id: "john-od", name: "John", aliases: ["the squire’s mute worker"], kind: "person", prominence: "secondary",
+      books: ["od"], dates: ["undated"], locations: ["the squire’s farm"],
+      description: "A mute Black worker on the squire’s farm who helps Culla sharpen an axe and tries by gesture to warn the household of approaching danger.",
+      references: [{ book: "od", locator: "§5, pp. 43–50", note: "Work with Culla and warning at the farm" }]
+    },
+    {
+      id: "old-host-od", name: "The old host", aliases: ["the old bearded man", "Culla’s host"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["undated"], locations: ["a remote cabin"],
+      description: "An elderly cabin-dweller who gives Culla food and shelter and speaks at length with him about solitude, snakes, sickness, and the world beyond the road.",
+      references: [{ book: "od", locator: "§11, pp. 117–127", note: "Night at the old man’s cabin" }]
+    },
+    {
+      id: "doctor-od", name: "The country doctor", aliases: ["the doctor"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["about six months after the birth"], locations: ["a small town office"],
+      description: "The doctor who examines Rinthy, recognizes that she has recently borne a child, treats her, and helps her understand that the infant may still be alive.",
+      references: [{ book: "od", locator: "§14, pp. 147–156", note: "Examination and conversation with Rinthy" }]
+    },
+    {
+      id: "lawyer-od", name: "The lawyer", aliases: [], kind: "unnamed", prominence: "minor",
+      books: ["od"], dates: ["about six months after the birth"], locations: ["a small town office"],
+      description: "A town lawyer who lets the exhausted Rinthy wait in his office and directs her to the doctor upstairs.",
+      references: [{ book: "od", locator: "§14, pp. 147–151", note: "Rinthy waits in his office" }]
+    },
+    {
+      id: "ferryman-od", name: "The ferryman", aliases: ["the river ferryman"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["undated"], locations: ["a flooded river crossing"],
+      description: "The operator who agrees to carry Culla across a swollen river. The crossing fails catastrophically, leaving Culla once again associated with an unexplained death.",
+      references: [{ book: "od", locator: "§15, pp. 157–172", note: "The night ferry crossing" }]
+    },
+    {
+      id: "hog-drover-od", name: "The hog drover", aliases: ["Billy’s brother"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["autumn"], locations: ["mountain roads", "a drovers’ camp"],
+      description: "A trader driving hogs through the mountains who hires Culla’s help and travels with his younger brother Billy and a one-eyed preacher.",
+      references: [{ book: "od", locator: "§19, pp. 213–227", note: "The hog drive" }]
+    },
+    {
+      id: "billy-od", name: "Billy", aliases: ["the drover’s little brother"], kind: "person", prominence: "minor",
+      books: ["od"], dates: ["autumn", "his first hog drive"], locations: ["mountain roads", "a drovers’ camp"],
+      description: "The hog drover’s younger brother, making his first drive and sharing the road and camp with Culla.",
+      references: [{ book: "od", locator: "§19, pp. 216–224", note: "Travel with the hogs" }]
+    },
+    {
+      id: "one-eyed-preacher-od", name: "The one-eyed preacher", aliases: ["the reverend", "the parson"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["autumn"], locations: ["mountain roads", "the drovers’ camp"],
+      description: "A one-eyed itinerant preacher who falls in with the hog drovers and presses Culla with parables about blindness, sin, and spiritual direction.",
+      references: [{ book: "od", locator: "§19, pp. 221–227", note: "Conversation at the drovers’ camp" }]
+    },
+    {
+      id: "blind-man-od", name: "The blind man", aliases: ["the blind traveler"], kind: "unnamed", prominence: "secondary",
+      books: ["od"], dates: ["years after the principal events"], locations: ["the swamp road"],
+      description: "A blind traveler whom Culla meets in the closing pages. He describes a road laid through a swamp that leads nowhere, giving Culla’s journey its final image.",
+      references: [{ book: "od", locator: "§23, pp. 239–242", note: "The final meeting on the road" }]
+    },
+    {
+      id: "cornelius-suttree", name: "Cornelius Suttree", aliases: ["Suttree", "Sut", "Cornelius"], kind: "person", prominence: "principal",
+      books: ["sut"], dates: ["in Knoxville by 1951", "on the river for several years"], locations: ["Knoxville", "McAnally Flats", "the Tennessee River", "the Smoky Mountains"],
+      description: "An estranged son of privilege living as a fisherman on a Knoxville houseboat. His life among the city’s outcasts is marked by drink, friendship, bereavement, illness, love affairs, and an eventual departure.",
+      references: [
+        { book: "sut", locator: "Ch. 1, pp. 6–29", note: "Houseboat, river, and McAnally circle" },
+        { book: "sut", locator: "Ch. 10, pp. 148–161", note: "His son’s death and funeral" },
+        { book: "sut", locator: "Chs. 22, 24, and 27, pp. 283–297, 306–363, 379–415", note: "Mountains, Wanda, and Joyce" },
+        { book: "sut", locator: "Ch. 34, pp. 448–471", note: "Illness and departure from Knoxville" }
+      ]
+    },
+    {
+      id: "gene-harrogate", name: "Gene Harrogate", aliases: ["Harrogate", "Gene", "City Mouse", "Watermelon Boy"], kind: "person", prominence: "principal",
+      books: ["sut"], dates: ["late teens in the early 1950s"], locations: ["Knoxville workhouse", "McAnally Flats", "sewers beneath Knoxville", "Suttree’s houseboat"],
+      description: "A guileless young offender whose improbable schemes—watermelons, poisoned bats, counterfeiting, and a tunnel beneath the city—make him Suttree’s comic and troublesome protégé.",
+      references: [
+        { book: "sut", locator: "Ch. 3, pp. 36–62", note: "Workhouse arrival and the watermelon case" },
+        { book: "sut", locator: "Chs. 6 and 15, pp. 91–106, 207–219", note: "Return to Knoxville and counterfeiting" },
+        { book: "sut", locator: "Ch. 20, pp. 259–277", note: "The tunnel and bat scheme" },
+        { book: "sut", locator: "Ch. 34, pp. 456–466", note: "Final encounters with Suttree" }
+      ]
+    },
+    {
+      id: "j-bone", name: "J-Bone", aliases: ["J Bone"], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "McAnally Flats", "Market Lunch", "the Huddle"],
+      description: "Suttree’s closest drinking companion and one of his oldest friends, present through nights of celebration, disaster, recollection, and farewell.",
+      references: [
+        { book: "sut", locator: "Ch. 1, pp. 22–29", note: "Introduced in Suttree’s riverfront circle" },
+        { book: "sut", locator: "Ch. 13, pp. 183–194", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 34, pp. 456–463", note: "Last meeting before Suttree leaves" }
+      ]
+    },
+    {
+      id: "ab-jones", name: "Ab Jones", aliases: ["Ab"], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Front Street", "Knoxville jail", "the Tennessee River"],
+      description: "A formidable Black riverfront resident and Suttree’s friend, proud of resisting Knoxville’s police. Repeated confrontations with the law culminate in a devastating final beating.",
+      references: [
+        { book: "sut", locator: "Ch. 7, pp. 107–118", note: "Ab’s house and riverfront community" },
+        { book: "sut", locator: "Chs. 14, 16–17, pp. 195–206, 220–252", note: "Conflict, arrest, and return" },
+        { book: "sut", locator: "Chs. 33–34, pp. 440–465", note: "Final confrontation with police" }
+      ]
+    },
+    {
+      id: "billy-ray-callahan", name: "Billy Ray Callahan", aliases: ["Callahan", "Billy Ray", "Red Callahan"], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville workhouse", "McAnally Flats", "the B&J", "the West Inn"],
+      description: "A charismatic and ferociously violent friend of Suttree, equally at home cooking in the workhouse and starting a tavern brawl. He is shot at the West Inn.",
+      references: [
+        { book: "sut", locator: "Ch. 3, pp. 36–62", note: "Workhouse cook and inmate" },
+        { book: "sut", locator: "Ch. 13, pp. 183–194", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 26, pp. 374–378", note: "Final night and shooting" }
+      ]
+    },
+    {
+      id: "reese-sut", name: "Reese", aliases: ["old Reese"], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["spring of Suttree’s third year on the river"], locations: ["the Tennessee River", "the mussel-fishing camp", "Knoxville"],
+      description: "The restless head of a mussel-fishing family who hires Suttree for an increasingly desperate search for freshwater pearls.",
+      references: [
+        { book: "sut", locator: "Ch. 24, pp. 306–363", note: "The pearl-hunting expedition" },
+        { book: "sut", locator: "Ch. 25, pp. 364–373", note: "Aftermath of the expedition" }
+      ]
+    },
+    {
+      id: "wanda-reese", name: "Wanda Reese", aliases: ["Wanda"], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["a teenager in the early 1950s"], locations: ["the Reese camp", "the river islands", "the mussel-fishing country"],
+      description: "Reese’s daughter, who begins a secret relationship with Suttree during the pearl expedition and dies when a rockslide strikes the camp.",
+      references: [
+        { book: "sut", locator: "Ch. 24, pp. 322–349", note: "Life at the Reese camp" },
+        { book: "sut", locator: "Ch. 24, pp. 349–363", note: "Relationship with Suttree and death" }
+      ]
+    },
+    {
+      id: "joyce-sut", name: "Joyce", aliases: [], kind: "person", prominence: "major",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "the Huddle", "a hotel", "Suttree’s houseboat"],
+      description: "A sex worker who becomes Suttree’s lover. Her earnings briefly give them a life of theatrical luxury, but jealousy, alcohol, and violence destroy it.",
+      references: [{ book: "sut", locator: "Ch. 27, pp. 379–415", note: "Courtship, extravagant interlude, and separation" }]
+    },
+    {
+      id: "michael-sut", name: "Michael", aliases: ["the Indian", "Tonto", "Wahoo", "Chief"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["the Tennessee River", "Knoxville bars", "Suttree’s houseboat"],
+      description: "An Indigenous fisherman and river companion whose reserve and practical knowledge make him one of Suttree’s steadier acquaintances.",
+      references: [
+        { book: "sut", locator: "Ch. 16, pp. 220–237", note: "Fishing, drinking, and the revelation of his name" },
+        { book: "sut", locator: "Ch. 27, p. 404", note: "Later appearance" }
+      ]
+    },
+    {
+      id: "leonard-sut", name: "Leonard", aliases: ["weird Leonard"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["the Huddle", "Knoxville", "the Tennessee River"],
+      description: "A small, anxious acquaintance who enlists Suttree in an attempt to recover and dispose of his father’s hidden corpse while preserving the dead man’s benefit checks.",
+      references: [
+        { book: "sut", locator: "Chs. 16–17, pp. 235–252", note: "The problem of his father’s corpse" },
+        { book: "sut", locator: "Ch. 28, pp. 416–420", note: "Later encounter" }
+      ]
+    },
+    {
+      id: "blind-richard", name: "Blind Richard", aliases: ["Richard"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville bars", "McAnally Flats"],
+      description: "A blind regular in Suttree’s barroom circle, recognizable by his cane, sharp ear, and participation in the riverfront’s jokes and arguments.",
+      references: [
+        { book: "sut", locator: "Ch. 4, pp. 72–75", note: "Early barroom appearance" },
+        { book: "sut", locator: "Ch. 34, pp. 456–457", note: "Late appearance among Suttree’s friends" }
+      ]
+    },
+    {
+      id: "hoghead-henry", name: "Hoghead Henry", aliases: ["Hoghead", "James Henry"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["dies at twenty-one"], locations: ["Knoxville", "McAnally Flats", "the roadhouse"],
+      description: "A jaunty young friend in the McAnally crowd, remembered for streetwise stories and sudden participation in fights. Suttree later learns of his death.",
+      references: [
+        { book: "sut", locator: "Ch. 4, pp. 70–74", note: "Conversation in Knoxville" },
+        { book: "sut", locator: "Ch. 13, pp. 185–190", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 27, p. 403", note: "News of his death" }
+      ]
+    },
+    {
+      id: "oceanfrog-frazer", name: "Oceanfrog Frazer", aliases: ["Oceanfrog"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Ab Jones’s house", "McAnally Flats"],
+      description: "A vivid raconteur and cardplayer in the Black riverfront community, frequently encountered at Clevenger’s store and Ab Jones’s house.",
+      references: [
+        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "At Clevenger’s and Ab’s" },
+        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "A later gathering" }
+      ]
+    },
+    {
+      id: "trippin-through-the-dew", name: "Trippin Through the Dew", aliases: ["Trippin"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Howard Clevenger’s store", "Ab Jones’s house"],
+      description: "A friend in the McAnally community whose exuberant nickname and recurring presence mark the social world around Clevenger’s store and Ab Jones’s house.",
+      references: [
+        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "Introduced in the riverfront circle" },
+        { book: "sut", locator: "Ch. 34, pp. 465–468", note: "Late appearance" }
+      ]
+    },
+    {
+      id: "cabbage-sut", name: "Cabbage", aliases: [], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville bars", "McAnally Flats", "the roadhouse"],
+      description: "A member of Suttree’s drinking circle, a companion in all-night excursions and one of the participants in the great roadhouse brawl.",
+      references: [
+        { book: "sut", locator: "Ch. 4, pp. 73–75", note: "In the Knoxville bar crowd" },
+        { book: "sut", locator: "Ch. 13, pp. 183–190", note: "The roadhouse brawl" }
+      ]
+    },
+    {
+      id: "bearhunter-sut", name: "Bearhunter", aliases: [], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Knoxville bars"],
+      description: "A drinking companion in Suttree’s loose fraternity of riverfront men, present in the opening circuit of taverns and in later memories of absent friends.",
+      references: [
+        { book: "sut", locator: "Ch. 1, pp. 24–26", note: "Opening night in Knoxville" },
+        { book: "sut", locator: "Ch. 13, p. 190", note: "Among the friends in Suttree’s vision" }
+      ]
+    },
+    {
+      id: "mother-she", name: "Mother She", aliases: [], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Knoxville"],
+      description: "An elderly healer and diviner in the riverfront community, consulted for remedies and knowledge beyond the official institutions of the city.",
+      references: [
+        { book: "sut", locator: "Ch. 4, p. 65", note: "Early mention in McAnally" },
+        { book: "sut", locator: "Ch. 9, p. 145", note: "Harrogate seeks her help" }
+      ]
+    },
+    {
+      id: "daddy-watson", name: "Daddy Watson", aliases: ["Watson"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["the Tennessee River", "McAnally Flats"],
+      description: "An elderly river man whose failing health and remembered presence belong to the older generation of Suttree’s waterfront community.",
+      references: [
+        { book: "sut", locator: "Ch. 5, pp. 87–90", note: "Visit on the river" },
+        { book: "sut", locator: "Ch. 25, p. 365", note: "Later recollection" }
+      ]
+    },
+    {
+      id: "ragpicker-sut", name: "The ragpicker", aliases: ["the old ragpicker"], kind: "unnamed", prominence: "major",
+      books: ["sut"], dates: ["early 1950s"], locations: ["beneath the Knoxville bridge", "the riverbank", "McAnally Flats"],
+      description: "A solitary scavenger living under the bridge, alternately hostile, prophetic, and vulnerable. His meditations on death shadow Suttree’s own passage through the river world.",
+      references: [
+        { book: "sut", locator: "Ch. 1, pp. 12–14", note: "Introduced beneath the bridge" },
+        { book: "sut", locator: "Ch. 6, pp. 96–101", note: "Harrogate at the ragpicker’s camp" },
+        { book: "sut", locator: "Ch. 19, pp. 256–258", note: "Conversation about death" },
+        { book: "sut", locator: "Ch. 29, pp. 421–422", note: "Final episode" }
+      ]
+    },
+    {
+      id: "goatman-sut", name: "The goatman", aliases: ["the goat preacher"], kind: "unnamed", prominence: "secondary",
+      books: ["sut"], dates: ["spring in the early 1950s"], locations: ["Knoxville", "the field by the Tennessee River"],
+      description: "An itinerant preacher who enters Knoxville with a train of goat-drawn carts, camps by the river, and debates scripture and salvation with Suttree.",
+      references: [{ book: "sut", locator: "Ch. 14, pp. 195–206", note: "Arrival, camp, and conversations with Suttree" }]
+    },
+    {
+      id: "howard-clevenger", name: "Howard Clevenger", aliases: ["Howard"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Front Street", "McAnally Flats"],
+      description: "The proprietor of a Front Street store that serves as one of McAnally’s principal meeting places and informal exchanges of news.",
+      references: [
+        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "The store and its regulars" },
+        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "Another gathering at the store" }
+      ]
+    },
+    {
+      id: "mr-hatmaker", name: "Mr Hatmaker", aliases: ["Hatmaker"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "Hatmaker’s bar"],
+      description: "A Knoxville tavern keeper whose establishment is a recurring station in Suttree’s nocturnal rounds and his friends’ quarrels.",
+      references: [
+        { book: "sut", locator: "Ch. 4, pp. 72–75", note: "At Hatmaker’s bar" },
+        { book: "sut", locator: "Ch. 34, pp. 456–457", note: "Late return to the barroom circle" }
+      ]
+    },
+    {
+      id: "byrd-slusser", name: "Byrd Slusser", aliases: ["Slusser"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville workhouse"],
+      description: "A dangerous workhouse inmate kept chained to a heavy pick, whose conflict with Callahan and disappearance become part of the institution’s grim folklore.",
+      references: [{ book: "sut", locator: "Ch. 3, pp. 51–61", note: "Conflict in the workhouse" }]
+    },
+    {
+      id: "rufus-wiley", name: "Rufus Wiley", aliases: ["Rufus"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "McAnally Flats"],
+      description: "A recurring riverfront acquaintance whose odd jobs and local knowledge connect Harrogate and Suttree with McAnally’s informal economy.",
+      references: [
+        { book: "sut", locator: "Ch. 9, pp. 142–143", note: "Encounter with Harrogate" },
+        { book: "sut", locator: "Ch. 32, pp. 431–434", note: "Late appearance" }
+      ]
+    },
+    {
+      id: "willard-reese", name: "Willard Reese", aliases: ["Willard"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["the Reese camp", "the Tennessee River"],
+      description: "Reese’s son and the principal boatman in the family’s mussel-fishing venture, working alongside Suttree while his father searches for pearls.",
+      references: [{ book: "sut", locator: "Ch. 24, pp. 312–363", note: "The mussel-fishing expedition" }]
+    },
+    {
+      id: "mrs-reese", name: "Mrs Reese", aliases: ["Reese’s wife"], kind: "unnamed", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["the Reese camp", "the Tennessee River"],
+      description: "Reese’s wife and the practical center of the family camp, managing food, children, and domestic order during the pearl expedition.",
+      references: [{ book: "sut", locator: "Ch. 24, pp. 312–363", note: "Life at the Reese camp" }]
+    },
+    {
+      id: "suttree-wife", name: "Suttree’s wife", aliases: ["his estranged wife", "the boy’s mother"], kind: "unnamed", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "the family cemetery"],
+      description: "Suttree’s estranged wife, encountered most directly after the death of their young son. Her family prevents Suttree from joining the mourners openly.",
+      references: [{ book: "sut", locator: "Ch. 10, pp. 148–161", note: "Their son’s death and funeral" }]
+    },
+    {
+      id: "suttree-son", name: "Suttree’s son", aliases: ["the boy", "the dead child"], kind: "unnamed", prominence: "major",
+      books: ["sut"], dates: ["dies young in the early 1950s"], locations: ["Knoxville", "the family cemetery"],
+      description: "Suttree’s young child, living apart from him and dying before the narrative’s midpoint. The clandestine funeral visit exposes the depth of Suttree’s grief and estrangement.",
+      references: [{ book: "sut", locator: "Ch. 10, pp. 148–161", note: "News of the death, wake, and burial" }]
+    },
+    {
+      id: "suttree-father", name: "Suttree’s father", aliases: ["Mr Suttree", "the elder Suttree"], kind: "unnamed", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "Suttree’s hospital room"],
+      description: "Suttree’s wealthy, emotionally distant father, emblem of the respectable family and ordered life that his son has rejected.",
+      references: [
+        { book: "sut", locator: "Ch. 10, pp. 148–161", note: "Family conflict around the funeral" },
+        { book: "sut", locator: "Ch. 34, pp. 448–455", note: "Visit during Suttree’s illness" }
+      ]
+    },
+    {
+      id: "aunt-martha-sut", name: "Aunt Martha", aliases: ["Martha"], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Suttree’s family home", "Knoxville"],
+      description: "A warm older relative who receives Suttree without his father’s severity and preserves a tenuous bond between him and his family.",
+      references: [{ book: "sut", locator: "Ch. 8, pp. 125–132", note: "Suttree’s visit with Aunt Martha" }]
+    },
+    {
+      id: "doll-sut", name: "Doll", aliases: [], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Ab Jones’s house", "Knoxville"],
+      description: "A woman in the Black riverfront community whose recurring presence links Suttree to the domestic and social life around Ab Jones’s house.",
+      references: [
+        { book: "sut", locator: "Ch. 6, pp. 100–101", note: "Early appearance" },
+        { book: "sut", locator: "Chs. 33–34, pp. 440–447", note: "Late appearance in McAnally" }
+      ]
+    },
+    {
+      id: "jabbo-sut", name: "Jabbo", aliases: [], kind: "person", prominence: "secondary",
+      books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Ab Jones’s house", "McAnally Flats"],
+      description: "A regular in the Black riverfront circle, appearing in the talk, card games, and crowded rooms that define McAnally’s communal life.",
+      references: [
+        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "At Clevenger’s and Ab Jones’s" },
+        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "A later gathering" }
+      ]
+    },
     {
       id: "lester-ballard", name: "Lester Ballard", aliases: ["Ballard", "Lester"], kind: "person", prominence: "principal",
       books: ["cog"], dates: ["months before April 1965", "dies April 1965"],
