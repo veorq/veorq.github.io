@@ -64,6 +64,11 @@
     return character.books.map(id => bookById[id].title).join(' · ');
   }
 
+  function resultMeta(character) {
+    const kind = character.kind === 'person' ? '' : ` · ${character.kind}`;
+    return `${bookTitles(character)}${kind}`;
+  }
+
   function escapeHtml(value) {
     return String(value)
       .replaceAll('&', '&amp;')
@@ -98,7 +103,7 @@
         <span class="result-number">${String(index + 1).padStart(2, '0')}</span>
         <span>
           <span class="result-name">${escapeHtml(character.name)}</span>
-          <span class="result-meta">${escapeHtml(bookTitles(character))} · ${escapeHtml(character.kind)}</span>
+          <span class="result-meta">${escapeHtml(resultMeta(character))}</span>
         </span>
         <span class="result-arrow" aria-hidden="true">→</span>
       </button>`).join('');
