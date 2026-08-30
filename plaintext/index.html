@@ -167,6 +167,11 @@
     @media (max-width: 640px) {
       .page { width: min(100% - 32px, 980px); }
       main { padding-top: 56px; }
+      h1 {
+        font-size: clamp(2.8rem, 14vw, 4rem);
+        letter-spacing: -.055em;
+        line-height: .94;
+      }
       .principles { grid-template-columns: 1fr; }
       footer { flex-direction: column; }
     }
