@@ -1,8 +1,7 @@
 # Cormac McCarthy Character Index
 
-A dependency-free static web application. The current corpus indexes seven
-novels: *Outer Dark*, *Child of God*, *Suttree*, *Blood Meridian*, and the
-three novels of the Border Trilogy.
+A dependency-free static web application indexing all twelve Cormac McCarthy
+novels, from *The Orchard Keeper* through *Stella Maris*.
 
 ## Install
 

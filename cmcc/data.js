@@ -4,11 +4,15 @@ window.CONCORDANCE_DATA = {
     subtitle: "Characters, places, dates, and crossings",
     updated: "30 August 2026",
     notice: "Contains plot details and endings.",
-    sourceNote: "References were checked against the supplied EPUB editions. They use chapters where the novel has them, Parts where that is the most stable division, and EPUB sections where no chapter structure is available. Page numbers are omitted because they vary by edition."
+    sourceNote: "References were checked against the supplied EPUB editions. They use chapters, Parts, sessions, or narrative sequence according to each book’s structure, and EPUB sections where no named division is available. Page numbers are omitted because they vary by edition."
   },
 
   books: [
-    { id: "oph", title: "The Orchard Keeper", year: 1965, indexed: false },
+    {
+      id: "oph", title: "The Orchard Keeper", year: 1965, indexed: true,
+      period: "from the 1930s into the postwar years", sections: "Parts I–IV; 21 chapters", referenceSystem: "Part and chapter",
+      edition: "Vintage / Knopf Doubleday EPUB, ISBN 978-0-307-76250-4"
+    },
     {
       id: "od", title: "Outer Dark", year: 1968, indexed: true,
       period: "undated; from a March birth into autumn", sections: "23 unnumbered narrative sections", referenceSystem: "EPUB section",
@@ -44,13 +48,649 @@ window.CONCORDANCE_DATA = {
       period: "principally 1952; epilogue c. 2001", sections: "Parts I–IV; twelve EPUB sections", referenceSystem: "Part and EPUB section",
       edition: "Alfred A. Knopf EPUB"
     },
-    { id: "ncfom", title: "No Country for Old Men", year: 2005, indexed: false },
-    { id: "road", title: "The Road", year: 2006, indexed: false },
-    { id: "passenger", title: "The Passenger", year: 2022, indexed: false },
-    { id: "sm", title: "Stella Maris", year: 2022, indexed: false }
+    {
+      id: "ncfom", title: "No Country for Old Men", year: 2005, indexed: true,
+      period: "1980", sections: "Chapters I–XIII", referenceSystem: "Chapter",
+      edition: "ePubLibre EPUB, 2016 edition"
+    },
+    {
+      id: "road", title: "The Road", year: 2006, indexed: true,
+      period: "years after an unspecified catastrophe", sections: "Unnumbered continuous narrative", referenceSystem: "Narrative sequence",
+      edition: "Picador EPUB, ISBN 978-0-330-47275-3"
+    },
+    {
+      id: "passenger", title: "The Passenger", year: 2022, indexed: true,
+      period: "principally 1980, with Alicia's narrative set earlier", sections: "Prologue and Chapters I–X", referenceSystem: "Chapter and narrative strand",
+      edition: "Knopf Doubleday EPUB, ISBN 978-0-593-53522-6"
+    },
+    {
+      id: "sm", title: "Stella Maris", year: 2022, indexed: true,
+      period: "1972", sections: "Seven recorded sessions", referenceSystem: "Session",
+      edition: "Macmillan EPUB, ISBN 978-1-4472-9402-3"
+    }
   ],
 
   characters: [
+    {
+      id: "ed-tom-bell", name: "Ed Tom Bell", aliases: ["Sheriff Bell", "Bell", "Ed Tom"], kind: "person", prominence: "principal",
+      books: ["ncfom"], dates: ["1980", "sheriff since shortly after the Second World War"], locations: ["Terrell County, Texas", "Sanderson", "Eagle Pass", "Odessa"],
+      description: "The sheriff of Terrell County and a veteran of the Second World War. He investigates the desert killings and the pursuit of Llewelyn Moss while the chapter-opening monologues record his account of law, violence, family history, and his decision to retire.",
+      references: [
+        { book: "ncfom", locator: "Chs. I–IV", note: "Opening monologues and the first investigation" },
+        { book: "ncfom", locator: "Chs. V–IX", note: "Search for Moss and visits to the crime scenes" },
+        { book: "ncfom", locator: "Chs. X–XIII", note: "Family history, retirement, and the final dreams" }
+      ]
+    },
+    {
+      id: "llewelyn-moss", name: "Llewelyn Moss", aliases: ["Moss", "Llewelyn"], kind: "person", prominence: "principal",
+      books: ["ncfom"], dates: ["thirty-six years old", "Vietnam veteran", "1980"], locations: ["Sanderson", "the desert caldera", "Del Rio", "Eagle Pass", "Piedras Negras", "Van Horn"],
+      description: "A welder and Vietnam veteran who finds the remains of a failed drug transaction and takes a case containing several million dollars. His return to bring water to a wounded man allows the people seeking the money to identify and pursue him.",
+      references: [
+        { book: "ncfom", locator: "Chs. I–III", note: "Discovery of the money and flight from Sanderson" },
+        { book: "ncfom", locator: "Chs. IV–VII", note: "Pursuit, wounds, and recovery in Mexico" },
+        { book: "ncfom", locator: "Ch. VIII", note: "Journey with the hitchhiker and death at Van Horn" }
+      ]
+    },
+    {
+      id: "anton-chigurh", name: "Anton Chigurh", aliases: ["Chigurh"], kind: "person", prominence: "principal",
+      books: ["ncfom"], dates: ["1980"], locations: ["West Texas", "Del Rio", "Eagle Pass", "Piedras Negras", "Odessa"],
+      description: "A contract killer sent to recover the missing money. He tracks its transponder, kills several people connected with the search, and applies a private rule of necessity and chance to his encounters.",
+      references: [
+        { book: "ncfom", locator: "Chs. I–III", note: "Escape from custody and pursuit of Moss" },
+        { book: "ncfom", locator: "Chs. IV–VII", note: "Hotel attacks, treatment of his wounds, and Carson Wells" },
+        { book: "ncfom", locator: "Chs. IX–X", note: "Carla Jean, the automobile collision, and disappearance" }
+      ]
+    },
+    {
+      id: "carla-jean-moss", name: "Carla Jean Moss", aliases: ["Carla Jean", "Mrs Moss"], kind: "person", prominence: "major",
+      books: ["ncfom"], dates: ["nineteen years old", "1980"], locations: ["Sanderson", "Odessa", "El Paso"],
+      description: "Llewelyn Moss’s wife, raised by her grandmother. Moss sends her to Odessa when the pursuit begins; Bell later tries to protect her, and Chigurh confronts her after her husband and grandmother have died.",
+      references: [
+        { book: "ncfom", locator: "Chs. I–II", note: "Life with Moss and departure from Sanderson" },
+        { book: "ncfom", locator: "Chs. V–VIII", note: "Conversations with Bell and Moss’s death" },
+        { book: "ncfom", locator: "Ch. IX", note: "Return from the funeral and encounter with Chigurh" }
+      ]
+    },
+    {
+      id: "carson-wells", name: "Carson Wells", aliases: ["Wells"], kind: "person", prominence: "major",
+      books: ["ncfom"], dates: ["1980", "former Special Forces lieutenant colonel"], locations: ["Houston", "Eagle Pass", "Piedras Negras"],
+      description: "A former Special Forces officer hired by the organization that lost the money. He knows Chigurh, finds Moss in a Mexican hospital, and offers to protect him in exchange for the case before Chigurh kills him.",
+      references: [
+        { book: "ncfom", locator: "Ch. V", note: "Hiring in Houston and meeting with Moss" },
+        { book: "ncfom", locator: "Ch. VI", note: "Search in Eagle Pass and Piedras Negras" },
+        { book: "ncfom", locator: "Ch. VII", note: "Final conversation with Chigurh" }
+      ]
+    },
+    {
+      id: "loretta-bell", name: "Loretta Bell", aliases: ["Loretta", "Mrs Bell"], kind: "person", prominence: "major",
+      books: ["ncfom"], dates: ["1980"], locations: ["Sanderson", "the Bell ranch"],
+      description: "Ed Tom Bell’s wife. She takes part in his daily routines, discusses his work and retirement with him, and provides the moral and domestic reference point to which his monologues repeatedly return.",
+      references: [
+        { book: "ncfom", locator: "Chs. II–IV", note: "Home life during the investigation" },
+        { book: "ncfom", locator: "Chs. VI–X", note: "Conversations about the case and retirement" },
+        { book: "ncfom", locator: "Chs. XI–XIII", note: "Life after Bell leaves office" }
+      ]
+    },
+    {
+      id: "ellis-ncfom", name: "Ellis", aliases: ["Uncle Ellis"], kind: "person", prominence: "major",
+      books: ["ncfom"], dates: ["elderly in 1980", "former deputy sheriff"], locations: ["the old Bell family house in Texas"],
+      description: "Bell’s elderly, disabled uncle and a former lawman. Bell visits him to discuss their family’s history, the killing that left Ellis in a wheelchair, and Bell’s belief that contemporary violence marks a departure from the past.",
+      references: [
+        { book: "ncfom", locator: "Ch. IX", note: "Bell’s visit and discussion of family history" },
+        { book: "ncfom", locator: "Ch. X", note: "Bell reflects on Ellis’s account" }
+      ]
+    },
+    {
+      id: "wendell-ncfom", name: "Wendell", aliases: ["Deputy Wendell"], kind: "person", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["Terrell County", "the desert caldera", "Sanderson"],
+      description: "One of Bell’s deputies. He accompanies Bell on horseback to the desert crime scene, helps identify Moss’s truck, and assists with the search of the Desert Aire trailer.",
+      references: [
+        { book: "ncfom", locator: "Ch. III", note: "Ride to the desert crime scene" },
+        { book: "ncfom", locator: "Ch. IV", note: "Search of Moss’s trailer and later investigation" }
+      ]
+    },
+    {
+      id: "torbert-ncfom", name: "Torbert", aliases: ["Deputy Torbert"], kind: "person", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["Terrell County", "Sanderson", "the desert caldera"],
+      description: "A deputy who works closely with Bell on the homicide investigation. He transports evidence, accompanies Bell to the desert, and receives the report explaining the captive-bolt injuries left by Chigurh’s weapon.",
+      references: [
+        { book: "ncfom", locator: "Ch. II", note: "The abandoned car and first body" },
+        { book: "ncfom", locator: "Ch. IV", note: "Desert investigation and forensic report" },
+        { book: "ncfom", locator: "Ch. VI", note: "Work in Bell’s office" }
+      ]
+    },
+    {
+      id: "sheriff-lamar", name: "Sheriff Lamar", aliases: ["Lamar"], kind: "person", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980", "sheriff for more than twenty years"], locations: ["Sonora, Texas", "the county courthouse"],
+      description: "The sheriff whose deputy arrests Chigurh. Bell visits Lamar’s courthouse after Chigurh escapes and kills Deputy Haskins, and Bell remains conscious of the loss’s effect on his colleague.",
+      references: [
+        { book: "ncfom", locator: "Ch. I", note: "Chigurh’s arrest and escape" },
+        { book: "ncfom", locator: "Chs. III–IV", note: "Bell’s visit and the investigation" }
+      ]
+    },
+    {
+      id: "deputy-haskins", name: "Deputy Haskins", aliases: ["the Haskins boy", "Lamar’s deputy"], kind: "person", prominence: "secondary",
+      books: ["ncfom"], dates: ["dies in 1980"], locations: ["the county courthouse in Sonora"],
+      description: "Lamar’s young deputy, who brings Chigurh into the station and leaves him handcuffed while telephoning the sheriff. Chigurh strangles him and takes his vehicle and revolver.",
+      references: [
+        { book: "ncfom", locator: "Ch. I", note: "Arrest of Chigurh and death in the station" },
+        { book: "ncfom", locator: "Ch. IV", note: "Bell and Lamar consider the killing" }
+      ]
+    },
+    {
+      id: "carla-jeans-grandmother", name: "Carla Jean’s grandmother", aliases: ["Mama", "Carla Jean’s mother"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["elderly", "dies in March 1980"], locations: ["Odessa", "El Paso"],
+      description: "The grandmother who raised Carla Jean and whom Carla Jean calls Mama. She travels with her granddaughter to El Paso, inadvertently gives information to one of the men looking for Moss, and dies soon after Moss.",
+      references: [
+        { book: "ncfom", locator: "Chs. V–VII", note: "Life with Carla Jean in Odessa" },
+        { book: "ncfom", locator: "Ch. VIII", note: "Journey to El Paso and Moss’s pursuers" },
+        { book: "ncfom", locator: "Ch. IX", note: "Funeral and Carla Jean’s return home" }
+      ]
+    },
+    {
+      id: "hitchhiking-girl-ncfom", name: "The hitchhiking girl", aliases: ["the runaway", "the girl with Moss"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["eighteen years old", "1980"], locations: ["Interstate 10", "Van Horn"],
+      description: "A young runaway whom Moss picks up while driving west. They travel and eat together before both are killed when Mexican gunmen attack the motel at Van Horn.",
+      references: [
+        { book: "ncfom", locator: "Ch. VII", note: "Moss meets the hitchhiker" },
+        { book: "ncfom", locator: "Ch. VIII", note: "Journey, conversation, and deaths at Van Horn" }
+      ]
+    },
+    {
+      id: "wounded-mexican-ncfom", name: "The wounded Mexican", aliases: ["the dying man", "the man asking for water"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["dies in 1980"], locations: ["the desert caldera"],
+      description: "A badly wounded survivor of the failed drug transaction. Moss finds him in a truck asking for water; Moss’s decision to return that night with water exposes his vehicle to the men searching the site.",
+      references: [{ book: "ncfom", locator: "Ch. I", note: "Moss’s first visit and return to the caldera" }]
+    },
+    {
+      id: "gas-station-proprietor-ncfom", name: "The filling-station proprietor", aliases: ["the proprietor", "the coin-toss man"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["Sheffield, Texas"],
+      description: "The proprietor of a rural filling station where Chigurh stops while tracking Moss. Their conversation becomes a coin toss on which Chigurh silently stakes the man’s life.",
+      references: [{ book: "ncfom", locator: "Ch. II", note: "Conversation and coin toss at the filling station" }]
+    },
+    {
+      id: "desert-aire-clerk", name: "The Desert Aire clerk", aliases: ["the trailer-park clerk", "the woman in the office"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["the Desert Aire trailer park", "Sanderson"],
+      description: "The woman in the Desert Aire office. When Chigurh asks where Moss works, she refuses to disclose information about a resident despite his repeated demand.",
+      references: [{ book: "ncfom", locator: "Ch. IV", note: "Chigurh’s inquiry at the trailer park" }]
+    },
+    {
+      id: "houston-executive-ncfom", name: "The Houston executive", aliases: ["Wells’s employer", "the man in the Houston office"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["Houston", "a seventeenth-floor office"],
+      description: "A representative of the organization that lost the money. He hires Wells to recover it and deal with Chigurh; Chigurh later returns the recovered case to him and proposes a new working relationship.",
+      references: [
+        { book: "ncfom", locator: "Ch. V", note: "Hiring Carson Wells" },
+        { book: "ncfom", locator: "Ch. IX", note: "Meeting with Chigurh" }
+      ]
+    },
+    {
+      id: "mexican-gunmen-ncfom", name: "The Mexican gunmen", aliases: ["the Barracuda men", "Moss’s Mexican pursuers"], kind: "unnamed", prominence: "secondary",
+      books: ["ncfom"], dates: ["1980"], locations: ["Eagle Pass", "Van Horn", "El Paso"],
+      description: "Members of a second group seeking the money. They monitor telephone calls, pursue Moss separately from Chigurh, and carry out the attack at Van Horn in which Moss and the hitchhiker are killed.",
+      references: [
+        { book: "ncfom", locator: "Chs. IV and VII", note: "Parallel search for Moss" },
+        { book: "ncfom", locator: "Ch. VIII", note: "Telephone intercept and Van Horn attack" }
+      ]
+    },
+    {
+      id: "agent-mcintyre", name: "Agent McIntyre", aliases: ["McIntyre", "the DEA agent"], kind: "person", prominence: "minor",
+      books: ["ncfom"], dates: ["1980"], locations: ["the desert caldera", "Terrell County"],
+      description: "A DEA agent who joins Bell and Torbert at the desert crime scene, records the vehicles, weapons, drugs, and missing money, and discusses which agencies will take part in the case.",
+      references: [{ book: "ncfom", locator: "Ch. IV", note: "Federal examination of the desert crime scene" }]
+    },
+    {
+      id: "molly-ncfom", name: "Molly", aliases: [], kind: "person", prominence: "minor",
+      books: ["ncfom"], dates: ["1980"], locations: ["Bell’s office", "Sanderson"],
+      description: "A member of Bell’s office staff who handles calls and later traces the relatives of a Vietnam veteran whom Bell wants to visit.",
+      references: [
+        { book: "ncfom", locator: "Ch. VI", note: "Work in Bell’s office" },
+        { book: "ncfom", locator: "Ch. XI", note: "Search for the veteran’s family" }
+      ]
+    },
+    {
+      id: "david-demarco", name: "David DeMarco", aliases: ["DeMarco"], kind: "person", prominence: "secondary",
+      books: ["ncfom"], dates: ["high-school student in 1980"], locations: ["Odessa", "the automobile collision"],
+      description: "One of the two teenagers who help the injured Chigurh after his automobile collision. He accepts money for his shirt and later takes Chigurh’s abandoned pistol; Bell subsequently questions him about the encounter.",
+      references: [
+        { book: "ncfom", locator: "Ch. IX", note: "Aid to Chigurh after the collision" },
+        { book: "ncfom", locator: "Ch. X", note: "Bell’s questioning about Chigurh and the pistol" }
+      ]
+    },
+    {
+      id: "demarcos-friend", name: "DeMarco’s friend", aliases: ["the second teenage boy"], kind: "unnamed", prominence: "minor",
+      books: ["ncfom"], dates: ["high-school student in 1980"], locations: ["Odessa", "the automobile collision"],
+      description: "The second teenager present after Chigurh’s collision. He helps tie the improvised sling and later gives Bell a fuller account of the money, shirt, and pistol than DeMarco does.",
+      references: [
+        { book: "ncfom", locator: "Ch. IX", note: "Aid to Chigurh after the collision" },
+        { book: "ncfom", locator: "Ch. X", note: "Interview with Bell" }
+      ]
+    },
+    {
+      id: "detective-cook", name: "Detective Cook", aliases: ["Cook"], kind: "person", prominence: "minor",
+      books: ["ncfom"], dates: ["1980"], locations: ["Odessa"],
+      description: "An Odessa detective who links a murder weapon to the pistol taken from Chigurh’s wrecked truck and directs Bell to the officer who investigated the collision.",
+      references: [{ book: "ncfom", locator: "Ch. X", note: "Telephone call with Bell about the pistol" }]
+    },
+    {
+      id: "roger-catron", name: "Roger Catron", aliases: ["Catron"], kind: "person", prominence: "minor",
+      books: ["ncfom"], dates: ["1980"], locations: ["Odessa"],
+      description: "The investigator assigned to the automobile collision involving Chigurh. He supplies Bell with details of the wreck and arranges contact with David DeMarco.",
+      references: [{ book: "ncfom", locator: "Ch. X", note: "Bell’s inquiry into Chigurh’s collision" }]
+    },
+    {
+      id: "ford-driver-ncfom", name: "The Ford driver", aliases: ["the man in the trunk", "Bill Wyrick (Bell’s provisional label)"], kind: "unnamed", prominence: "minor",
+      books: ["ncfom"], dates: ["dies in 1980"], locations: ["West Texas", "the abandoned Ford"],
+      description: "The unidentified motorist Chigurh kills after escaping custody so that he can take the man’s Ford. Bell provisionally calls him Bill Wyrick after finding that name on a bloodstained receipt, then tells Torbert that the identity is unknown.",
+      references: [
+        { book: "ncfom", locator: "Ch. I", note: "Chigurh takes the Ford" },
+        { book: "ncfom", locator: "Ch. II", note: "Bell and Torbert examine the body" }
+      ]
+    },
+    {
+      id: "brian-ncfom", name: "Brian", aliases: ["the boy with the beer coat"], kind: "person", prominence: "minor",
+      books: ["ncfom"], dates: ["young man in 1980"], locations: ["Eagle Pass"],
+      description: "A young man outside a bar who sells Moss his coat after Moss crosses the Rio Grande wounded and underdressed.",
+      references: [{ book: "ncfom", locator: "Ch. IV", note: "Moss buys the coat" }]
+    },
+    {
+      id: "bells-daughter", name: "The Bells’ daughter", aliases: ["Bell’s daughter"], kind: "unnamed", prominence: "minor",
+      books: ["ncfom"], dates: ["would have been thirty in 1980", "dies in childhood"], locations: ["Bell’s memory"],
+      description: "Ed Tom and Loretta Bell’s deceased daughter. Bell says that he still speaks to her inwardly and treats the imagined conversations as a source of moral counsel.",
+      references: [{ book: "ncfom", locator: "Ch. X", note: "Bell’s account of speaking with his daughter" }]
+    },
+    {
+      id: "bobby-western", name: "Bobby Western", aliases: ["Robert Western", "Western", "Squire Western", "Bobby"], kind: "person", prominence: "principal",
+      books: ["passenger", "sm"], dates: ["born in 1945", "principally 1980"], locations: ["New Orleans", "the Gulf Coast", "Tennessee", "Idaho", "Ibiza"],
+      description: "A salvage diver and former racing driver, and Alicia Western’s brother. In The Passenger he is questioned about a submerged aircraft and gradually withdraws from his work and former life; in Stella Maris he is the central subject of Alicia’s family history and attachment.",
+      references: [
+        { book: "passenger", locator: "Chs. I–III, Bobby narrative", note: "The aircraft dive and its immediate consequences" },
+        { book: "passenger", locator: "Chs. IV–VIII, Bobby narrative", note: "Investigation, family history, and departure from New Orleans" },
+        { book: "passenger", locator: "Chs. IX–X, Bobby narrative", note: "Later isolation and life abroad" },
+        { book: "sm", locator: "Sessions I–VII", note: "Alicia’s accounts of her brother" }
+      ]
+    },
+    {
+      id: "alicia-western", name: "Alicia Western", aliases: ["Alice", "the girl"], kind: "person", prominence: "principal",
+      books: ["passenger", "sm"], dates: ["born in 1951", "dies in 1972", "twenty years old at Stella Maris"], locations: ["Tennessee", "Chicago", "Stella Maris", "New Orleans"],
+      description: "A mathematician and Bobby Western’s sister. The Passenger places episodes from her life beside Bobby’s later narrative; Stella Maris records seven conversations during her voluntary psychiatric admission in 1972.",
+      references: [
+        { book: "passenger", locator: "Prologue", note: "Death in the woods" },
+        { book: "passenger", locator: "Chs. I–IX, Alicia interludes", note: "Conversations with the Kid and scenes from her final period" },
+        { book: "passenger", locator: "Chs. V–X, Bobby narrative", note: "Bobby’s memories and family history" },
+        { book: "sm", locator: "Sessions I–VII", note: "Recorded conversations with Dr Cohen" }
+      ]
+    },
+    {
+      id: "thalidomide-kid", name: "The Thalidomide Kid", aliases: ["the Kid", "Thalidomide Kid"], kind: "person", prominence: "major",
+      books: ["passenger", "sm"], dates: ["appears to Alicia from childhood onward"], locations: ["Alicia’s rooms", "hospitals", "the Western family home"],
+      description: "The principal figure among Alicia’s recurring hallucinations, identified by his small stature and flipper-like hands. He stages performances with a shifting company of figures and argues with Alicia about memory, death, and what she perceives.",
+      references: [
+        { book: "passenger", locator: "Chs. I–IX, Alicia interludes", note: "The Kid’s visits and performances" },
+        { book: "sm", locator: "Sessions I–VII", note: "Alicia’s account of the Kid" }
+      ]
+    },
+    {
+      id: "granellen-western", name: "Granellen", aliases: ["Ellen", "the Westerns’ grandmother"], kind: "person", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["elderly by 1980"], locations: ["Wartburg, Tennessee", "the former family farm"],
+      description: "Bobby and Alicia’s maternal grandmother. She receives each of them in Tennessee and preserves the family’s history of removal from land taken for the wartime atomic project.",
+      references: [
+        { book: "passenger", locator: "Ch. V, Bobby narrative", note: "Bobby’s visit to Granellen" },
+        { book: "passenger", locator: "Ch. IX, Alicia interlude", note: "Alicia’s final visit" },
+        { book: "sm", locator: "Sessions III–IV", note: "Alicia’s account of her grandmother and family history" }
+      ]
+    },
+    {
+      id: "western-father", name: "The Westerns’ father", aliases: ["Bobby and Alicia’s father", "Robert Western’s father"], kind: "unnamed", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["works on the Manhattan Project", "dies before the principal action"], locations: ["Oak Ridge", "Los Alamos", "the Western family home"],
+      description: "Bobby and Alicia’s father, a physicist who works on the wartime atomic bomb project. Both novels place his scientific work and its consequences within the siblings’ family history.",
+      references: [
+        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections and the wartime project" },
+        { book: "sm", locator: "Sessions I–IV and VI", note: "Alicia’s account of her father" }
+      ]
+    },
+    {
+      id: "western-mother", name: "The Westerns’ mother", aliases: ["Bobby and Alicia’s mother"], kind: "unnamed", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["dies when Alicia is eleven"], locations: ["the Western family home", "Tennessee"],
+      description: "Bobby and Alicia’s mother. Alicia remembers her as religious, socially conventional, and uneasy with her daughter’s intellectual interests and behavior.",
+      references: [
+        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections" },
+        { book: "sm", locator: "Sessions I–V", note: "Alicia’s account of her mother" }
+      ]
+    },
+    {
+      id: "miss-vivian", name: "Miss Vivian", aliases: ["the old lady"], kind: "person", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["appears among Alicia’s hallucinations"], locations: ["Alicia’s rooms", "Granellen’s house"],
+      description: "An elderly woman in Alicia’s hallucinatory company, usually described in a hat, veil, and fur stole. Alicia distinguishes her from the Kid’s theatrical acts and treats her with particular concern.",
+      references: [
+        { book: "passenger", locator: "Chs. I, III, and IX, Alicia interludes", note: "Appearances with the Kid’s company" },
+        { book: "sm", locator: "Session IV", note: "Alicia describes Miss Vivian" }
+      ]
+    },
+    {
+      id: "oiler-passenger", name: "Oiler", aliases: [], kind: "person", prominence: "major",
+      books: ["passenger"], dates: ["1980"], locations: ["New Orleans", "the Gulf of Mexico", "offshore drilling sites"],
+      description: "Bobby’s colleague at Taylor’s diving operation and his partner on the submerged-aircraft job. A veteran of the Vietnam War, he later dies during offshore work.",
+      references: [
+        { book: "passenger", locator: "Ch. I, Bobby narrative", note: "Dive on the submerged JetStar" },
+        { book: "passenger", locator: "Ch. III, Bobby narrative", note: "Conversations about the aircraft and the war" },
+        { book: "passenger", locator: "Ch. VI, Bobby narrative", note: "Report of Oiler’s death" }
+      ]
+    },
+    {
+      id: "kline-passenger", name: "Kline", aliases: [], kind: "person", prominence: "major",
+      books: ["passenger"], dates: ["1980"], locations: ["New Orleans", "New York"],
+      description: "A private investigator whom Bobby consults after government agents search his rooms and accounts. Kline examines the pressure on Bobby and discusses the institutions and records that make him traceable.",
+      references: [
+        { book: "passenger", locator: "Chs. VI–VII, Bobby narrative", note: "First consultations about the investigation" },
+        { book: "passenger", locator: "Chs. VIII–IX, Bobby narrative", note: "Further inquiries and advice" }
+      ]
+    },
+    {
+      id: "john-sheddan", name: "John Sheddan", aliases: ["Long John Sheddan", "Sheddan"], kind: "person", prominence: "major",
+      books: ["passenger"], dates: ["dies in 1980"], locations: ["New Orleans", "Knoxville", "the Napoleon House"],
+      description: "A dealer in prescription drugs and longtime friend of Bobby. His extended conversations with Bobby concern Alicia, their shared past, and his own failing health.",
+      references: [
+        { book: "passenger", locator: "Ch. I, Bobby narrative", note: "Conversation at the Napoleon House" },
+        { book: "passenger", locator: "Chs. V–VIII, Bobby narrative", note: "Knoxville meetings and later conversations" },
+        { book: "passenger", locator: "Chs. IX–X, Bobby narrative", note: "Death and posthumous letter" }
+      ]
+    },
+    {
+      id: "borman-passenger", name: "Borman", aliases: [], kind: "person", prominence: "major",
+      books: ["passenger"], dates: ["1980"], locations: ["Mississippi", "New Orleans", "the Napoleon House"],
+      description: "A friend of Bobby and Red who lives for a time in an isolated trailer. Bobby retrieves him at his family’s request, and their conversations address Bobby’s habits, acquaintances, and retreat from ordinary life.",
+      references: [
+        { book: "passenger", locator: "Ch. VI, Bobby narrative", note: "Bobby’s visit to the trailer" },
+        { book: "passenger", locator: "Chs. VII–VIII, Bobby narrative", note: "Later meetings in New Orleans" }
+      ]
+    },
+    {
+      id: "debussy-fields", name: "Debussy Fields", aliases: ["Debussy"], kind: "person", prominence: "secondary",
+      books: ["passenger"], dates: ["1980"], locations: ["New Orleans", "Galatoire’s", "the French Quarter"],
+      description: "A transgender woman and friend of Bobby who recounts her childhood, transition, marriages, and work. Their meals and conversations also touch on Alicia and Bobby’s tendency to live apart from others.",
+      references: [
+        { book: "passenger", locator: "Ch. II, Bobby narrative", note: "Lunch at Galatoire’s" },
+        { book: "passenger", locator: "Chs. VII–IX, Bobby narrative", note: "Later conversations in New Orleans" }
+      ]
+    },
+    {
+      id: "josie-passenger", name: "Josie", aliases: [], kind: "person", prominence: "secondary",
+      books: ["passenger"], dates: ["1980"], locations: ["the Seven Seas", "New Orleans"],
+      description: "A central figure at the Seven Seas, the bar where Bobby lives and meets friends. She monitors the residents, passes on messages, and helps maintain the bar’s informal community.",
+      references: [
+        { book: "passenger", locator: "Chs. I and III–V, Bobby narrative", note: "Life at the Seven Seas" },
+        { book: "passenger", locator: "Chs. VIII–IX, Bobby narrative", note: "Bobby’s later returns" }
+      ]
+    },
+    {
+      id: "janice-passenger", name: "Janice", aliases: ["Jan"], kind: "person", prominence: "secondary",
+      books: ["passenger"], dates: ["1980"], locations: ["the Seven Seas", "New Orleans"],
+      description: "A bartender at the Seven Seas and one of Bobby’s regular contacts there. She looks after his cat Billy Ray when he leaves New Orleans.",
+      references: [
+        { book: "passenger", locator: "Chs. III and V–VI, Bobby narrative", note: "Work at the Seven Seas" },
+        { book: "passenger", locator: "Chs. VII–VIII, Bobby narrative", note: "Bobby’s absence and Billy Ray" }
+      ]
+    },
+    {
+      id: "lou-passenger", name: "Lou", aliases: [], kind: "person", prominence: "secondary",
+      books: ["passenger"], dates: ["1980"], locations: ["Taylor’s diving operation", "Belle Chasse"],
+      description: "The operations manager at Taylor’s, where Bobby, Oiler, and Red work as divers. He has limited information about the aircraft assignment and later refers Bobby to another offshore job.",
+      references: [
+        { book: "passenger", locator: "Ch. II, Bobby narrative", note: "Discussion of the JetStar assignment" },
+        { book: "passenger", locator: "Ch. VI, Bobby narrative", note: "Bobby’s return to the diving office" }
+      ]
+    },
+    {
+      id: "red-passenger", name: "Red", aliases: [], kind: "person", prominence: "secondary",
+      books: ["passenger"], dates: ["1980"], locations: ["Taylor’s diving operation", "New Orleans", "Mississippi"],
+      description: "A diver at Taylor’s and a friend of Bobby, Oiler, and Borman. He discusses the submerged aircraft with Bobby and helps him locate Borman.",
+      references: [
+        { book: "passenger", locator: "Ch. I, Bobby narrative", note: "Discussion with Bobby and Oiler" },
+        { book: "passenger", locator: "Ch. VI, Bobby narrative", note: "Work at Taylor’s and news of Borman" }
+      ]
+    },
+    {
+      id: "billy-ray-passenger", name: "Billy Ray", aliases: ["Bobby’s cat"], kind: "animal", prominence: "minor",
+      books: ["passenger"], dates: ["1980"], locations: ["Bobby’s room", "the Seven Seas"],
+      description: "Bobby’s cat at the Seven Seas. Janice cares for him during Bobby’s absences.",
+      references: [
+        { book: "passenger", locator: "Chs. I and III, Bobby narrative", note: "Bobby’s room at the Seven Seas" },
+        { book: "passenger", locator: "Chs. V–VI, Bobby narrative", note: "Care during Bobby’s travel" }
+      ]
+    },
+    {
+      id: "bathless-grogan", name: "Bathless Grogan", aliases: ["Grogan", "the bathless one"], kind: "person", prominence: "minor",
+      books: ["passenger"], dates: ["appears among Alicia’s hallucinations"], locations: ["Alicia’s rooms"],
+      description: "A member of the Kid’s hallucinatory company, presented as an Irish singer and dancer whom the Kid calls forward during one of the performances.",
+      references: [
+        { book: "passenger", locator: "Ch. I, Alicia interlude", note: "Mentioned among the company" },
+        { book: "passenger", locator: "Ch. III, Alicia interlude", note: "Song and dance performance" }
+      ]
+    },
+    {
+      id: "crandall-passenger", name: "Crandall", aliases: ["the dummy"], kind: "person", prominence: "minor",
+      books: ["passenger"], dates: ["known to Alicia from childhood"], locations: ["Alicia’s rooms", "the Kid’s performance"],
+      description: "A ventriloquist’s dummy from Alicia’s childhood who appears in one of the Kid’s staged scenes. Alicia recognizes him and recalls having known him when she was six.",
+      references: [{ book: "passenger", locator: "Ch. VII, Alicia interlude", note: "Recognition during the staged removal" }]
+    },
+    {
+      id: "dr-michael-cohen", name: "Dr Michael Cohen", aliases: ["Dr Cohen", "Michael"], kind: "person", prominence: "principal",
+      books: ["sm"], dates: ["1972"], locations: ["Stella Maris, Black River Falls, Wisconsin"],
+      description: "The psychiatrist who conducts the seven recorded sessions with Alicia Western. His questions organize the conversations around her hallucinations, mathematics, family history, and reasons for returning to Stella Maris.",
+      references: [{ book: "sm", locator: "Sessions I–VII", note: "Recorded conversations with Alicia" }]
+    },
+    {
+      id: "archatron", name: "The Archatron", aliases: ["the presence"], kind: "unnamed", prominence: "secondary",
+      books: ["sm"], dates: ["described during Alicia’s 1972 admission"], locations: ["Alicia’s perceptions", "Stella Maris"],
+      description: "A presence Alicia distinguishes from the Kid and his company. She describes it to Cohen as an impersonal and threatening form encountered without ordinary sensory features.",
+      references: [
+        { book: "sm", locator: "Session IV", note: "Alicia introduces the Archatron" },
+        { book: "sm", locator: "Session V", note: "Further discussion of the encounter" }
+      ]
+    },
+    {
+      id: "john-wesley-rattner", name: "John Wesley Rattner", aliases: ["John Wesley"], kind: "person", prominence: "principal",
+      books: ["oph"], dates: ["adolescence", "from the 1930s into the postwar years"], locations: ["Red Branch, Tennessee", "the orchard", "Mr Eller’s store", "Knoxville"],
+      description: "The son of Kenneth and Mildred Rattner. He hunts and traps around Red Branch and becomes attached to Marion Sylder without knowing that Sylder killed his father.",
+      references: [
+        { book: "oph", locator: "Part II, Chs. 2 and 6", note: "Family history and friendship with Sylder" },
+        { book: "oph", locator: "Part III, Ch. 1", note: "Hunting with Warn Pulliam" },
+        { book: "oph", locator: "Part IV, Chs. 1 and 9", note: "Sylder’s arrest and John Wesley’s return" }
+      ]
+    },
+    {
+      id: "marion-sylder", name: "Marion Sylder", aliases: ["Sylder"], kind: "person", prominence: "principal",
+      books: ["oph"], dates: ["from the 1930s into the postwar years"], locations: ["Red Branch, Tennessee", "Atlanta", "Knoxville", "the orchard road"],
+      description: "A Red Branch native who transports illegal whiskey. He kills Kenneth Rattner during an attack, conceals the body, and later befriends Rattner’s son John Wesley.",
+      references: [
+        { book: "oph", locator: "Part I, Chs. 1–2", note: "Return to Red Branch and Kenneth Rattner’s death" },
+        { book: "oph", locator: "Part II, Chs. 6–7", note: "Bootlegging and friendship with John Wesley" },
+        { book: "oph", locator: "Part IV, Chs. 1, 4, and 7", note: "Investigation, arrest, and imprisonment" }
+      ]
+    },
+    {
+      id: "arthur-ownby", name: "Arthur Ownby", aliases: ["Uncle Ather", "the orchard keeper"], kind: "person", prominence: "principal",
+      books: ["oph"], dates: ["elderly during the principal action"], locations: ["the abandoned orchard", "Red Branch", "Knoxville"],
+      description: "An elderly man who lives near the abandoned orchard and tends the trees. He watches over the spray pit where Sylder has hidden Kenneth Rattner’s body, though he does not know the dead man’s identity.",
+      references: [
+        { book: "oph", locator: "Part I, Chs. 1–2", note: "Life at the orchard and the spray pit" },
+        { book: "oph", locator: "Part IV, Chs. 2–3", note: "The government tank and the search for Ownby" },
+        { book: "oph", locator: "Part IV, Chs. 6 and 8", note: "Capture and confinement" }
+      ]
+    },
+    {
+      id: "kenneth-rattner", name: "Kenneth Rattner", aliases: ["Kenneth", "Rattner"], kind: "person", prominence: "major",
+      books: ["oph"], dates: ["dies before the principal action"], locations: ["Atlanta", "the road to Red Branch", "the orchard spray pit"],
+      description: "Mildred’s husband and John Wesley’s father, an itinerant laborer and thief. He attacks Sylder after accepting a ride and is killed in the struggle.",
+      references: [
+        { book: "oph", locator: "Part I, Ch. 1", note: "Meeting with Sylder and death" },
+        { book: "oph", locator: "Part II, Ch. 2", note: "John Wesley’s account of his father" },
+        { book: "oph", locator: "Part IV, Chs. 8–9", note: "Discovery and identification of the body" }
+      ]
+    },
+    {
+      id: "mildred-rattner", name: "Mildred Rattner", aliases: ["Mildred", "Mrs Rattner"], kind: "person", prominence: "major",
+      books: ["oph"], dates: ["from the 1930s into the postwar years"], locations: ["Red Branch, Tennessee", "Akron, Ohio"],
+      description: "Kenneth Rattner’s wife and John Wesley’s mother. She raises John Wesley after Kenneth’s disappearance and later leaves Tennessee.",
+      references: [
+        { book: "oph", locator: "Part I, Ch. 1", note: "Kenneth’s return to the family" },
+        { book: "oph", locator: "Part IV, Chs. 1 and 9", note: "John Wesley’s home and the family’s departure" }
+      ]
+    },
+    {
+      id: "jefferson-gifford", name: "Jefferson Gifford", aliases: ["Sheriff Gifford", "Gifford"], kind: "person", prominence: "major",
+      books: ["oph"], dates: ["during the principal action"], locations: ["Knox County", "Red Branch", "the orchard"],
+      description: "The county sheriff who investigates bootlegging in Red Branch. His inquiries connect Sylder’s whiskey runs with Ownby and the body in the orchard.",
+      references: [
+        { book: "oph", locator: "Part II, Ch. 6", note: "Investigation of Sylder" },
+        { book: "oph", locator: "Part III, Ch. 2", note: "Questioning after the automobile wreck" },
+        { book: "oph", locator: "Part IV, Chs. 4 and 8", note: "Arrests and the orchard investigation" }
+      ]
+    },
+    {
+      id: "warn-pulliam", name: "Warn Pulliam", aliases: ["Warn"], kind: "person", prominence: "secondary",
+      books: ["oph"], dates: ["adolescence"], locations: ["Red Branch", "the woods", "Mr Eller’s store"],
+      description: "John Wesley’s friend and hunting companion. He is part of the group of local boys who trap, trade, and exchange stories around Red Branch.",
+      references: [
+        { book: "oph", locator: "Part III, Ch. 1", note: "Hunting and trapping with John Wesley" },
+        { book: "oph", locator: "Part IV, Chs. 4 and 7", note: "News of Sylder and the orchard" }
+      ]
+    },
+    {
+      id: "mr-eller", name: "Mr Eller", aliases: ["Eller"], kind: "person", prominence: "secondary",
+      books: ["oph"], dates: ["during the principal action"], locations: ["Mr Eller’s store", "Red Branch"],
+      description: "The proprietor of the Red Branch store where John Wesley, Warn, and other residents gather. His store is a local point of exchange for goods and information.",
+      references: [
+        { book: "oph", locator: "Part I, Chs. 1–2", note: "The Red Branch store" },
+        { book: "oph", locator: "Part III, Ch. 1", note: "John Wesley and the local boys" },
+        { book: "oph", locator: "Part IV, Chs. 1, 4, and 7–8", note: "News of the arrests and the body" }
+      ]
+    },
+    {
+      id: "june-tipton", name: "June Tipton", aliases: ["June"], kind: "person", prominence: "secondary",
+      books: ["oph"], dates: ["during the principal action"], locations: ["Red Branch", "Knoxville", "the bootlegging routes"],
+      description: "A member of the Tipton family involved in the local whiskey trade and one of Sylder’s associates.",
+      references: [
+        { book: "oph", locator: "Part I, Ch. 1", note: "Sylder’s Red Branch connections" },
+        { book: "oph", locator: "Part II, Ch. 6", note: "The bootlegging network" },
+        { book: "oph", locator: "Part IV, Chs. 6 and 8", note: "Later reports and investigation" }
+      ]
+    },
+    {
+      id: "legwater", name: "Legwater", aliases: [], kind: "person", prominence: "secondary",
+      books: ["oph"], dates: ["during the principal action"], locations: ["Knox County", "Red Branch", "the orchard road"],
+      description: "A milkman who supplies Sheriff Gifford with information about Sylder and the automobile wreck near the orchard.",
+      references: [
+        { book: "oph", locator: "Part II, Ch. 6", note: "Information given to Gifford" },
+        { book: "oph", locator: "Part III, Ch. 2", note: "The wreck investigation" },
+        { book: "oph", locator: "Part IV, Ch. 8", note: "The body in the orchard" }
+      ]
+    },
+    {
+      id: "scout-and-buster", name: "Scout and Buster", aliases: ["Ownby’s dogs"], kind: "animal", prominence: "secondary",
+      books: ["oph"], dates: ["during the principal action"], locations: ["the orchard", "Red Branch woods"],
+      description: "Arthur Ownby’s dogs. Scout is his principal companion in the orchard and in the woods; Buster is the other dog kept at his cabin.",
+      references: [
+        { book: "oph", locator: "Part I, Ch. 2", note: "Ownby’s life at the orchard" },
+        { book: "oph", locator: "Part III, Ch. 1", note: "Encounter with the hunting boys" },
+        { book: "oph", locator: "Part IV, Chs. 2–3 and 6", note: "Ownby’s flight and capture" }
+      ]
+    },
+    {
+      id: "johnny-romines", name: "Johnny Romines", aliases: ["Johnny"], kind: "person", prominence: "minor",
+      books: ["oph"], dates: ["adolescence"], locations: ["Red Branch", "the woods"],
+      description: "One of the Red Branch boys who hunts and trades with John Wesley and Warn Pulliam.",
+      references: [
+        { book: "oph", locator: "Part III, Ch. 1", note: "The boys’ hunting expedition" },
+        { book: "oph", locator: "Part IV, Ch. 8", note: "Later news in Red Branch" }
+      ]
+    },
+    {
+      id: "boog-oph", name: "Boog", aliases: [], kind: "person", prominence: "minor",
+      books: ["oph"], dates: ["adolescence"], locations: ["Red Branch", "the woods"],
+      description: "A boy in Warn Pulliam’s circle who takes part in the group’s hunting and trapping.",
+      references: [{ book: "oph", locator: "Part III, Ch. 1", note: "The boys’ hunting expedition" }]
+    },
+    {
+      id: "ef-hobie", name: "Ef Hobie", aliases: ["Hobie"], kind: "person", prominence: "minor",
+      books: ["oph"], dates: ["before and during the principal action"], locations: ["the Green Fly Inn", "Red Branch"],
+      description: "A figure associated with the Green Fly Inn and the earlier phase of Red Branch’s whiskey trade.",
+      references: [
+        { book: "oph", locator: "Part I, Ch. 1", note: "The Green Fly Inn" },
+        { book: "oph", locator: "Part II, Ch. 6", note: "Recollections of the bootlegging trade" }
+      ]
+    },
+    {
+      id: "man-road", name: "The man", aliases: ["the father", "Papa"], kind: "unnamed", prominence: "principal",
+      books: ["road"], dates: ["years after the catastrophe"], locations: ["the road", "the mountains", "the coast"],
+      description: "The boy’s father. Ill and increasingly weak, he leads his son south, searches for food and shelter, and tries to keep him apart from the violence of other survivors.",
+      references: [
+        { book: "road", locator: "Opening narrative", note: "Journey south with the boy" },
+        { book: "road", locator: "Middle narrative", note: "The bunker, Ely, and the coastward journey" },
+        { book: "road", locator: "Closing narrative", note: "Final illness and death" }
+      ]
+    },
+    {
+      id: "boy-road", name: "The boy", aliases: ["the son"], kind: "unnamed", prominence: "principal",
+      books: ["road"], dates: ["born after the catastrophe", "childhood"], locations: ["the road", "the mountains", "the coast"],
+      description: "The man’s son, born after the catastrophe. His concern for strangers repeatedly tests his father’s rules about danger, charity, and the people they call the good guys.",
+      references: [
+        { book: "road", locator: "Opening narrative", note: "Travel and the father’s instructions" },
+        { book: "road", locator: "Middle narrative", note: "Encounters with Ely and the thief" },
+        { book: "road", locator: "Closing narrative", note: "His father’s death and the new family" }
+      ]
+    },
+    {
+      id: "mother-road", name: "The mother", aliases: ["the woman", "the man’s wife"], kind: "unnamed", prominence: "major",
+      books: ["road"], dates: ["dies before the principal journey"], locations: ["the family home", "the man’s memories"],
+      description: "The boy’s mother and the man’s wife. Convinced that capture is inevitable, she leaves the family and dies by suicide before the southward journey.",
+      references: [
+        { book: "road", locator: "Opening narrative", note: "The man’s memories of her death" },
+        { book: "road", locator: "Middle narrative", note: "The boy’s questions about his mother" }
+      ]
+    },
+    {
+      id: "ely-road", name: "Ely", aliases: ["the old man", "not Ely"], kind: "person", prominence: "secondary",
+      books: ["road"], dates: ["elderly"], locations: ["the road"],
+      description: "An old traveler whom the man and boy feed and shelter for a night. He says that Ely is not his real name and speaks with the man about survival and belief.",
+      references: [{ book: "road", locator: "Middle narrative", note: "A night on the road with the man and boy" }]
+    },
+    {
+      id: "thief-road", name: "The thief", aliases: ["the cart thief"], kind: "unnamed", prominence: "secondary",
+      books: ["road"], dates: ["late in the journey"], locations: ["the coast road"],
+      description: "A starving man who takes the travelers’ cart and possessions. The father recovers the goods and makes him surrender his clothes, despite the boy’s objections.",
+      references: [{ book: "road", locator: "Late narrative", note: "The theft and recovery of the cart" }]
+    },
+    {
+      id: "road-rat", name: "The road rat", aliases: ["the truck man"], kind: "unnamed", prominence: "secondary",
+      books: ["road"], dates: ["early in the journey"], locations: ["a mountain road", "the disabled truck"],
+      description: "An armed member of a group traveling by truck. He seizes the boy, and the father shoots him before escaping into the woods.",
+      references: [{ book: "road", locator: "Early narrative", note: "Encounter at the disabled truck" }]
+    },
+    {
+      id: "veteran-road", name: "The veteran", aliases: ["the man with the shotgun", "the final man"], kind: "unnamed", prominence: "major",
+      books: ["road"], dates: ["after the father’s death"], locations: ["the coast road"],
+      description: "An armed survivor traveling with his wife and children. He approaches the boy after the father’s death and offers to take him into the family.",
+      references: [{ book: "road", locator: "Closing narrative", note: "The boy joins the family" }]
+    },
+    {
+      id: "veterans-wife-road", name: "The veteran’s wife", aliases: ["the final woman"], kind: "unnamed", prominence: "secondary",
+      books: ["road"], dates: ["after the father’s death"], locations: ["the coast road"],
+      description: "A woman traveling with the veteran and their children. She welcomes the boy and speaks with him about his father, prayer, and God.",
+      references: [{ book: "road", locator: "Closing narrative", note: "The boy’s life with the new family" }]
+    },
+    {
+      id: "burned-man-road", name: "The burned man", aliases: ["the lightning-struck man"], kind: "unnamed", prominence: "minor",
+      books: ["road"], dates: ["early in the journey"], locations: ["the road"],
+      description: "A badly burned survivor found walking alone. The boy wants to help him, but the father refuses because they have too little food.",
+      references: [{ book: "road", locator: "Early narrative", note: "Brief encounter on the road" }]
+    },
+    {
+      id: "cellar-prisoners-road", name: "The cellar prisoners", aliases: ["the captives"], kind: "unnamed", prominence: "secondary",
+      books: ["road"], dates: ["during the southward journey"], locations: ["the cellar of a large house"],
+      description: "A group of mutilated captives held in a locked cellar by people who use them for food. The man and boy discover them and flee when the owners return.",
+      references: [{ book: "road", locator: "Middle narrative", note: "Discovery in the locked cellar" }]
+    },
     {
       id: "culla-holme", name: "Culla Holme", aliases: ["Culla", "Holme"], kind: "person", prominence: "principal",
       books: ["od"], dates: ["undated", "from March into autumn"], locations: ["Appalachian South", "the Holme cabin", "Johnson County", "river country", "the swamp road"],
