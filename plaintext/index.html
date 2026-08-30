@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Plaintext — A quiet place for raw text</title>
-  <meta name="description" content="Plaintext is a quiet, fullscreen-first Markdown editor for focused writing on macOS.">
+  <title>Plaintext — A quiet text editor</title>
+  <meta name="description" content="Plaintext is a quiet, fullscreen-first editor for focused writing on macOS.">
   <link rel="canonical" href="https://aumasson.jp/plaintext/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Plaintext — A quiet place for raw text">
-  <meta property="og:description" content="A quiet, fullscreen-first Markdown editor for focused writing on macOS.">
+  <meta property="og:title" content="Plaintext, a quiet text editor.">
+  <meta property="og:description" content="A quiet, fullscreen-first editor for focused writing on macOS.">
   <meta property="og:url" content="https://aumasson.jp/plaintext/">
   <meta property="og:image" content="https://aumasson.jp/plaintext/og.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Plaintext — A quiet place for raw text">
-  <meta name="twitter:description" content="A quiet, fullscreen-first Markdown editor for focused writing on macOS.">
+  <meta name="twitter:title" content="Plaintext, a quiet text editor.">
+  <meta name="twitter:description" content="A quiet, fullscreen-first editor for focused writing on macOS.">
   <meta name="twitter:image" content="https://aumasson.jp/plaintext/og.png">
   <style>
     :root {
@@ -86,6 +86,8 @@
       line-height: .86;
     }
 
+    h1 em { font-style: italic; }
+
     .lede {
       max-width: 600px;
       margin: 38px 0 0;
@@ -149,28 +151,6 @@
       color: var(--muted);
     }
 
-    .details {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 70px;
-      margin-top: 84px;
-      padding-top: 44px;
-      border-top: 1px solid var(--line);
-    }
-
-    .details p { margin: 0; color: var(--muted); }
-
-    ul {
-      display: grid;
-      gap: 7px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #37332d;
-    }
-
-    li::before { content: "— "; color: var(--accent); }
-
     footer {
       display: flex;
       justify-content: space-between;
@@ -187,8 +167,7 @@
     @media (max-width: 640px) {
       .page { width: min(100% - 32px, 980px); }
       main { padding-top: 56px; }
-      .principles, .details { grid-template-columns: 1fr; }
-      .details { gap: 28px; margin-top: 60px; }
+      .principles { grid-template-columns: 1fr; }
       footer { flex-direction: column; }
     }
   </style>
@@ -202,8 +181,8 @@
 
     <main>
       <p class="eyebrow">Plaintext</p>
-      <h1>A quiet place<br>for raw text.</h1>
-      <p class="lede">A fullscreen-first Markdown editor for fiction, drafts, and the rare pleasure of working on one thing at a time.</p>
+      <h1><em>Plaintext</em>,<br>a quiet text editor.</h1>
+      <p class="lede">A fullscreen-first editor for clear writing and the pleasure of working on one thing at a time.</p>
 
       <div class="actions">
         <a class="button primary" href="https://github.com/veorq/Plaintext/releases/tag/v0.1.0-beta.1">Download beta for macOS</a>
@@ -214,11 +193,11 @@
       <section class="principles" aria-label="Plaintext principles">
         <article class="principle">
           <h2>One document</h2>
-          <p>No tabs, no file library, and no split attention. Opening another document replaces the current one.</p>
+          <p>No tabs, no file library.</p>
         </article>
         <article class="principle">
           <h2>Only the words</h2>
-          <p>Markdown is shown as raw text. There is no formatting, syntax colour, or spellcheck competing for your attention.</p>
+          <p>No formatting, syntax highlighting, or spellcheck.</p>
         </article>
         <article class="principle">
           <h2>Quiet by default</h2>
@@ -230,18 +209,6 @@
         </article>
       </section>
 
-      <section class="details">
-        <div>
-          <h2>For long-form writing</h2>
-          <p>Plaintext is designed for staying with a story, an essay, or a draft—not for managing a system.</p>
-        </div>
-        <ul>
-          <li>Six predefined typefaces and themes</li>
-          <li>Optional word count and key sound</li>
-          <li>Find and replace, undo and redo</li>
-          <li>Local automatic version history</li>
-        </ul>
-      </section>
     </main>
 
     <footer>
