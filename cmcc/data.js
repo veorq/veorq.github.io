@@ -1,7 +1,6 @@
 window.CONCORDANCE_DATA = {
   meta: {
     title: "Cormac McCarthy Character Index",
-    subtitle: "Characters, places, dates, and crossings",
     updated: "30 August 2026",
     notice: "Contains plot details and endings.",
     sourceNote: "References were checked against the supplied EPUB editions. They use chapters, Parts, sessions, or narrative sequence according to each book’s structure, and EPUB sections where no named division is available. Page numbers are omitted because they vary by edition."

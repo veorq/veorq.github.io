@@ -14,8 +14,7 @@
     detail: document.querySelector('#detail'),
     bookGrid: document.querySelector('#book-grid'),
     sourceNote: document.querySelector('#source-note'),
-    updated: document.querySelector('#updated'),
-    coverageJump: document.querySelector('#coverage-jump')
+    updated: document.querySelector('#updated')
   };
 
   const state = {
@@ -217,9 +216,6 @@
     renderResults();
   });
   elements.clear.addEventListener('click', clearFilters);
-  elements.coverageJump.addEventListener('click', () => {
-    document.querySelector('#coverage').scrollIntoView({ behavior: 'smooth' });
-  });
 
   document.addEventListener('keydown', event => {
     if (event.key === '/' && document.activeElement !== elements.search) {
