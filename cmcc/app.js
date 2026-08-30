@@ -80,7 +80,7 @@
     if (!characters.length) {
       elements.results.innerHTML = `
         <div class="empty-state">
-          <strong>No one came out of the dark.</strong>
+          <strong>No characters found.</strong>
           Try another name, place, date, or filter.
         </div>`;
       elements.detail.innerHTML = '';

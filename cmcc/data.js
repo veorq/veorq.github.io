@@ -1,48 +1,48 @@
 window.CONCORDANCE_DATA = {
   meta: {
-    title: "The Cormac McCarthy Concordance",
-    subtitle: "Persons, places, dates, and crossings",
-    updated: "29 August 2026",
+    title: "Cormac McCarthy Character Index",
+    subtitle: "Characters, places, dates, and crossings",
+    updated: "30 August 2026",
     notice: "Contains plot details and endings.",
-    sourceNote: "References were checked against the supplied EPUB editions. Outer Dark, Child of God, Suttree, and All the Pretty Horses preserve print-page anchors. Blood Meridian is cited by chapter; The Crossing and Cities of the Plain are cited by Part and EPUB section because those files have no stable page map."
+    sourceNote: "References were checked against the supplied EPUB editions. They use chapters where the novel has them, Parts where that is the most stable division, and EPUB sections where no chapter structure is available. Page numbers are omitted because they vary by edition."
   },
 
   books: [
     { id: "oph", title: "The Orchard Keeper", year: 1965, indexed: false },
     {
       id: "od", title: "Outer Dark", year: 1968, indexed: true,
-      period: "undated; from a March birth into autumn", sections: "23 unnumbered narrative sections", referenceSystem: "Section and print page",
+      period: "undated; from a March birth into autumn", sections: "23 unnumbered narrative sections", referenceSystem: "EPUB section",
       edition: "Vintage International / Knopf Doubleday EPUB, ISBN 978-0-307-76249-8"
     },
     {
       id: "cog", title: "Child of God", year: 1973, indexed: true,
-      period: "months before April 1965", sections: "Parts I–III; 52 short sections", referenceSystem: "Part, section, and print page",
+      period: "months before April 1965", sections: "Parts I–III; 52 short sections", referenceSystem: "Part and EPUB section",
       edition: "Knopf Doubleday EPUB, ISBN 978-0-307-76248-1"
     },
     {
       id: "sut", title: "Suttree", year: 1979, indexed: true,
-      period: "begins in 1951; spans several years", sections: "34 chapters", referenceSystem: "Chapter and print page",
+      period: "begins in 1951; spans several years", sections: "34 chapters", referenceSystem: "Chapter",
       edition: "Vintage International / Knopf Doubleday EPUB, ISBN 978-0-307-76247-4"
     },
     {
       id: "bm", title: "Blood Meridian", year: 1985, indexed: true,
       period: "1849–1850; final chapter in 1878", sections: "Chapters I–XXIII and epilogue", referenceSystem: "Chapter",
-      edition: "Picador EPUB, ISBN 978-1-4472-8946-3; supplied file has no print-page map"
+      edition: "Picador EPUB, ISBN 978-1-4472-8946-3"
     },
     {
       id: "atph", title: "All the Pretty Horses", year: 1992, indexed: true,
-      period: "c. 1949–1950", sections: "Parts I–IV", referenceSystem: "Part and print page",
+      period: "c. 1949–1950", sections: "Parts I–IV", referenceSystem: "Part",
       edition: "Knopf Doubleday EPUB, ISBN 978-0-307-48130-6"
     },
     {
       id: "crossing", title: "The Crossing", year: 1994, indexed: true,
       period: "late 1930s–1945", sections: "Parts I–IV; eleven EPUB sections", referenceSystem: "Part and EPUB section",
-      edition: "Alfred A. Knopf EPUB; supplied file has no print-page map"
+      edition: "Alfred A. Knopf EPUB"
     },
     {
       id: "cities", title: "Cities of the Plain", year: 1998, indexed: true,
       period: "principally 1952; epilogue c. 2001", sections: "Parts I–IV; twelve EPUB sections", referenceSystem: "Part and EPUB section",
-      edition: "Alfred A. Knopf EPUB; supplied file has no print-page map"
+      edition: "Alfred A. Knopf EPUB"
     },
     { id: "ncfom", title: "No Country for Old Men", year: 2005, indexed: false },
     { id: "road", title: "The Road", year: 2006, indexed: false },
@@ -56,9 +56,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["undated", "from March into autumn"], locations: ["Appalachian South", "the Holme cabin", "Johnson County", "river country", "the swamp road"],
       description: "Rinthy’s brother and the father of her child. He abandons the newborn, conceals what he has done, and wanders through a countryside where suspicion and violence repeatedly gather around him.",
       references: [
-        { book: "od", locator: "§§2–4, pp. 4–33", note: "Birth, abandonment, and departure" },
-        { book: "od", locator: "§§5 and 15, pp. 34–50, 157–183", note: "Work for the squire and encounter with the three men" },
-        { book: "od", locator: "§§21 and 23, pp. 230–242", note: "The child and the final road" }
+        { book: "od", locator: "§§2–4", note: "Birth, abandonment, and departure" },
+        { book: "od", locator: "§§5 and 15", note: "Work for the squire and encounter with the three men" },
+        { book: "od", locator: "§§21 and 23", note: "The child and the final road" }
       ]
     },
     {
@@ -66,9 +66,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["nineteen years old", "gives birth in March", "searches through the following months"], locations: ["the Holme cabin", "Appalachian roads and farms", "a country doctor’s office", "the tinker’s camp"],
       description: "Culla’s sister and the child’s mother. After discovering the empty grave, she sets out on foot to find the baby and follows reports of the tinker across the countryside.",
       references: [
-        { book: "od", locator: "§§2–4, pp. 14–33", note: "Birth, empty grave, and decision to leave" },
-        { book: "od", locator: "§§7–10, pp. 52–116", note: "The search along the road" },
-        { book: "od", locator: "§§14 and 16, pp. 147–156, 184–194", note: "Doctor’s visit and meeting with the tinker" }
+        { book: "od", locator: "§§2–4", note: "Birth, empty grave, and decision to leave" },
+        { book: "od", locator: "§§7–10", note: "The search along the road" },
+        { book: "od", locator: "§§14 and 16", note: "Doctor’s visit and meeting with the tinker" }
       ]
     },
     {
@@ -76,9 +76,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["born in March", "about six months old at death"], locations: ["the Holme cabin", "the woods", "the tinker’s cart", "the three men’s camp"],
       description: "The infant born to Rinthy and Culla, abandoned in the woods, found and carried by the tinker, and made the final object of the three strangers’ violence.",
       references: [
-        { book: "od", locator: "§§2–3, pp. 14–23", note: "Birth, abandonment, and rescue" },
-        { book: "od", locator: "§16, pp. 184–194", note: "Rinthy sees the child with the tinker" },
-        { book: "od", locator: "§21, pp. 230–236", note: "Death at the strangers’ camp" }
+        { book: "od", locator: "§§2–3", note: "Birth, abandonment, and rescue" },
+        { book: "od", locator: "§16", note: "Rinthy sees the child with the tinker" },
+        { book: "od", locator: "§21", note: "Death at the strangers’ camp" }
       ]
     },
     {
@@ -86,9 +86,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["undated", "spring through autumn"], locations: ["the Holme cabin", "country roads", "river settlements", "the three men’s camp"],
       description: "An itinerant peddler who finds the abandoned infant and carries it in his cart. Rinthy follows his route; Culla and the three strangers repeatedly cross it.",
       references: [
-        { book: "od", locator: "§§2–3, pp. 6–23", note: "Visits the Holmes and finds the child" },
-        { book: "od", locator: "§16, pp. 184–194", note: "Encounter with Rinthy" },
-        { book: "od", locator: "§§20–22, pp. 228–238", note: "Pursuit and death" }
+        { book: "od", locator: "§§2–3", note: "Visits the Holmes and finds the child" },
+        { book: "od", locator: "§16", note: "Encounter with Rinthy" },
+        { book: "od", locator: "§§20–22", note: "Pursuit and death" }
       ]
     },
     {
@@ -96,9 +96,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["undated"], locations: ["the opening glade", "the squire’s road", "a country cabin", "the river", "the final camp"],
       description: "The eloquent, bearded leader of the three murderous wanderers. He questions Culla as if conducting a trial and presides over the group’s killings.",
       references: [
-        { book: "od", locator: "§1, pp. 1–3", note: "First appearance with the other strangers" },
-        { book: "od", locator: "§§5 and 12, pp. 34–50, 128–129", note: "Killings along the road" },
-        { book: "od", locator: "§§15 and 21, pp. 157–183, 230–236", note: "Interrogations of Culla" }
+        { book: "od", locator: "§1", note: "First appearance with the other strangers" },
+        { book: "od", locator: "§§5 and 12", note: "Killings along the road" },
+        { book: "od", locator: "§§15 and 21", note: "Interrogations of Culla" }
       ]
     },
     {
@@ -106,9 +106,9 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["undated"], locations: ["the opening glade", "the squire’s road", "the river", "the final camp"],
       description: "The smiling, rifle-carrying member of the three strangers. Unlike the mute companion he is named, and he participates in the group’s pursuit, questioning, and murders.",
       references: [
-        { book: "od", locator: "§§1 and 5, pp. 1–3, 34–50", note: "Early appearances and the squire’s death" },
-        { book: "od", locator: "§15, pp. 157–183", note: "At the river camp with Culla" },
-        { book: "od", locator: "§21, pp. 230–236", note: "The child at the final camp" }
+        { book: "od", locator: "§§1 and 5", note: "Early appearances and the squire’s death" },
+        { book: "od", locator: "§15", note: "At the river camp with Culla" },
+        { book: "od", locator: "§21", note: "The child at the final camp" }
       ]
     },
     {
@@ -116,80 +116,80 @@ window.CONCORDANCE_DATA = {
       books: ["od"], dates: ["undated"], locations: ["the opening glade", "the road", "the river", "the final camp"],
       description: "The silent third member of the wandering triune, distinguished from Harmon by his muteness. His violence culminates in the novel’s most grotesque final act.",
       references: [
-        { book: "od", locator: "§1, pp. 1–3", note: "First appearance" },
-        { book: "od", locator: "§15, pp. 157–183", note: "At the river camp" },
-        { book: "od", locator: "§21, pp. 230–236", note: "The child’s death" }
+        { book: "od", locator: "§1", note: "First appearance" },
+        { book: "od", locator: "§15", note: "At the river camp" },
+        { book: "od", locator: "§21", note: "The child’s death" }
       ]
     },
     {
       id: "squire-od", name: "The squire", aliases: ["Culla’s employer"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["undated"], locations: ["a large farm", "the road beyond the farm"],
       description: "A prosperous landowner who hires Culla to clear timber, feeds him, and gives him boots. The three strangers murder him soon after Culla leaves.",
-      references: [{ book: "od", locator: "§5, pp. 34–50", note: "Culla’s employment and the squire’s death" }]
+      references: [{ book: "od", locator: "§5", note: "Culla’s employment and the squire’s death" }]
     },
     {
       id: "john-od", name: "John", aliases: ["the squire’s mute worker"], kind: "person", prominence: "secondary",
       books: ["od"], dates: ["undated"], locations: ["the squire’s farm"],
       description: "A mute Black worker on the squire’s farm who helps Culla sharpen an axe and tries by gesture to warn the household of approaching danger.",
-      references: [{ book: "od", locator: "§5, pp. 43–50", note: "Work with Culla and warning at the farm" }]
+      references: [{ book: "od", locator: "§5", note: "Work with Culla and warning at the farm" }]
     },
     {
       id: "old-host-od", name: "The old host", aliases: ["the old bearded man", "Culla’s host"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["undated"], locations: ["a remote cabin"],
       description: "An elderly cabin-dweller who gives Culla food and shelter and speaks at length with him about solitude, snakes, sickness, and the world beyond the road.",
-      references: [{ book: "od", locator: "§11, pp. 117–127", note: "Night at the old man’s cabin" }]
+      references: [{ book: "od", locator: "§11", note: "Night at the old man’s cabin" }]
     },
     {
       id: "doctor-od", name: "The country doctor", aliases: ["the doctor"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["about six months after the birth"], locations: ["a small town office"],
       description: "The doctor who examines Rinthy, recognizes that she has recently borne a child, treats her, and helps her understand that the infant may still be alive.",
-      references: [{ book: "od", locator: "§14, pp. 147–156", note: "Examination and conversation with Rinthy" }]
+      references: [{ book: "od", locator: "§14", note: "Examination and conversation with Rinthy" }]
     },
     {
       id: "lawyer-od", name: "The lawyer", aliases: [], kind: "unnamed", prominence: "minor",
       books: ["od"], dates: ["about six months after the birth"], locations: ["a small town office"],
       description: "A town lawyer who lets the exhausted Rinthy wait in his office and directs her to the doctor upstairs.",
-      references: [{ book: "od", locator: "§14, pp. 147–151", note: "Rinthy waits in his office" }]
+      references: [{ book: "od", locator: "§14", note: "Rinthy waits in his office" }]
     },
     {
       id: "ferryman-od", name: "The ferryman", aliases: ["the river ferryman"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["undated"], locations: ["a flooded river crossing"],
       description: "The operator who agrees to carry Culla across a swollen river. The crossing fails catastrophically, leaving Culla once again associated with an unexplained death.",
-      references: [{ book: "od", locator: "§15, pp. 157–172", note: "The night ferry crossing" }]
+      references: [{ book: "od", locator: "§15", note: "The night ferry crossing" }]
     },
     {
       id: "hog-drover-od", name: "The hog drover", aliases: ["Billy’s brother"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["autumn"], locations: ["mountain roads", "a drovers’ camp"],
       description: "A trader driving hogs through the mountains who hires Culla’s help and travels with his younger brother Billy and a one-eyed preacher.",
-      references: [{ book: "od", locator: "§19, pp. 213–227", note: "The hog drive" }]
+      references: [{ book: "od", locator: "§19", note: "The hog drive" }]
     },
     {
       id: "billy-od", name: "Billy", aliases: ["the drover’s little brother"], kind: "person", prominence: "minor",
       books: ["od"], dates: ["autumn", "his first hog drive"], locations: ["mountain roads", "a drovers’ camp"],
       description: "The hog drover’s younger brother, making his first drive and sharing the road and camp with Culla.",
-      references: [{ book: "od", locator: "§19, pp. 216–224", note: "Travel with the hogs" }]
+      references: [{ book: "od", locator: "§19", note: "Travel with the hogs" }]
     },
     {
       id: "one-eyed-preacher-od", name: "The one-eyed preacher", aliases: ["the reverend", "the parson"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["autumn"], locations: ["mountain roads", "the drovers’ camp"],
       description: "A one-eyed itinerant preacher who falls in with the hog drovers and presses Culla with parables about blindness, sin, and spiritual direction.",
-      references: [{ book: "od", locator: "§19, pp. 221–227", note: "Conversation at the drovers’ camp" }]
+      references: [{ book: "od", locator: "§19", note: "Conversation at the drovers’ camp" }]
     },
     {
       id: "blind-man-od", name: "The blind man", aliases: ["the blind traveler"], kind: "unnamed", prominence: "secondary",
       books: ["od"], dates: ["years after the principal events"], locations: ["the swamp road"],
       description: "A blind traveler whom Culla meets in the closing pages. He describes a road laid through a swamp that leads nowhere, giving Culla’s journey its final image.",
-      references: [{ book: "od", locator: "§23, pp. 239–242", note: "The final meeting on the road" }]
+      references: [{ book: "od", locator: "§23", note: "The final meeting on the road" }]
     },
     {
       id: "cornelius-suttree", name: "Cornelius Suttree", aliases: ["Suttree", "Sut", "Cornelius"], kind: "person", prominence: "principal",
       books: ["sut"], dates: ["in Knoxville by 1951", "on the river for several years"], locations: ["Knoxville", "McAnally Flats", "the Tennessee River", "the Smoky Mountains"],
       description: "An estranged son of privilege living as a fisherman on a Knoxville houseboat. His life among the city’s outcasts is marked by drink, friendship, bereavement, illness, love affairs, and an eventual departure.",
       references: [
-        { book: "sut", locator: "Ch. 1, pp. 6–29", note: "Houseboat, river, and McAnally circle" },
-        { book: "sut", locator: "Ch. 10, pp. 148–161", note: "His son’s death and funeral" },
-        { book: "sut", locator: "Chs. 22, 24, and 27, pp. 283–297, 306–363, 379–415", note: "Mountains, Wanda, and Joyce" },
-        { book: "sut", locator: "Ch. 34, pp. 448–471", note: "Illness and departure from Knoxville" }
+        { book: "sut", locator: "Ch. 1", note: "Houseboat, river, and McAnally circle" },
+        { book: "sut", locator: "Ch. 10", note: "His son’s death and funeral" },
+        { book: "sut", locator: "Chs. 22, 24, and 27", note: "Mountains, Wanda, and Joyce" },
+        { book: "sut", locator: "Ch. 34", note: "Illness and departure from Knoxville" }
       ]
     },
     {
@@ -197,10 +197,10 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["late teens in the early 1950s"], locations: ["Knoxville workhouse", "McAnally Flats", "sewers beneath Knoxville", "Suttree’s houseboat"],
       description: "A guileless young offender whose improbable schemes—watermelons, poisoned bats, counterfeiting, and a tunnel beneath the city—make him Suttree’s comic and troublesome protégé.",
       references: [
-        { book: "sut", locator: "Ch. 3, pp. 36–62", note: "Workhouse arrival and the watermelon case" },
-        { book: "sut", locator: "Chs. 6 and 15, pp. 91–106, 207–219", note: "Return to Knoxville and counterfeiting" },
-        { book: "sut", locator: "Ch. 20, pp. 259–277", note: "The tunnel and bat scheme" },
-        { book: "sut", locator: "Ch. 34, pp. 456–466", note: "Final encounters with Suttree" }
+        { book: "sut", locator: "Ch. 3", note: "Workhouse arrival and the watermelon case" },
+        { book: "sut", locator: "Chs. 6 and 15", note: "Return to Knoxville and counterfeiting" },
+        { book: "sut", locator: "Ch. 20", note: "The tunnel and bat scheme" },
+        { book: "sut", locator: "Ch. 34", note: "Final encounters with Suttree" }
       ]
     },
     {
@@ -208,9 +208,9 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "McAnally Flats", "Market Lunch", "the Huddle"],
       description: "Suttree’s closest drinking companion and one of his oldest friends, present through nights of celebration, disaster, recollection, and farewell.",
       references: [
-        { book: "sut", locator: "Ch. 1, pp. 22–29", note: "Introduced in Suttree’s riverfront circle" },
-        { book: "sut", locator: "Ch. 13, pp. 183–194", note: "The roadhouse brawl" },
-        { book: "sut", locator: "Ch. 34, pp. 456–463", note: "Last meeting before Suttree leaves" }
+        { book: "sut", locator: "Ch. 1", note: "Introduced in Suttree’s riverfront circle" },
+        { book: "sut", locator: "Ch. 13", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 34", note: "Last meeting before Suttree leaves" }
       ]
     },
     {
@@ -218,9 +218,9 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Front Street", "Knoxville jail", "the Tennessee River"],
       description: "A formidable Black riverfront resident and Suttree’s friend, proud of resisting Knoxville’s police. Repeated confrontations with the law culminate in a devastating final beating.",
       references: [
-        { book: "sut", locator: "Ch. 7, pp. 107–118", note: "Ab’s house and riverfront community" },
-        { book: "sut", locator: "Chs. 14, 16–17, pp. 195–206, 220–252", note: "Conflict, arrest, and return" },
-        { book: "sut", locator: "Chs. 33–34, pp. 440–465", note: "Final confrontation with police" }
+        { book: "sut", locator: "Ch. 7", note: "Ab’s house and riverfront community" },
+        { book: "sut", locator: "Chs. 14, 16–17", note: "Conflict, arrest, and return" },
+        { book: "sut", locator: "Chs. 33–34", note: "Final confrontation with police" }
       ]
     },
     {
@@ -228,9 +228,9 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville workhouse", "McAnally Flats", "the B&J", "the West Inn"],
       description: "A charismatic and ferociously violent friend of Suttree, equally at home cooking in the workhouse and starting a tavern brawl. He is shot at the West Inn.",
       references: [
-        { book: "sut", locator: "Ch. 3, pp. 36–62", note: "Workhouse cook and inmate" },
-        { book: "sut", locator: "Ch. 13, pp. 183–194", note: "The roadhouse brawl" },
-        { book: "sut", locator: "Ch. 26, pp. 374–378", note: "Final night and shooting" }
+        { book: "sut", locator: "Ch. 3", note: "Workhouse cook and inmate" },
+        { book: "sut", locator: "Ch. 13", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 26", note: "Final night and shooting" }
       ]
     },
     {
@@ -238,8 +238,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["spring of Suttree’s third year on the river"], locations: ["the Tennessee River", "the mussel-fishing camp", "Knoxville"],
       description: "The restless head of a mussel-fishing family who hires Suttree for an increasingly desperate search for freshwater pearls.",
       references: [
-        { book: "sut", locator: "Ch. 24, pp. 306–363", note: "The pearl-hunting expedition" },
-        { book: "sut", locator: "Ch. 25, pp. 364–373", note: "Aftermath of the expedition" }
+        { book: "sut", locator: "Ch. 24", note: "The pearl-hunting expedition" },
+        { book: "sut", locator: "Ch. 25", note: "Aftermath of the expedition" }
       ]
     },
     {
@@ -247,23 +247,23 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["a teenager in the early 1950s"], locations: ["the Reese camp", "the river islands", "the mussel-fishing country"],
       description: "Reese’s daughter, who begins a secret relationship with Suttree during the pearl expedition and dies when a rockslide strikes the camp.",
       references: [
-        { book: "sut", locator: "Ch. 24, pp. 322–349", note: "Life at the Reese camp" },
-        { book: "sut", locator: "Ch. 24, pp. 349–363", note: "Relationship with Suttree and death" }
+        { book: "sut", locator: "Ch. 24", note: "Life at the Reese camp" },
+        { book: "sut", locator: "Ch. 24", note: "Relationship with Suttree and death" }
       ]
     },
     {
       id: "joyce-sut", name: "Joyce", aliases: [], kind: "person", prominence: "major",
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "the Huddle", "a hotel", "Suttree’s houseboat"],
       description: "A sex worker who becomes Suttree’s lover. Her earnings briefly give them a life of theatrical luxury, but jealousy, alcohol, and violence destroy it.",
-      references: [{ book: "sut", locator: "Ch. 27, pp. 379–415", note: "Courtship, extravagant interlude, and separation" }]
+      references: [{ book: "sut", locator: "Ch. 27", note: "Courtship, extravagant interlude, and separation" }]
     },
     {
       id: "michael-sut", name: "Michael", aliases: ["the Indian", "Tonto", "Wahoo", "Chief"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["the Tennessee River", "Knoxville bars", "Suttree’s houseboat"],
       description: "An Indigenous fisherman and river companion whose reserve and practical knowledge make him one of Suttree’s steadier acquaintances.",
       references: [
-        { book: "sut", locator: "Ch. 16, pp. 220–237", note: "Fishing, drinking, and the revelation of his name" },
-        { book: "sut", locator: "Ch. 27, p. 404", note: "Later appearance" }
+        { book: "sut", locator: "Ch. 16", note: "Fishing, drinking, and the revelation of his name" },
+        { book: "sut", locator: "Ch. 27", note: "Later appearance" }
       ]
     },
     {
@@ -271,8 +271,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["the Huddle", "Knoxville", "the Tennessee River"],
       description: "A small, anxious acquaintance who enlists Suttree in an attempt to recover and dispose of his father’s hidden corpse while preserving the dead man’s benefit checks.",
       references: [
-        { book: "sut", locator: "Chs. 16–17, pp. 235–252", note: "The problem of his father’s corpse" },
-        { book: "sut", locator: "Ch. 28, pp. 416–420", note: "Later encounter" }
+        { book: "sut", locator: "Chs. 16–17", note: "The problem of his father’s corpse" },
+        { book: "sut", locator: "Ch. 28", note: "Later encounter" }
       ]
     },
     {
@@ -280,8 +280,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville bars", "McAnally Flats"],
       description: "A blind regular in Suttree’s barroom circle, recognizable by his cane, sharp ear, and participation in the riverfront’s jokes and arguments.",
       references: [
-        { book: "sut", locator: "Ch. 4, pp. 72–75", note: "Early barroom appearance" },
-        { book: "sut", locator: "Ch. 34, pp. 456–457", note: "Late appearance among Suttree’s friends" }
+        { book: "sut", locator: "Ch. 4", note: "Early barroom appearance" },
+        { book: "sut", locator: "Ch. 34", note: "Late appearance among Suttree’s friends" }
       ]
     },
     {
@@ -289,9 +289,9 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["dies at twenty-one"], locations: ["Knoxville", "McAnally Flats", "the roadhouse"],
       description: "A jaunty young friend in the McAnally crowd, remembered for streetwise stories and sudden participation in fights. Suttree later learns of his death.",
       references: [
-        { book: "sut", locator: "Ch. 4, pp. 70–74", note: "Conversation in Knoxville" },
-        { book: "sut", locator: "Ch. 13, pp. 185–190", note: "The roadhouse brawl" },
-        { book: "sut", locator: "Ch. 27, p. 403", note: "News of his death" }
+        { book: "sut", locator: "Ch. 4", note: "Conversation in Knoxville" },
+        { book: "sut", locator: "Ch. 13", note: "The roadhouse brawl" },
+        { book: "sut", locator: "Ch. 27", note: "News of his death" }
       ]
     },
     {
@@ -299,8 +299,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Ab Jones’s house", "McAnally Flats"],
       description: "A vivid raconteur and cardplayer in the Black riverfront community, frequently encountered at Clevenger’s store and Ab Jones’s house.",
       references: [
-        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "At Clevenger’s and Ab’s" },
-        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "A later gathering" }
+        { book: "sut", locator: "Ch. 7", note: "At Clevenger’s and Ab’s" },
+        { book: "sut", locator: "Ch. 11", note: "A later gathering" }
       ]
     },
     {
@@ -308,8 +308,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Howard Clevenger’s store", "Ab Jones’s house"],
       description: "A friend in the McAnally community whose exuberant nickname and recurring presence mark the social world around Clevenger’s store and Ab Jones’s house.",
       references: [
-        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "Introduced in the riverfront circle" },
-        { book: "sut", locator: "Ch. 34, pp. 465–468", note: "Late appearance" }
+        { book: "sut", locator: "Ch. 7", note: "Introduced in the riverfront circle" },
+        { book: "sut", locator: "Ch. 34", note: "Late appearance" }
       ]
     },
     {
@@ -317,8 +317,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville bars", "McAnally Flats", "the roadhouse"],
       description: "A member of Suttree’s drinking circle, a companion in all-night excursions and one of the participants in the great roadhouse brawl.",
       references: [
-        { book: "sut", locator: "Ch. 4, pp. 73–75", note: "In the Knoxville bar crowd" },
-        { book: "sut", locator: "Ch. 13, pp. 183–190", note: "The roadhouse brawl" }
+        { book: "sut", locator: "Ch. 4", note: "In the Knoxville bar crowd" },
+        { book: "sut", locator: "Ch. 13", note: "The roadhouse brawl" }
       ]
     },
     {
@@ -326,8 +326,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Knoxville bars"],
       description: "A drinking companion in Suttree’s loose fraternity of riverfront men, present in the opening circuit of taverns and in later memories of absent friends.",
       references: [
-        { book: "sut", locator: "Ch. 1, pp. 24–26", note: "Opening night in Knoxville" },
-        { book: "sut", locator: "Ch. 13, p. 190", note: "Among the friends in Suttree’s vision" }
+        { book: "sut", locator: "Ch. 1", note: "Opening night in Knoxville" },
+        { book: "sut", locator: "Ch. 13", note: "Among the friends in Suttree’s vision" }
       ]
     },
     {
@@ -335,8 +335,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Knoxville"],
       description: "An elderly healer and diviner in the riverfront community, consulted for remedies and knowledge beyond the official institutions of the city.",
       references: [
-        { book: "sut", locator: "Ch. 4, p. 65", note: "Early mention in McAnally" },
-        { book: "sut", locator: "Ch. 9, p. 145", note: "Harrogate seeks her help" }
+        { book: "sut", locator: "Ch. 4", note: "Early mention in McAnally" },
+        { book: "sut", locator: "Ch. 9", note: "Harrogate seeks her help" }
       ]
     },
     {
@@ -344,8 +344,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["the Tennessee River", "McAnally Flats"],
       description: "An elderly river man whose failing health and remembered presence belong to the older generation of Suttree’s waterfront community.",
       references: [
-        { book: "sut", locator: "Ch. 5, pp. 87–90", note: "Visit on the river" },
-        { book: "sut", locator: "Ch. 25, p. 365", note: "Later recollection" }
+        { book: "sut", locator: "Ch. 5", note: "Visit on the river" },
+        { book: "sut", locator: "Ch. 25", note: "Later recollection" }
       ]
     },
     {
@@ -353,25 +353,25 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["beneath the Knoxville bridge", "the riverbank", "McAnally Flats"],
       description: "A solitary scavenger living under the bridge, alternately hostile, prophetic, and vulnerable. His meditations on death shadow Suttree’s own passage through the river world.",
       references: [
-        { book: "sut", locator: "Ch. 1, pp. 12–14", note: "Introduced beneath the bridge" },
-        { book: "sut", locator: "Ch. 6, pp. 96–101", note: "Harrogate at the ragpicker’s camp" },
-        { book: "sut", locator: "Ch. 19, pp. 256–258", note: "Conversation about death" },
-        { book: "sut", locator: "Ch. 29, pp. 421–422", note: "Final episode" }
+        { book: "sut", locator: "Ch. 1", note: "Introduced beneath the bridge" },
+        { book: "sut", locator: "Ch. 6", note: "Harrogate at the ragpicker’s camp" },
+        { book: "sut", locator: "Ch. 19", note: "Conversation about death" },
+        { book: "sut", locator: "Ch. 29", note: "Final episode" }
       ]
     },
     {
       id: "goatman-sut", name: "The goatman", aliases: ["the goat preacher"], kind: "unnamed", prominence: "secondary",
       books: ["sut"], dates: ["spring in the early 1950s"], locations: ["Knoxville", "the field by the Tennessee River"],
       description: "An itinerant preacher who enters Knoxville with a train of goat-drawn carts, camps by the river, and debates scripture and salvation with Suttree.",
-      references: [{ book: "sut", locator: "Ch. 14, pp. 195–206", note: "Arrival, camp, and conversations with Suttree" }]
+      references: [{ book: "sut", locator: "Ch. 14", note: "Arrival, camp, and conversations with Suttree" }]
     },
     {
       id: "howard-clevenger", name: "Howard Clevenger", aliases: ["Howard"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Front Street", "McAnally Flats"],
       description: "The proprietor of a Front Street store that serves as one of McAnally’s principal meeting places and informal exchanges of news.",
       references: [
-        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "The store and its regulars" },
-        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "Another gathering at the store" }
+        { book: "sut", locator: "Ch. 7", note: "The store and its regulars" },
+        { book: "sut", locator: "Ch. 11", note: "Another gathering at the store" }
       ]
     },
     {
@@ -379,71 +379,71 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "Hatmaker’s bar"],
       description: "A Knoxville tavern keeper whose establishment is a recurring station in Suttree’s nocturnal rounds and his friends’ quarrels.",
       references: [
-        { book: "sut", locator: "Ch. 4, pp. 72–75", note: "At Hatmaker’s bar" },
-        { book: "sut", locator: "Ch. 34, pp. 456–457", note: "Late return to the barroom circle" }
+        { book: "sut", locator: "Ch. 4", note: "At Hatmaker’s bar" },
+        { book: "sut", locator: "Ch. 34", note: "Late return to the barroom circle" }
       ]
     },
     {
       id: "byrd-slusser", name: "Byrd Slusser", aliases: ["Slusser"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville workhouse"],
       description: "A dangerous workhouse inmate kept chained to a heavy pick, whose conflict with Callahan and disappearance become part of the institution’s grim folklore.",
-      references: [{ book: "sut", locator: "Ch. 3, pp. 51–61", note: "Conflict in the workhouse" }]
+      references: [{ book: "sut", locator: "Ch. 3", note: "Conflict in the workhouse" }]
     },
     {
       id: "rufus-wiley", name: "Rufus Wiley", aliases: ["Rufus"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "McAnally Flats"],
       description: "A recurring riverfront acquaintance whose odd jobs and local knowledge connect Harrogate and Suttree with McAnally’s informal economy.",
       references: [
-        { book: "sut", locator: "Ch. 9, pp. 142–143", note: "Encounter with Harrogate" },
-        { book: "sut", locator: "Ch. 32, pp. 431–434", note: "Late appearance" }
+        { book: "sut", locator: "Ch. 9", note: "Encounter with Harrogate" },
+        { book: "sut", locator: "Ch. 32", note: "Late appearance" }
       ]
     },
     {
       id: "willard-reese", name: "Willard Reese", aliases: ["Willard"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["the Reese camp", "the Tennessee River"],
       description: "Reese’s son and the principal boatman in the family’s mussel-fishing venture, working alongside Suttree while his father searches for pearls.",
-      references: [{ book: "sut", locator: "Ch. 24, pp. 312–363", note: "The mussel-fishing expedition" }]
+      references: [{ book: "sut", locator: "Ch. 24", note: "The mussel-fishing expedition" }]
     },
     {
       id: "mrs-reese", name: "Mrs Reese", aliases: ["Reese’s wife"], kind: "unnamed", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["the Reese camp", "the Tennessee River"],
       description: "Reese’s wife and the practical center of the family camp, managing food, children, and domestic order during the pearl expedition.",
-      references: [{ book: "sut", locator: "Ch. 24, pp. 312–363", note: "Life at the Reese camp" }]
+      references: [{ book: "sut", locator: "Ch. 24", note: "Life at the Reese camp" }]
     },
     {
       id: "suttree-wife", name: "Suttree’s wife", aliases: ["his estranged wife", "the boy’s mother"], kind: "unnamed", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "the family cemetery"],
       description: "Suttree’s estranged wife, encountered most directly after the death of their young son. Her family prevents Suttree from joining the mourners openly.",
-      references: [{ book: "sut", locator: "Ch. 10, pp. 148–161", note: "Their son’s death and funeral" }]
+      references: [{ book: "sut", locator: "Ch. 10", note: "Their son’s death and funeral" }]
     },
     {
       id: "suttree-son", name: "Suttree’s son", aliases: ["the boy", "the dead child"], kind: "unnamed", prominence: "major",
       books: ["sut"], dates: ["dies young in the early 1950s"], locations: ["Knoxville", "the family cemetery"],
       description: "Suttree’s young child, living apart from him and dying before the narrative’s midpoint. The clandestine funeral visit exposes the depth of Suttree’s grief and estrangement.",
-      references: [{ book: "sut", locator: "Ch. 10, pp. 148–161", note: "News of the death, wake, and burial" }]
+      references: [{ book: "sut", locator: "Ch. 10", note: "News of the death, wake, and burial" }]
     },
     {
       id: "suttree-father", name: "Suttree’s father", aliases: ["Mr Suttree", "the elder Suttree"], kind: "unnamed", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Knoxville", "Suttree’s hospital room"],
       description: "Suttree’s wealthy, emotionally distant father, emblem of the respectable family and ordered life that his son has rejected.",
       references: [
-        { book: "sut", locator: "Ch. 10, pp. 148–161", note: "Family conflict around the funeral" },
-        { book: "sut", locator: "Ch. 34, pp. 448–455", note: "Visit during Suttree’s illness" }
+        { book: "sut", locator: "Ch. 10", note: "Family conflict around the funeral" },
+        { book: "sut", locator: "Ch. 34", note: "Visit during Suttree’s illness" }
       ]
     },
     {
       id: "aunt-martha-sut", name: "Aunt Martha", aliases: ["Martha"], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["Suttree’s family home", "Knoxville"],
       description: "A warm older relative who receives Suttree without his father’s severity and preserves a tenuous bond between him and his family.",
-      references: [{ book: "sut", locator: "Ch. 8, pp. 125–132", note: "Suttree’s visit with Aunt Martha" }]
+      references: [{ book: "sut", locator: "Ch. 8", note: "Suttree’s visit with Aunt Martha" }]
     },
     {
       id: "doll-sut", name: "Doll", aliases: [], kind: "person", prominence: "secondary",
       books: ["sut"], dates: ["early 1950s"], locations: ["McAnally Flats", "Ab Jones’s house", "Knoxville"],
       description: "A woman in the Black riverfront community whose recurring presence links Suttree to the domestic and social life around Ab Jones’s house.",
       references: [
-        { book: "sut", locator: "Ch. 6, pp. 100–101", note: "Early appearance" },
-        { book: "sut", locator: "Chs. 33–34, pp. 440–447", note: "Late appearance in McAnally" }
+        { book: "sut", locator: "Ch. 6", note: "Early appearance" },
+        { book: "sut", locator: "Chs. 33–34", note: "Late appearance in McAnally" }
       ]
     },
     {
@@ -451,8 +451,8 @@ window.CONCORDANCE_DATA = {
       books: ["sut"], dates: ["early 1950s"], locations: ["Howard Clevenger’s store", "Ab Jones’s house", "McAnally Flats"],
       description: "A regular in the Black riverfront circle, appearing in the talk, card games, and crowded rooms that define McAnally’s communal life.",
       references: [
-        { book: "sut", locator: "Ch. 7, pp. 110–113", note: "At Clevenger’s and Ab Jones’s" },
-        { book: "sut", locator: "Ch. 11, pp. 165–167", note: "A later gathering" }
+        { book: "sut", locator: "Ch. 7", note: "At Clevenger’s and Ab Jones’s" },
+        { book: "sut", locator: "Ch. 11", note: "A later gathering" }
       ]
     },
     {
@@ -461,9 +461,9 @@ window.CONCORDANCE_DATA = {
       locations: ["Sevier County, Tennessee", "Frog Mountain", "Sevierville", "Lyons View", "Memphis"],
       description: "A dispossessed Sevier County loner whose expulsion from his land and community accelerates into murder, necrophilia, cave-dwelling, capture, and institutional death.",
       references: [
-        { book: "cog", locator: "Part I, §1, pp. 3–8", note: "Auction of the Ballard property" },
-        { book: "cog", locator: "Part II, §26, pp. 84–92", note: "The car on Frog Mountain" },
-        { book: "cog", locator: "Part III, §§47–51, pp. 172–194", note: "Wounding, cave escape, surrender, and death" }
+        { book: "cog", locator: "Part I, §1", note: "Auction of the Ballard property" },
+        { book: "cog", locator: "Part II, §26", note: "The car on Frog Mountain" },
+        { book: "cog", locator: "Part III, §§47–51", note: "Wounding, cave escape, surrender, and death" }
       ]
     },
     {
@@ -471,9 +471,9 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "Sevierville", "Frog Mountain"],
       description: "The plainspoken county sheriff who repeatedly arrests, questions, releases, and finally hunts Ballard. He is both an agent of the law and a local storyteller.",
       references: [
-        { book: "cog", locator: "Part I, §15, pp. 44–45", note: "A deputy recalls riding with Fate" },
-        { book: "cog", locator: "Part I, §18, pp. 50–56", note: "Arrest and interrogation of Ballard" },
-        { book: "cog", locator: "Part III, §§42 and 45, pp. 145–168", note: "Investigation and flood journey" }
+        { book: "cog", locator: "Part I, §15", note: "A deputy recalls riding with Fate" },
+        { book: "cog", locator: "Part I, §18", note: "Arrest and interrogation of Ballard" },
+        { book: "cog", locator: "Part III, §§42 and 45", note: "Investigation and flood journey" }
       ]
     },
     {
@@ -481,9 +481,9 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["Grainger County", "the former Ballard property", "Sevier County"],
       description: "The purchaser and new occupant of Ballard’s former homeplace. Ballard spies on him, steals from him, and later attempts to kill him; Greer’s return fire costs Ballard an arm.",
       references: [
-        { book: "cog", locator: "Part I, §2, p. 9", note: "Identified as the buyer of the property" },
-        { book: "cog", locator: "Part II, §§31 and 39–41, pp. 109–141", note: "Ballard watches and raids the homeplace" },
-        { book: "cog", locator: "Part III, §47, pp. 172–173", note: "Ballard’s failed ambush" }
+        { book: "cog", locator: "Part I, §2", note: "Identified as the buyer of the property" },
+        { book: "cog", locator: "Part II, §§31 and 39–41", note: "Ballard watches and raids the homeplace" },
+        { book: "cog", locator: "Part III, §47", note: "Ballard’s failed ambush" }
       ]
     },
     {
@@ -491,35 +491,35 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "Kirby’s yard"],
       description: "A local acquaintance who trades in illicit whiskey and gives Ballard information, including news about the sheriff and the homeplace.",
       references: [
-        { book: "cog", locator: "Part I, §3, pp. 10–12", note: "Ballard tries to buy whiskey" },
-        { book: "cog", locator: "Part II, §33, pp. 113–114", note: "Conversation about Greer and the law" }
+        { book: "cog", locator: "Part I, §3", note: "Ballard tries to buy whiskey" },
+        { book: "cog", locator: "Part II, §33", note: "Conversation about Greer and the law" }
       ]
     },
     {
       id: "cb-auctioneer", name: "C B", aliases: ["the auctioneer"], kind: "person", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["the Ballard property", "Sevier County"],
       description: "The auctioneer conducting the court-ordered sale of Ballard’s land. He refuses to be driven off when Ballard confronts the crowd with a rifle.",
-      references: [{ book: "cog", locator: "Part I, §1, pp. 5–8", note: "The property auction and confrontation" }]
+      references: [{ book: "cog", locator: "Part I, §1", note: "The property auction and confrontation" }]
     },
     {
       id: "buster-cog", name: "Buster", aliases: [], kind: "person", prominence: "minor",
       books: ["cog"], dates: ["before April 1965"], locations: ["the Ballard property"],
       description: "A man at the auction who strikes Ballard with an axe handle after the confrontation.",
-      references: [{ book: "cog", locator: "Part I, §2, p. 9", note: "A witness recalls the blow" }]
+      references: [{ book: "cog", locator: "Part I, §2", note: "A witness recalls the blow" }]
     },
     {
       id: "finney-boy", name: "The Finney boy", aliases: ["Finney"], kind: "person", prominence: "minor",
       books: ["cog"], dates: ["Ballard’s school years"], locations: ["Sevier County"],
       description: "A younger schoolboy whom Ballard punches for refusing to retrieve a lost softball, in an early community memory of Ballard’s violence.",
-      references: [{ book: "cog", locator: "Part I, §5, pp. 17–18", note: "A local narrator recalls the assault" }]
+      references: [{ book: "cog", locator: "Part I, §5", note: "A local narrator recalls the assault" }]
     },
     {
       id: "deputy-cotton", name: "Deputy Cotton", aliases: ["Cotton"], kind: "person", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County sheriff’s office", "Sevierville"],
       description: "One of Fate Turner’s deputies, present during Ballard’s arrest, questioning, and the sheriff’s flooded tour of town.",
       references: [
-        { book: "cog", locator: "Part I, §§17–18, pp. 48–52", note: "Arrest and complaint against Ballard" },
-        { book: "cog", locator: "Part III, §45, pp. 160–168", note: "Rowing through flooded Sevierville" }
+        { book: "cog", locator: "Part I, §§17–18", note: "Arrest and complaint against Ballard" },
+        { book: "cog", locator: "Part III, §45", note: "Rowing through flooded Sevierville" }
       ]
     },
     {
@@ -527,9 +527,9 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["the Sevier County dump", "quarry woods"],
       description: "Keeper of the county dump, husband and father of nine daughters. He drinks with Ballard and receives him at the crowded family shack.",
       references: [
-        { book: "cog", locator: "Part I, §9, pp. 25–30", note: "The dump household introduced" },
-        { book: "cog", locator: "Part I, §13, pp. 37–39", note: "Conversation at the dump" },
-        { book: "cog", locator: "Part II, §32, pp. 110–112", note: "Ballard visits after the fire" }
+        { book: "cog", locator: "Part I, §9", note: "The dump household introduced" },
+        { book: "cog", locator: "Part I, §13", note: "Conversation at the dump" },
+        { book: "cog", locator: "Part II, §32", note: "Ballard visits after the fire" }
       ]
     },
     {
@@ -537,9 +537,9 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["the Sevier County dump"],
       description: "Nine daughters living around the dump, several named from a discarded medical dictionary. Individual daughters recur in Ballard’s visits and one becomes his victim.",
       references: [
-        { book: "cog", locator: "Part I, §9, pp. 26–30", note: "The daughters and their household" },
-        { book: "cog", locator: "Part I, §24, pp. 75–79", note: "Ballard visits a daughter and her mother" },
-        { book: "cog", locator: "Part II, §34, pp. 115–120", note: "Ballard attacks one of the daughters" }
+        { book: "cog", locator: "Part I, §9", note: "The daughters and their household" },
+        { book: "cog", locator: "Part I, §24", note: "Ballard visits a daughter and her mother" },
+        { book: "cog", locator: "Part II, §34", note: "Ballard attacks one of the daughters" }
       ]
     },
     {
@@ -547,29 +547,29 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["before April 1965"], locations: ["Fox’s store", "Sevier County"],
       description: "A country storekeeper who sells Ballard food and hears local news, providing one of Ballard’s few recurring points of contact with ordinary commerce.",
       references: [
-        { book: "cog", locator: "Part II, §28, pp. 96–100", note: "Ballard buys supplies" },
-        { book: "cog", locator: "Part II, §36, pp. 124–126", note: "A later visit to the store" }
+        { book: "cog", locator: "Part II, §28", note: "Ballard buys supplies" },
+        { book: "cog", locator: "Part II, §36", note: "A later visit to the store" }
       ]
     },
     {
       id: "blacksmith-cog", name: "The blacksmith", aliases: ["the smith"], kind: "unnamed", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County smithy"],
       description: "An unnamed craftsman who patiently shows Ballard how to reforge and temper a damaged axehead.",
-      references: [{ book: "cog", locator: "Part I, §23, pp. 70–74", note: "The axehead lesson" }]
+      references: [{ book: "cog", locator: "Part I, §23", note: "The axehead lesson" }]
     },
     {
       id: "john-cog", name: "John", aliases: ["Nigger John", "the Pine Bluff prisoner"], kind: "person", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["Pine Bluff, Arkansas", "Sevier County jail"],
       description: "A Black fugitive held opposite Ballard in jail. His sardonic conversations with Ballard end when the sheriff takes him away under sentence.",
-      references: [{ book: "cog", locator: "Part I, §18, pp. 53–54", note: "Conversation across the jail corridor" }]
+      references: [{ book: "cog", locator: "Part I, §18", note: "Conversation across the jail corridor" }]
     },
     {
       id: "ballard-accuser", name: "Ballard’s accuser", aliases: ["the woman", "the young woman"], kind: "unnamed", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County", "sheriff’s office"],
       description: "A woman whom Ballard finds injured beside the road and carries toward town; she later accuses him of rape and fights him in the sheriff’s office.",
       references: [
-        { book: "cog", locator: "Part I, §16, pp. 46–47", note: "Ballard finds her beside the road" },
-        { book: "cog", locator: "Part I, §18, pp. 51–55", note: "Complaint and confrontation" }
+        { book: "cog", locator: "Part I, §16", note: "Ballard finds her beside the road" },
+        { book: "cog", locator: "Part I, §18", note: "Complaint and confrontation" }
       ]
     },
     {
@@ -577,33 +577,33 @@ window.CONCORDANCE_DATA = {
       books: ["cog"], dates: ["December before April 1965"], locations: ["Frog Mountain turnaround", "Ballard’s cabin"],
       description: "A young couple found dead in an idling car. Ballard removes the woman’s body and makes it the center of his hidden domestic fantasy.",
       references: [
-        { book: "cog", locator: "Part II, §26, pp. 84–92", note: "Discovery of the car and bodies" },
-        { book: "cog", locator: "Part II, §§27–29, pp. 93–105", note: "The body concealed at the cabin" }
+        { book: "cog", locator: "Part II, §26", note: "Discovery of the car and bodies" },
+        { book: "cog", locator: "Part II, §§27–29", note: "The body concealed at the cabin" }
       ]
     },
     {
       id: "dump-daughter-child", name: "The idiot child", aliases: ["the child", "the cretin"], kind: "unnamed", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["the dumpkeeper’s house"],
       description: "A disabled child in the dumpkeeper’s household who remains in the room when Ballard kills one of the daughters and sets the house afire.",
-      references: [{ book: "cog", locator: "Part II, §34, pp. 115–120", note: "Witness to the attack and fire" }]
+      references: [{ book: "cog", locator: "Part II, §34", note: "Witness to the attack and fire" }]
     },
     {
       id: "later-young-couple-cog", name: "The later young couple", aliases: ["the boy and girl in the truck"], kind: "unnamed", prominence: "secondary",
       books: ["cog"], dates: ["before April 1965"], locations: ["a mountain road in Sevier County"],
       description: "A courting pair surprised by Ballard in a parked truck. He kills the boy and attacks the girl, but the wounded boy escapes with the vehicle.",
-      references: [{ book: "cog", locator: "Part III, §43, pp. 149–153", note: "Attack beside the mountain road" }]
+      references: [{ book: "cog", locator: "Part III, §43", note: "Attack beside the mountain road" }]
     },
     {
       id: "tom-davis-cog", name: "Tom Davis", aliases: ["Sheriff Davis"], kind: "historical", prominence: "minor",
       books: ["cog"], dates: ["late nineteenth century", "sheriff by 1899"], locations: ["Sevier County", "Nashville", "Knoxville"],
       description: "A remembered Sevier County deputy and sheriff credited in Mr Wade’s flood-time story with breaking the White Caps and overseeing the 1899 hanging of two members.",
-      references: [{ book: "cog", locator: "Part III, §45, pp. 165–168", note: "Mr Wade’s county history" }]
+      references: [{ book: "cog", locator: "Part III, §45", note: "Mr Wade’s county history" }]
     },
     {
       id: "suzie-cog", name: "Suzie", aliases: ["Bill’s bird dog"], kind: "animal", prominence: "minor",
       books: ["cog"], dates: ["before April 1965"], locations: ["Sevier County hunting country"],
       description: "A dog in a local hunting anecdote, memorable because her supposed illness becomes the story’s running joke.",
-      references: [{ book: "cog", locator: "Part I, §17, pp. 48–49", note: "The bird-dog story" }]
+      references: [{ book: "cog", locator: "Part I, §17", note: "The bird-dog story" }]
     },
     {
       id: "the-kid", name: "The kid", aliases: ["the man", "the child"], kind: "unnamed", prominence: "principal",
@@ -878,8 +878,8 @@ window.CONCORDANCE_DATA = {
       locations: ["San Angelo, Texas", "La Purísima, Coahuila", "Saltillo", "Orogrande, New Mexico", "Ciudad Juárez"],
       description: "A gifted horseman and the central figure of All the Pretty Horses. He later works at Mac McGovern’s Cross Fours ranch and pursues Magdalena in Cities of the Plain.",
       references: [
-        { book: "atph", locator: "Part I, pp. 3–7", note: "Opening at the Grady ranch" },
-        { book: "atph", locator: "Part II, pp. 97–152", note: "La Purísima" },
+        { book: "atph", locator: "Part I", note: "Opening at the Grady ranch" },
+        { book: "atph", locator: "Part II", note: "La Purísima" },
         { book: "cities", locator: "Part I, §1", note: "At the Cross Fours and in Juárez" },
         { book: "cities", locator: "Part IV, §1", note: "Final confrontation" }
       ]
@@ -889,8 +889,8 @@ window.CONCORDANCE_DATA = {
       books: ["atph"], dates: ["c. 1949–1950"], locations: ["San Angelo, Texas", "Coahuila", "Encantada", "Saltillo"],
       description: "John Grady’s friend and traveling companion. More cautious and sardonic than John Grady, he returns to Texas after their imprisonment.",
       references: [
-        { book: "atph", locator: "Part I, pp. 26–29", note: "Departure from Texas" },
-        { book: "atph", locator: "Part III, pp. 153–218", note: "Arrest and imprisonment" }
+        { book: "atph", locator: "Part I", note: "Departure from Texas" },
+        { book: "atph", locator: "Part III", note: "Arrest and imprisonment" }
       ]
     },
     {
@@ -898,8 +898,8 @@ window.CONCORDANCE_DATA = {
       books: ["atph"], dates: ["c. 1949"], locations: ["Texas–Mexico borderlands", "Encantada"],
       description: "A young runaway who joins John Grady and Rawlins. His disputed horse, pistol, and return to Encantada set the novel’s catastrophe in motion.",
       references: [
-        { book: "atph", locator: "Part I, pp. 43–96", note: "Joins the riders and loses his horse" },
-        { book: "atph", locator: "Part III, pp. 171–181", note: "Held in Encantada" }
+        { book: "atph", locator: "Part I", note: "Joins the riders and loses his horse" },
+        { book: "atph", locator: "Part III", note: "Held in Encantada" }
       ]
     },
     {
@@ -907,8 +907,8 @@ window.CONCORDANCE_DATA = {
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima, Coahuila", "Mexico City", "Zacatecas"],
       description: "Don Héctor’s daughter, Alfonsa’s grandniece and goddaughter, and John Grady’s lover.",
       references: [
-        { book: "atph", locator: "Part II, p. 119", note: "Named at La Purísima" },
-        { book: "atph", locator: "Part IV, pp. 245–256", note: "Meeting in Zacatecas" }
+        { book: "atph", locator: "Part II", note: "Named at La Purísima" },
+        { book: "atph", locator: "Part IV", note: "Meeting in Zacatecas" }
       ]
     },
     {
@@ -916,8 +916,8 @@ window.CONCORDANCE_DATA = {
       books: ["atph"], dates: ["Mexican Revolution recalled", "c. 1950"], locations: ["La Purísima", "Mexico City", "Europe", "London"],
       description: "Alejandra’s grandaunt and godmother. Her revolutionary memories, family authority, and understanding of social consequence shape the lovers’ fate.",
       references: [
-        { book: "atph", locator: "Part II, pp. 132–147", note: "Chess and first conversation" },
-        { book: "atph", locator: "Part IV, pp. 228–242", note: "Family history and decision" }
+        { book: "atph", locator: "Part II", note: "Chess and first conversation" },
+        { book: "atph", locator: "Part IV", note: "Family history and decision" }
       ]
     },
     {
@@ -925,120 +925,120 @@ window.CONCORDANCE_DATA = {
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima, Coahuila", "Mexico City"],
       description: "Owner of La Purísima, Alejandra’s father, and an accomplished horse breeder who recognizes John Grady’s ability.",
       references: [
-        { book: "atph", locator: "Part II, p. 97", note: "La Purísima introduced" },
-        { book: "atph", locator: "Part II, pp. 112–131", note: "John Grady works with the stallion" }
+        { book: "atph", locator: "Part II", note: "La Purísima introduced" },
+        { book: "atph", locator: "Part II", note: "John Grady works with the stallion" }
       ]
     },
     {
       id: "emilio-perez", name: "Emilio Pérez", aliases: ["Pérez"], kind: "person", prominence: "major",
       books: ["atph"], dates: ["c. 1950"], locations: ["Saltillo prison"],
       description: "A polished prison power broker who explains the institution’s economy of protection and violence to John Grady.",
-      references: [{ book: "atph", locator: "Part III, pp. 186–193", note: "Meeting in Saltillo prison" }]
+      references: [{ book: "atph", locator: "Part III", note: "Meeting in Saltillo prison" }]
     },
     {
       id: "encantada-captain", name: "The captain", aliases: ["Mexican captain", "the madrina"], kind: "unnamed", prominence: "major",
       books: ["atph"], dates: ["c. 1950"], locations: ["Encantada"],
       description: "The corrupt local authority who interrogates John Grady and Rawlins and controls Blevins’s fate.",
-      references: [{ book: "atph", locator: "Part III, pp. 162–181", note: "Interrogations and transport" }]
+      references: [{ book: "atph", locator: "Part III", note: "Interrogations and transport" }]
     },
     {
       id: "john-gradys-father", name: "John Grady’s father", aliases: ["Mr Cole", "John Grady’s father"], kind: "unnamed", prominence: "major",
       books: ["atph"], dates: ["Second World War", "dies c. 1950"], locations: ["San Angelo", "San Antonio", "San Diego"],
       description: "An ailing Second World War veteran, separated from John Grady’s mother. His knife later passes to his son.",
-      references: [{ book: "atph", locator: "Part I, pp. 5–14", note: "Conversations in San Angelo" }]
+      references: [{ book: "atph", locator: "Part I", note: "Conversations in San Angelo" }]
     },
     {
       id: "john-gradys-mother", name: "John Grady’s mother", aliases: ["Mrs Cole", "John Grady’s mother"], kind: "unnamed", prominence: "major",
       books: ["atph"], dates: ["c. 1949"], locations: ["San Angelo", "San Antonio"],
       description: "An actress who inherits and chooses to sell the family ranch, precipitating John Grady’s departure.",
-      references: [{ book: "atph", locator: "Part I, pp. 8–25", note: "Ranch inheritance and sale" }]
+      references: [{ book: "atph", locator: "Part I", note: "Ranch inheritance and sale" }]
     },
     {
       id: "franklin", name: "Franklin", aliases: ["Mr Franklin"], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1949"], locations: ["San Angelo"],
       description: "The family lawyer whom John Grady consults in an unsuccessful attempt to prevent the ranch’s sale.",
-      references: [{ book: "atph", locator: "Part I, pp. 16–17", note: "Legal consultation" }]
+      references: [{ book: "atph", locator: "Part I", note: "Legal consultation" }]
     },
     {
       id: "abuela", name: "Abuela", aliases: ["Luisa’s mother"], kind: "unnamed", prominence: "secondary",
       books: ["atph"], dates: ["family service for fifty years", "dies c. 1950"], locations: ["Grady ranch", "Knickerbocker, Texas"],
       description: "The elderly woman who cared for generations of the Grady family and whom John Grady calls his grandmother.",
       references: [
-        { book: "atph", locator: "Part I, p. 25", note: "Family history" },
-        { book: "atph", locator: "Part IV, pp. 299–301", note: "Death and burial" }
+        { book: "atph", locator: "Part I", note: "Family history" },
+        { book: "atph", locator: "Part IV", note: "Death and burial" }
       ]
     },
     {
       id: "luisa", name: "Luisa", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1949–1950"], locations: ["Grady ranch", "San Angelo"],
       description: "A longtime member of the Grady household and Abuela’s daughter.",
-      references: [{ book: "atph", locator: "Part I, pp. 10–18", note: "At the Grady ranch" }]
+      references: [{ book: "atph", locator: "Part I", note: "At the Grady ranch" }]
     },
     {
       id: "arturo", name: "Arturo", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1949–1950"], locations: ["Grady ranch", "San Angelo"],
       description: "A worker at the Grady ranch and member of its dwindling household.",
-      references: [{ book: "atph", locator: "Part I, pp. 4–18", note: "At the Grady ranch" }]
+      references: [{ book: "atph", locator: "Part I", note: "At the Grady ranch" }]
     },
     {
       id: "antonio-atph", name: "Antonio", aliases: ["Armando’s brother"], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima", "Kentucky", "Tennessee", "Texas"],
       description: "Armando’s brother, remembered for transporting Don Héctor’s American stallion from Kentucky to Mexico.",
-      references: [{ book: "atph", locator: "Part II, p. 126", note: "Journey with the stallion" }]
+      references: [{ book: "atph", locator: "Part II", note: "Journey with the stallion" }]
     },
     {
       id: "armando", name: "Armando", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima"],
       description: "A senior horseman at La Purísima who reports John Grady’s abilities to Don Héctor.",
-      references: [{ book: "atph", locator: "Part II, pp. 100–131", note: "Horse work at La Purísima" }]
+      references: [{ book: "atph", locator: "Part II", note: "Horse work at La Purísima" }]
     },
     {
       id: "maria-atph", name: "María", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima"],
       description: "A member of the household staff at La Purísima, frequently associated with the kitchen and meals.",
-      references: [{ book: "atph", locator: "Part II, pp. 112–132", note: "Household scenes" }]
+      references: [{ book: "atph", locator: "Part II", note: "Household scenes" }]
     },
     {
       id: "carlos-atph", name: "Carlos", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima"],
       description: "A servant in Don Héctor and Alfonsa’s household.",
-      references: [{ book: "atph", locator: "Part II, pp. 129–143", note: "Household and billiard-room scenes" }]
+      references: [{ book: "atph", locator: "Part II", note: "Household and billiard-room scenes" }]
     },
     {
       id: "roberto-atph", name: "Roberto", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima", "local dance"],
       description: "A young ranch worker who attends the local dance with John Grady and Rawlins.",
-      references: [{ book: "atph", locator: "Part II, pp. 122–125", note: "Dance" }]
+      references: [{ book: "atph", locator: "Part II", note: "Dance" }]
     },
     {
       id: "esteban-atph", name: "Estéban", aliases: [], kind: "person", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["La Purísima"],
       description: "An elderly stable worker at La Purísima.",
-      references: [{ book: "atph", locator: "Part II, pp. 139–150", note: "Stable scenes" }]
+      references: [{ book: "atph", locator: "Part II", note: "Stable scenes" }]
     },
     {
       id: "mary-catherine", name: "Mary Catherine", aliases: [], kind: "person", prominence: "minor",
       books: ["atph"], dates: ["c. 1949"], locations: ["San Angelo"],
       description: "John Grady’s former girlfriend, encountered shortly before he leaves Texas.",
-      references: [{ book: "atph", locator: "Part I, p. 28", note: "Brief conversation" }]
+      references: [{ book: "atph", locator: "Part I", note: "Brief conversation" }]
     },
     {
       id: "ozona-judge", name: "The Ozona judge", aliases: ["the judge"], kind: "unnamed", prominence: "secondary",
       books: ["atph"], dates: ["c. 1950"], locations: ["Ozona, Texas"],
       description: "The judge who hears John Grady’s horse-ownership case and later receives his confession and doubts.",
-      references: [{ book: "atph", locator: "Part IV, pp. 288–294", note: "Hearing and evening conversation" }]
+      references: [{ book: "atph", locator: "Part IV", note: "Hearing and evening conversation" }]
     },
     {
       id: "gustavo-madero", name: "Gustavo A. Madero", aliases: ["Gustavo"], kind: "historical", prominence: "secondary",
       books: ["atph"], dates: ["Mexican Revolution", "died 1913"], locations: ["Mexico", "Europe"],
       description: "Historical revolutionary and Alfonsa’s youthful love, recalled in her account of the Madero family and the revolution.",
-      references: [{ book: "atph", locator: "Part IV, pp. 233–239", note: "Alfonsa’s recollection" }]
+      references: [{ book: "atph", locator: "Part IV", note: "Alfonsa’s recollection" }]
     },
     {
       id: "francisco-madero", name: "Francisco I. Madero", aliases: ["Francisco Madero", "Francisco"], kind: "historical", prominence: "secondary",
       books: ["atph"], dates: ["Mexican Revolution", "president 1911–1913"], locations: ["Coahuila", "Mexico City"],
       description: "Historical president and revolutionary, remembered by Alfonsa as a family friend and tragic idealist.",
-      references: [{ book: "atph", locator: "Part IV, pp. 233–239", note: "Alfonsa’s recollection" }]
+      references: [{ book: "atph", locator: "Part IV", note: "Alfonsa’s recollection" }]
     },
 
     {

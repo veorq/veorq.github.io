@@ -1,4 +1,4 @@
-# The Cormac McCarthy Concordance
+# Cormac McCarthy Character Index
 
 A dependency-free static web application. The current corpus indexes seven
 novels: *Outer Dark*, *Child of God*, *Suttree*, *Blood Meridian*, and the
