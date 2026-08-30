@@ -339,21 +339,31 @@ window.CONCORDANCE_DATA = {
       ]
     },
     {
-      id: "western-father", name: "The Westerns’ father", aliases: ["Bobby and Alicia’s father", "Robert Western’s father"], kind: "unnamed", prominence: "secondary",
-      books: ["passenger", "sm"], dates: ["works on the Manhattan Project", "dies before the principal action"], locations: ["Oak Ridge", "Los Alamos", "the Western family home"],
-      description: "Bobby and Alicia’s father, a physicist who works on the wartime atomic bomb project. Both novels place his scientific work and its consequences within the siblings’ family history.",
+      id: "royal", name: "Royal", aliases: ["Uncle Royal"], kind: "person", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["elderly by 1980"], locations: ["Granellen’s house", "Tennessee", "formerly Anderson County"],
+      description: "Bobby and Alicia’s maternal uncle, who lives with Granellen in Tennessee. By Bobby’s visit he is half-deaf and cognitively declining; he spends much of the night arguing with the television and has difficulty placing events in time.",
       references: [
-        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections and the wartime project" },
-        { book: "sm", locator: "Sessions I–IV and VI", note: "Alicia’s account of her father" }
+        { book: "passenger", locator: "Ch. V, Bobby narrative", note: "Bobby visits Granellen and Royal in Tennessee" },
+        { book: "passenger", locator: "Ch. VII, Alicia interlude", note: "Alicia names Royal among the relatives with whom Bobby can discuss her" },
+        { book: "sm", locator: "Session V", note: "Alicia’s account of Uncle Royal and the family’s ancestry" }
       ]
     },
     {
-      id: "western-mother", name: "The Westerns’ mother", aliases: ["Bobby and Alicia’s mother"], kind: "unnamed", prominence: "secondary",
-      books: ["passenger", "sm"], dates: ["dies when Alicia is eleven"], locations: ["the Western family home", "Tennessee"],
-      description: "Bobby and Alicia’s mother. Alicia remembers her as religious, socially conventional, and uneasy with her daughter’s intellectual interests and behavior.",
+      id: "western-father", name: "The Westerns’ father", aliases: ["Bobby and Alicia’s father", "Robert Western’s father"], kind: "unnamed", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["works on the Manhattan Project", "dies of cancer before the principal action"], locations: ["Oak Ridge", "Los Alamos", "Lake Tahoe", "Ciudad Juárez"],
+      description: "Bobby and Alicia’s father, a physicist who works on the wartime atomic bomb project. He dies of cancer in Ciudad Juárez after seeking treatment with Laetrile.",
       references: [
-        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections" },
-        { book: "sm", locator: "Sessions I–V", note: "Alicia’s account of her mother" }
+        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections, the wartime project, and his death from cancer" },
+        { book: "sm", locator: "Sessions I–IV and VI", note: "Alicia’s account of his work, cancer, and death in Mexico" }
+      ]
+    },
+    {
+      id: "western-mother", name: "Eleanor Western", aliases: ["Eleanor", "The Westerns’ mother", "Bobby and Alicia’s mother"], kind: "person", prominence: "secondary",
+      books: ["passenger", "sm"], dates: ["dies of cancer when Alicia is eleven"], locations: ["Oak Ridge", "Los Alamos", "Tennessee"],
+      description: "Bobby and Alicia’s mother. She works at the Y-12 uranium-separation plant during the war and later dies of cancer when Alicia is eleven. Alicia remembers her as religious, socially conventional, and uneasy with her daughter’s intellectual interests and behavior.",
+      references: [
+        { book: "passenger", locator: "Chs. V and VIII, Bobby narrative", note: "Family recollections, her work at Y-12, and her death from cancer" },
+        { book: "sm", locator: "Sessions I–V", note: "Alicia’s account of her mother’s illness and death" }
       ]
     },
     {
