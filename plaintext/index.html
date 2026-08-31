@@ -71,32 +71,29 @@
 
     main { padding: 10vh 0 72px; }
 
-    .app-icon {
-      display: block;
-      width: 56px;
-      height: 56px;
-      margin: 0 0 24px;
-      border-radius: 13px;
-    }
-
-    .eyebrow {
-      margin: 0 0 18px;
-      color: var(--accent);
-      font: 600 12px/1.2 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      letter-spacing: .13em;
-      text-transform: uppercase;
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) clamp(184px, 33vw, 330px);
+      gap: clamp(26px, 4vw, 48px);
+      align-items: start;
     }
 
     h1 {
-      max-width: 720px;
       margin: 0;
-      font-size: clamp(4rem, 12vw, 8.3rem);
+      font-size: clamp(4rem, 11.5vw, 7rem);
       font-weight: 500;
       letter-spacing: -.065em;
-      line-height: .86;
+      line-height: .99;
     }
 
     h1 em { font-style: italic; }
+
+    .app-icon {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: clamp(18px, 3vw, 42px);
+    }
 
     .lede {
       max-width: 600px;
@@ -177,11 +174,13 @@
     @media (max-width: 640px) {
       .page { width: min(100% - 32px, 980px); }
       main { padding-top: 56px; }
+      .hero { grid-template-columns: 1fr; }
       h1 {
         font-size: clamp(2.8rem, 14vw, 4rem);
         letter-spacing: -.055em;
-        line-height: .94;
+        line-height: .99;
       }
+      .app-icon { width: min(54vw, 220px); justify-self: end; }
       .principles { grid-template-columns: 1fr; }
       footer { flex-direction: column; }
     }
@@ -195,9 +194,10 @@
     </header>
 
     <main>
-      <img class="app-icon" src="icon.png" alt="">
-      <p class="eyebrow">Plaintext</p>
-      <h1><em>Plaintext</em>,<br>a quiet text editor.</h1>
+      <div class="hero">
+        <h1><em>Plaintext</em>,<br>a quiet text<br>editor.</h1>
+        <img class="app-icon" src="icon.png" alt="">
+      </div>
       <p class="lede">A fullscreen-first editor for clear writing and the pleasure of working on one thing at a time.</p>
 
       <div class="actions">
