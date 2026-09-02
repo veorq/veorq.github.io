@@ -749,7 +749,7 @@
 </body>
 </html>
 <script>
-  const themes = ['baltic', 'night', 'parchment', 'terminal', 'blu', 'noir', 'fox', 'aurora', 'midnight'];
+  const themes = ['baltic', 'night', 'parchment', 'terminal', 'blu', 'noir', 'fox', 'aurora', 'midnight', 'white', 'black'];
 
   function applyTheme(index) {
     document.body.className = themes[index];
@@ -757,7 +757,9 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    let current = parseInt(localStorage.getItem('themeIndex')) || 0;
+    const saved = localStorage.getItem('themeIndex');
+    let current = saved === null ? Math.floor(Math.random() * themes.length) : Number.parseInt(saved, 10);
+    if (!Number.isInteger(current) || current < 0 || current >= themes.length) current = 0;
     applyTheme(current);
 
     document.querySelector('.theme-toggle').addEventListener('click', () => {
@@ -766,4 +768,3 @@
     });
   });
 </script>
-
