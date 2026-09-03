@@ -155,19 +155,24 @@ body {
 
 header {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 header h1,
 header h2 {
     margin: 0;
-    font-size: 3.8em;
+    font-size: clamp(3rem, 7vw, 3.8rem);
+    line-height: 1.05;
+    white-space: nowrap;
     color: var(--highlight);
     margin-bottom: -20px;
 }
 
 nav {
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px 8px;
     margin-bottom: 40px;
     border-bottom: 1px solid var(--bg);
     padding-bottom: 18px;
@@ -183,6 +188,12 @@ nav a {
     font-size: 1.55em;
 }
 
+nav a[aria-current="page"] {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 7px;
+}
+
 nav a:hover {
     background-color: var(--highlight);
     color: white;
@@ -190,6 +201,19 @@ nav a:hover {
 
 section {
     line-height: 1.8;
+}
+
+.intro {
+    max-width: 760px;
+    font-size: 1.04em;
+}
+
+.intro p:first-child {
+    font-size: 1.12em;
+}
+
+.intro + h3 {
+    margin-top: 2.5em;
 }
 
 section h3 {
@@ -277,6 +301,38 @@ footer {
     color: #777;
 }
 
+.archive-list > li {
+    margin: 0;
+    padding: 16px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--fg) 10%, transparent);
+}
+
+.archive-list > li:last-child {
+    border-bottom: 0;
+}
+
+.archive-list > li > a:first-child {
+    font-size: 1.03em;
+}
+
+.archive-list i,
+.archive-list .talk-date,
+.archive-list .talk-event {
+    color: color-mix(in srgb, var(--fg) 62%, transparent);
+    font-size: .9em;
+    line-height: 1.45;
+}
+
+.archive-list .year-divider {
+    margin: 34px 0 0;
+    padding: 0 0 7px;
+    border-bottom: 2px solid var(--bg);
+    color: var(--highlight);
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.55em;
+    font-weight: 600;
+}
+
 .art-preview {
     margin: 10px 0;
 }
@@ -352,16 +408,18 @@ a:focus-visible {
 
 
 .books {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: start;
+    gap: 20px 12px;
     width: 100%;
 }
 
+.fiction-books {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .book {
-    flex: 1 1 0;
     min-width: 0;
     text-align: center;
     padding: 6px;
@@ -382,6 +440,7 @@ a:focus-visible {
     max-width: 100%;
     margin: 0 auto 8px;
     object-fit: contain;
+    box-shadow: 0 5px 16px color-mix(in srgb, var(--fg) 14%, transparent);
 }
 
 .book div {
@@ -390,17 +449,56 @@ a:focus-visible {
 }
 
 @media (max-width: 760px) {
+    body {
+        background: var(--bg-content);
+    }
+
+    #content {
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    header h1,
+    header h2 {
+        font-size: clamp(2.25rem, 11.5vw, 2.75rem);
+        margin-bottom: -8px;
+    }
+
+    nav {
+        gap: 0 5px;
+        max-width: 285px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+
+    nav a {
+        padding: 8px 9px;
+        font-size: 1.35em;
+    }
+
+    .theme-toggle {
+        top: 14px;
+        right: 14px;
+    }
+
     .books {
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px 12px;
+    }
+
+    .technical-books .book:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
     }
 
     .book {
-        flex: 0 1 140px;
+        padding: 4px;
     }
 
     .book img {
-        height: 170px;
+        height: 172px;
     }
 }
 
