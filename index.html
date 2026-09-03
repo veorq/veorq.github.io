@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <link href="style2.css" rel="stylesheet"/>
+<script src="site.js" defer></script>
 </head>
 <body>
 <div id="content">
@@ -23,7 +24,7 @@
 <header>
 <h1>JP Aumasson</h1>
 </header>
-<button class="theme-toggle" type="button" aria-label="Change color theme" title="Change color theme">✦</button>
+<button class="theme-toggle" type="button" aria-label="Choose color theme" title="Choose color theme">✦</button>
 <!-- Navigation bar -->
 <nav>
 <a href="index.html" aria-current="page">Home</a>
@@ -40,35 +41,36 @@
 <p>I design and break cryptography, and have led security operations,
 strategy, and governance.</p>
 <p>I write technical books and fiction, and maintain <a href="https://www.bfswa.blog">bfSwA.blog</a>.</p>
+<p>I also curate <a href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a>.</p>
 </div>
 <!-- Books section -->
 <h3>Technical Books</h3>
 <div class="books technical-books">
 <div class="book">
 <a href="https://nostarch.com/serious-cryptography-2nd-edition"><img alt="SC2" src="data/covs/sc2.jpg" width="747" height="994" loading="lazy" /></a>
-<div>No Starch, 2024
+<div><a class="book-primary-link" href="https://nostarch.com/serious-cryptography-2nd-edition">No Starch, 2024</a>
     <br/>
     + <a href="serious2.html">translations</a>
 </div>
 </div>
 <div class="book">
 <a href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne"><img alt="Déchiffrée" src="data/covs/cr.jpg" width="300" height="423" loading="lazy" /></a>
-<div>Dunod, 2024</div>
+<div><a class="book-primary-link" href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne">Dunod, 2024</a></div>
 </div>
 <div class="book">
 <a href="https://www.crypto-dictionary.com"><img alt="Dictionary" src="data/covs/cd.jpg" width="993" height="1500" loading="lazy" /></a>
-<div>No Starch, 2020</div>
+<div><a class="book-primary-link" href="https://www.crypto-dictionary.com">No Starch, 2020</a></div>
 </div>
 <div class="book">
 <a href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268"><img alt="SC1" src="data/covs/sc.jpg" width="1135" height="1500" loading="lazy" /></a>
-<div>No Starch, 2017
+<div><a class="book-primary-link" href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268">No Starch, 2017</a>
     <br/>
     + <a href="serious.html">translations</a>
 </div>
 </div>
 <div class="book">
 <a href="blake/book/index.html"><img alt="BLAKE" src="data/covs/bl.jpg" width="827" height="1245" loading="lazy" /></a>
-<div>Springer, 2014</div>
+<div><a class="book-primary-link" href="blake/book/index.html">Springer, 2014</a></div>
 </div>
 </div>
 <h3>Cryptography Designs</h3>
@@ -86,34 +88,28 @@ href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a>, RFC <a href="https
 <div class="book">
 <a href="t9b/index.html">
 <img alt="The Ninth Berth" src="t9b/t9b.jpg" width="1294" height="1294" loading="lazy" /></a>
-<div>Novella, 2026</div>
+<div><a class="book-primary-link" href="t9b/index.html">Novella, 2026</a></div>
 </div>
 <div class="book">
 <a href="cripto/index.html"><img alt="Cripto" src="cripto/cover.png" width="400" height="600" loading="lazy" /></a>
-<div>Novella, 2025</div>
+<div><a class="book-primary-link" href="cripto/index.html">Novella, 2025</a></div>
 </div>
 <div class="book">
 <a href="glitches/index.html"><img alt="Glitches" src="data/covs/gl.jpg" width="1600" height="2400" loading="lazy" /></a>
-<div>Short stories, 2024</div>
+<div><a class="book-primary-link" href="glitches/index.html">Short stories, 2024</a></div>
 </div>
 <div class="book">
 <a href="http://petitpingou.in"><img alt="Petit Pingouin" src="data/covs/pp.png" width="400" height="370" loading="lazy" /></a>
-<div>Children's book, 2021</div>
+<div><a class="book-primary-link" href="http://petitpingou.in">Children's book, 2021</a></div>
 </div>
 </div>
 <h3>Side Experiments</h3>
 <ul>
-<li><a
-href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a>, curated PQC resources</li>
 <li><a href="plaintext/">Plaintext</a>, a quiet text editor</li>
 <li><a href="b3viz/">BLAKE3 visualizer</a>, with sound</li>
 <li><a href="murphy.html">Murphy's laws of cryptography</a></li>
 <li><a href="hoax/">Research satires</a></li>
 <li><a href="https://store.aumasson.jp">Quantum merch store</a></li>
-</ul>
-<h3>Contact</h3>
-<ul>
-<li>Signal (jpa.01), jpa@pm.me</li>
 </ul>
 </section>
 </main>

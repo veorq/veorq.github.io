@@ -5,6 +5,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <link href="style2.css" rel="stylesheet" type="text/css" media="screen">
+<script src="site.js" defer></script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Incipits - Jean-Philippe Aumasson</title>
@@ -22,7 +23,7 @@
         <header>
             <h1>Incipits</h1>
         </header>
-        <button class="theme-toggle" type="button" aria-label="Change color theme" title="Change color theme">✦</button>
+        <button class="theme-toggle" type="button" aria-label="Choose color theme" title="Choose color theme">✦</button>
 
         <nav>
             <strong>
@@ -34,7 +35,9 @@
             </strong>
         </nav>
 
-        <section>
+        <section class="incipit-index" id="incipit-index">
+            <p>Selected first lines and opening passages. Search by title or author.</p>
+            <input class="incipit-search" id="incipit-search" type="search" aria-label="Search titles and authors" placeholder="Search titles and authors…" autocomplete="off">
             <ul>
                 <li><a href="#lordjm"><i>Lord Jim</i>, Joseph Conrad</a></li>
                 <li><a href="#wisebl"><i>Wise Blood</i>, Flannery O'Connor</a></li>
@@ -78,6 +81,7 @@
         </section>
 
         <section id="incipits">
+        <a class="back-to-index" href="#incipit-index">↑ Back to index</a>
         <hr>
 
 <!--
