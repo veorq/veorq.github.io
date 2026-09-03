@@ -3,9 +3,19 @@
 
 <head>
     <title>Jean-Philippe Aumasson - Talks</title>
-    <link href="style2.css" rel="stylesheet" type="text/css" media="screen">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="style2.css" rel="stylesheet" type="text/css" media="screen">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Conference and security talks by Jean-Philippe Aumasson.">
+    <link rel="canonical" href="https://www.aumasson.jp/talks.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jean-Philippe Aumasson">
+    <meta property="og:title" content="Talks - Jean-Philippe Aumasson">
+    <meta property="og:description" content="Conference and security talks by Jean-Philippe Aumasson.">
+    <meta property="og:url" content="https://www.aumasson.jp/talks.html">
 </head>
 
 <body>
@@ -758,7 +768,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem('themeIndex');
-    let current = saved === null ? Math.floor(Math.random() * themes.length) : Number.parseInt(saved, 10);
+    let current = saved === null ? themes.indexOf('blu') : Number.parseInt(saved, 10);
     if (!Number.isInteger(current) || current < 0 || current >= themes.length) current = 0;
     applyTheme(current);
 

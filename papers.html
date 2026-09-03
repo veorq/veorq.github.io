@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jean-Philippe Aumasson - Research</title>
-    <link href="style2.css" rel="stylesheet">
+    <meta name="description" content="Research papers and cryptography projects by Jean-Philippe Aumasson.">
+    <link rel="canonical" href="https://www.aumasson.jp/papers.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Jean-Philippe Aumasson">
+    <meta property="og:title" content="Research - Jean-Philippe Aumasson">
+    <meta property="og:description" content="Research papers and cryptography projects by Jean-Philippe Aumasson.">
+    <meta property="og:url" content="https://www.aumasson.jp/papers.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="style2.css" rel="stylesheet">
 </head>
 <body>
     <div id="content">
@@ -515,7 +525,7 @@ XII, Université Cergy-Pontoise, 2005</li>
 
   document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem('themeIndex');
-    let current = saved === null ? Math.floor(Math.random() * themes.length) : Number.parseInt(saved, 10);
+    let current = saved === null ? themes.indexOf('blu') : Number.parseInt(saved, 10);
     if (!Number.isInteger(current) || current < 0 || current >= themes.length) current = 0;
     applyTheme(current);
 

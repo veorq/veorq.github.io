@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Splash&family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
-
 :root {
-    --bg: #d8ddd9;
-    --fg: #2e3534;
-    --highlight: #1f6f5d;
-    --bg-content: #edf1ee;
-    --shadow: rgba(30,40,40,.12);
+    --bg: #f4f4f4;
+    --fg: #333;
+    --highlight: #007acc;
+    --bg-content: white;
+    --shadow: rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -285,6 +283,8 @@ footer {
 
 .art-preview img {
     max-width: 100px;
+    width: auto;
+    height: auto;
     margin-right: 10px;
     vertical-align: middle;
     border-radius: 5px;
@@ -377,6 +377,7 @@ a:focus-visible {
 
 .book img {
     display: block;
+    width: auto;
     height: 185px;
     max-width: 100%;
     margin: 0 auto 8px;

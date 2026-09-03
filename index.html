@@ -5,6 +5,16 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Jean-Philippe Aumasson</title>
+<meta name="description" content="Jean-Philippe Aumasson is a cryptographer, security professional, and author of technical books and fiction."/>
+<link rel="canonical" href="https://www.aumasson.jp/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Jean-Philippe Aumasson"/>
+<meta property="og:title" content="Jean-Philippe Aumasson"/>
+<meta property="og:description" content="Cryptographer, security professional, and author of technical books and fiction."/>
+<meta property="og:url" content="https://www.aumasson.jp/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <link href="style2.css" rel="stylesheet"/>
 </head>
 <body>
@@ -33,29 +43,29 @@ strategy, and governance.</p>
 <h3>Technical Books</h3>
 <div class="books">
 <div class="book">
-<a href="https://nostarch.com/serious-cryptography-2nd-edition"><img alt="SC2" src="data/covs/sc2.jpg"/></a>
+<a href="https://nostarch.com/serious-cryptography-2nd-edition"><img alt="SC2" src="data/covs/sc2.jpg" width="747" height="994" loading="lazy" /></a>
 <div>No Starch, 2024
     <br/>
     + <a href="serious2.html">translations</a>
 </div>
 </div>
 <div class="book">
-<a href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne"><img alt="Déchiffrée" src="data/covs/cr.jpg"/></a>
+<a href="https://www.dunod.com/sciences-techniques/cryptographie-dechiffree-une-introduction-pratique-au-chiffrement-moderne"><img alt="Déchiffrée" src="data/covs/cr.jpg" width="300" height="423" loading="lazy" /></a>
 <div>Dunod, 2024</div>
 </div>
 <div class="book">
-<a href="https://www.crypto-dictionary.com"><img alt="Dictionary" src="data/covs/cd.jpg"/></a>
+<a href="https://www.crypto-dictionary.com"><img alt="Dictionary" src="data/covs/cd.jpg" width="993" height="1500" loading="lazy" /></a>
 <div>No Starch, 2020</div>
 </div>
 <div class="book">
-<a href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268"><img alt="SC1" src="data/covs/sc.jpg"/></a>
+<a href="https://www.amazon.com/Serious-Cryptography-Practical-Introduction-Encryption/dp/1593278268"><img alt="SC1" src="data/covs/sc.jpg" width="1135" height="1500" loading="lazy" /></a>
 <div>No Starch, 2017
     <br/>
     + <a href="serious.html">translations</a>
 </div>
 </div>
 <div class="book">
-<a href="blake/book/index.html"><img alt="BLAKE" src="data/covs/bl.jpg"/></a>
+<a href="blake/book/index.html"><img alt="BLAKE" src="data/covs/bl.jpg" width="827" height="1245" loading="lazy" /></a>
 <div>Springer, 2014</div>
 </div>
 </div>
@@ -73,19 +83,19 @@ href="https://github.com/P-H-C/phc-winner-argon2">Argon2</a>, RFC <a href="https
 <div class="books">
 <div class="book">
 <a href="t9b/index.html">
-<img alt="The Ninth Berth" src="t9b/t9b.jpg"/></a>
+<img alt="The Ninth Berth" src="t9b/t9b.jpg" width="1294" height="1294" loading="lazy" /></a>
 <div>Novella, 2026</div>
 </div>
 <div class="book">
-<a href="cripto/index.html"><img alt="Cripto" src="cripto/cover.png"/></a>
+<a href="cripto/index.html"><img alt="Cripto" src="cripto/cover.png" width="400" height="600" loading="lazy" /></a>
 <div>Novella, 2025</div>
 </div>
 <div class="book">
-<a href="glitches/index.html"><img alt="Glitches" src="data/covs/gl.jpg"/></a>
+<a href="glitches/index.html"><img alt="Glitches" src="data/covs/gl.jpg" width="1600" height="2400" loading="lazy" /></a>
 <div>Short stories, 2024</div>
 </div>
 <div class="book">
-<a href="http://petitpingou.in"><img alt="Petit Pingouin" src="data/covs/pp.png"/></a>
+<a href="http://petitpingou.in"><img alt="Petit Pingouin" src="data/covs/pp.png" width="400" height="370" loading="lazy" /></a>
 <div>Children's book, 2021</div>
 </div>
 </div>
@@ -117,7 +127,7 @@ href="https://github.com/veorq/awesome-post-quantum">awesome-post-quantum</a>, c
 
   document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem('themeIndex');
-    let current = saved === null ? Math.floor(Math.random() * themes.length) : Number.parseInt(saved, 10);
+    let current = saved === null ? themes.indexOf('blu') : Number.parseInt(saved, 10);
     if (!Number.isInteger(current) || current < 0 || current >= themes.length) current = 0;
     applyTheme(current);
 

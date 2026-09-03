@@ -1,9 +1,20 @@
 <html lang="en">
 
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Splash&amp;family=Cormorant+Garamond:wght@500;600&amp;family=IBM+Plex+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <link href="style2.css" rel="stylesheet" type="text/css" media="screen">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Incipits - Jean-Philippe Aumasson</title>
+<meta name="description" content="Selected opening passages from favorite books.">
+<link rel="canonical" href="https://www.aumasson.jp/incipits.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Jean-Philippe Aumasson">
+<meta property="og:title" content="Incipits - Jean-Philippe Aumasson">
+<meta property="og:description" content="Selected opening passages from favorite books.">
+<meta property="og:url" content="https://www.aumasson.jp/incipits.html">
 </head>
 
 <body>
@@ -1277,7 +1288,7 @@ his eyes.
 
   document.addEventListener('DOMContentLoaded', function () {
     const saved = localStorage.getItem('themeIndex');
-    let current = saved === null ? Math.floor(Math.random() * themes.length) : Number.parseInt(saved, 10);
+    let current = saved === null ? themes.indexOf('blu') : Number.parseInt(saved, 10);
     if (!Number.isInteger(current) || current < 0 || current >= themes.length) current = 0;
     applyTheme(current);
 
