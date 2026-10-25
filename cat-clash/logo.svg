@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" role="img" aria-labelledby="title"><title id="title">Cat Clash</title><defs>
+<linearGradient id="fire" x1="0" y1="0" x2="0.2" y2="1"><stop stop-color="#fff7ae"/><stop offset=".28" stop-color="#ffe342"/><stop offset=".57" stop-color="#ffa827"/><stop offset="1" stop-color="#f24d29"/></linearGradient>
+<linearGradient id="flare"><stop stop-color="#f24732"/><stop offset="1" stop-color="#ffad28"/></linearGradient>
+<!-- Original angular letterforms, drawn as paths to keep the logo crisp and font-independent. -->
+<path id="C" d="M76 2 18 0 0 17 0 82 14 100 74 96 77 72 28 77 27 27 73 29Z"/>
+<path id="A" fill-rule="evenodd" d="M0 100 25 0 62 3 82 98 53 100 49 78 29 78 25 100ZM34 55 47 55 41 25Z"/>
+<path id="T" d="M0 1 83 0 79 26 53 27 52 100 24 97 25 28 0 28Z"/>
+<path id="L" d="M0 1 29 0 27 72 74 70 78 94 1 100Z"/>
+<path id="S" d="M79 2 15 0 1 17 0 52 17 62 51 62 51 76 0 71 4 98 64 100 81 83 80 45 63 35 29 36 29 24 76 29Z"/>
+<path id="H" d="M0 0 28 3 27 36 51 34 53 0 82 2 80 98 52 100 52 63 27 64 28 100 0 97Z"/>
+<g id="wordmark" transform="translate(128 27) skewX(-13)">
+<g transform="translate(177 0) rotate(-3)"><use href="#C"/><use href="#A" x="89"/><use href="#T" x="184"/></g>
+<g transform="translate(23 126) rotate(-3) scale(1.16)"><use href="#C"/><use href="#L" x="89"/><use href="#A" x="174"/><use href="#S" x="268"/><use href="#H" x="360"/></g>
+</g></defs>
+<!-- Paint swashes, scuffed edges, and three claw cuts give the mark its street-arcade energy. -->
+<path fill="#28243b" d="m54 204 57-27-19-21 72 7 54-62 12 35L554 37l-11 28 88-21-25 39 71 2-39 29 62 5-48 47 56-9-31 36 38 7-65 22 23 28-73 7-91 40-17-15-146 28 31-25-197 27 20-25-65 5 12-30-66 15 28-37-66 4Z"/>
+<path fill="url(#flare)" d="m82 195 114-26-26-26 102 8 240-83-18 29 114-34-26 37 61-7-45 38 57-3-40 31 39 5-55 33 39 9-100 25 28 20-120 23 19-19-154 36 32-26-204 32 43-27-89 9 34-27-74 11Z"/>
+<use href="#wordmark" transform="translate(10 13)" fill="#28243b" stroke="#28243b" stroke-width="24" stroke-linejoin="round"/>
+<use href="#wordmark" fill="#ffb627" stroke="#ffb627" stroke-width="19" stroke-linejoin="round"/>
+<use href="#wordmark" fill="url(#fire)" stroke="#28243b" stroke-width="9" stroke-linejoin="round"/>
+<use href="#wordmark" fill="url(#fire)" stroke="#fff0a0" stroke-width="1.5"/>
+<path d="m163 288 372-30-43 19-343 31Zm457-182 31-55-15 62Zm25 17 34-60-17 68Zm22 19 32-61-16 69Z" fill="#fff2b2"/>
+<g fill="#28243b"><path d="m61 235-20 13 22-2Zm44 55-20 12 26-4Zm582-81 35-11-18 19Z"/><circle cx="96" cy="129" r="5"/><circle cx="77" cy="147" r="3"/><circle cx="700" cy="170" r="4"/><circle cx="139" cy="301" r="3"/></g>
+</svg>
