@@ -118,6 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
-  footer.innerHTML = '<div><a href="https://www.bfswa.blog">Blog</a><a href="https://github.com/veorq">GitHub</a><a href="mailto:jpa@pm.me">Email</a><span>Signal: jpa.01</span></div><small><kbd>/</kbd> search · <kbd>T</kbd> theme</small>';
+  footer.innerHTML = '<div><a href="https://www.bfswa.blog">Blog</a><a href="https://github.com/veorq">GitHub</a><a href="mailto:jpa@pm.me">Email</a><a href="https://signal.me/#eu/mwXFEjTaHiFtaPYaM8KSCFjdH4IHij_OgYAVH43SfkY02mQtEZRDtYsTKStRF9pp">Signal: jpa.01</a></div><small><kbd>/</kbd> search · <kbd>T</kbd> theme</small>';
   document.querySelector('#content')?.append(footer);
 });
